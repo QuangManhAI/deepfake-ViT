@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Virtual environment
+.venv/
+venv/
+env/
+/outputs
+
+# Data & models
+data/raw/*
+data/processed/*
+data/splits/*
+models/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/splits/.gitkeep
+!models/.gitkeep
+
+# Checkpoints & logs
+outputs/checkpoints/*
+outputs/logs/*
+outputs/results/*
+!outputs/checkpoints/.gitkeep
+!outputs/logs/.gitkeep
+!outputs/results/.gitkeep
+*.png
+*.jpg 
+# Model weights
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+
+# Config secrets
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store

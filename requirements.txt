@@ -1,0 +1,16 @@
+# ============================================================
+# Anti Face Deepfake — ViT (DINOv3) Image Classification
+#
+# File này để trống (stub). Cài dependencies khi bạn đưa data/model vào.
+# Khuyến nghị dùng DINOv3 — yêu cầu:
+#
+#   PyTorch  >= 2.7.1   (hỗ trợ Python 3.9, cài theo trang pytorch.org/get-started/locally)
+#   timm     >= 1.0.20  (DINOv3 được hỗ trợ qua timm)
+#   torchvision
+#
+# Cài nhanh:
+#   .venv/bin/pip install torch torchvision timm
+#
+# Các thư viện phụ trợ gợi ý:
+#   .venv/bin/pip install matplotlib tqdm pandas scikit-learn tensorboard
+# ============================================================
