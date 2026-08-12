@@ -8,7 +8,10 @@ __pycache__/
 .venv/
 venv/
 env/
-/outputs
+/outputs/checkpoints/
+/outputs/results/
+/outputs/.plans/
+/outputs/drafts/
 
 # Data & models
 data/raw/*
