@@ -231,6 +231,23 @@ Meta đã train sẵn **cả ViT lẫn ConvNeXt bằng đúng một recipe** —
 5. **Tải dữ liệu:** FF++ và Celeb-DF cần điền form (theo repo `ondyari/FaceForensics` và `yuezunli/celeb-deepfakeforensics`); DFDC full ~470GB. Bản FF++ RAW rất lớn — nếu hạn chế tài nguyên, test robustness bằng c40 là đủ.
 6. **Tài nguyên ước lượng:** fine-tune Xception/ViT-B/16 trên FF++ c23 (~3.600 video train) mất vài giờ trên 1 GPU; linear probe DINOv2/DINOv3 nhanh hơn nhiều.
 
+### 6.4 Cặp model matched cho VIDEO (video-native 3D) — đo trực tiếp bằng `experiments/model_param_count.py`
+
+**Nguyên tắc:** cặp "same size" tốt nhất là cặp **frame-based DINOv3** (§6.2) — matched cả size lẫn pretraining. Nếu bạn muốn model **video-native (3D/temporal)**, dưới đây là các cặp gần-matched nhất đo được (torch 2.8, torchvision 0.23, pytorchvideo 0.1.5):
+
+| Cặp | ViT | CNN | Chênh lệch | Weights | Ghi chú |
+|---|---|---|---|---|---|
+| **Cặp 1 ⭐** | **Swin3D-T: 28,16M** | **I3D-R50: 28,04M** | **0,4%** | torchvision `swin3d_t` (K400, `swin3d_t-7615ae03.pth`); pytorchvideo `i3d_r50` (K400) | Cả hai K400; ViT có ImageNet init trước K400 → pretraining không matched hoàn hảo như DINOv3 |
+| Cặp 2 | **Swin3D-T: 28,16M** | **R(2+1)D-R50: 28,11M** | 0,2% | pytorchvideo `r2plus1d_r50` (K400) | Cùng nhận xét pretraining |
+| Cặp 3 | **MViTv2-S: 34,54M** | **SlowFast-R50: 34,57M** | 0,1% | torchvision `mvit_v2_s` (K400); pytorchvideo `slowfast_r50` (K400) | SlowFast 2 stream → compute cao hơn hẳn; MViT multi-scale |
+
+**Cảnh báo khi dùng X3D:** pytorchvideo hub `x3d_xs/s/m` **cùng 1 kiến trúc 3,79M** (chỉ khác input clip length/crop size: 4×160 / 13×160 / 16×224); chỉ `x3d_l` tăng depth (6,15M). Số params trong paper X3D (XS 3,8 / S 5,5 / M 10,5 / L 20,8 / XL 43,5M) **khác với bản pytorchvideo chạy được** — nếu cần đúng paper, phải build `create_x3d` với config riêng (không có weights sẵn). Đừng dùng X3D khi cần matched size với ViT video (~28–35M).
+
+**Khuyến nghị cho project:**
+- So sánh sạch CNN vs ViT → **frame-based DINOv3 ViT-S+ vs ConvNeXt-Tiny** (matched 100% cả data+recipe+size), video-level bằng aggregation (mean/majority vote) — đây là protocol chuẩn của FF++/Celeb-DF.
+- Muốn thêm ablation temporal → Cặp 1 (**Swin3D-T vs I3D-R50**, ~28M) hoặc Cặp 3 (**MViTv2-S vs SlowFast-R50**, ~34,5M), coi như phần phụ, ghi rõ pretraining không matched.
+- Compute: Swin3D-T ~87,9 GFLOPs/clip; SlowFast 2 stream nặng hơn — kiểm tra GPU trước khi chọn Cặp 3.
+
 ---
 
 ## 7. Nguồn (Sources)
@@ -254,4 +271,10 @@ Meta đã train sẵn **cả ViT lẫn ConvNeXt bằng đúng một recipe** —
 - DINOv3 cho cross-generator forgery: 2025 — https://arxiv.org/abs/2511.22471
 - DINOv2+LoRA cho face forgery (AAAI 2026): 2025 — https://arxiv.org/abs/2511.12107
 - SSL ViT cho deepfake detection (gồm DINO family): 2024 — https://arxiv.org/abs/2405.00355
-- DF40 benchmark (40 kỹ thuật tạo giả, NeurIPS 2024 D&B): https://arxiv.org/abs/2406.13495
+- X3D: Feichtenhofer, CVPR 2020 — https://arxiv.org/abs/2004.04730 ; pytorchvideo hub (params đo: xs/s/m=3,79M, l=6,15M)
+- Video Swin: Liu et al., CVPR 2022 — https://arxiv.org/abs/2106.13230 ; torchvision `swin3d_t/s/b`
+- MViT: Fan et al., ICCV 2021 — https://arxiv.org/abs/2104.11227 ; MViTv2: https://arxiv.org/abs/2112.01526
+- SlowFast: Feichtenhofer et al., ICCV 2019 — https://arxiv.org/abs/1812.03982
+- I3D: Carreira & Zisserman, CVPR 2017 — https://arxiv.org/abs/1705.07750
+- R(2+1)D: Tran et al., CVPR 2018 — https://arxiv.org/abs/1711.11248
+- Số liệu params: tự đo bằng `experiments/model_param_count.py` → `experiments/model_param_count.log`

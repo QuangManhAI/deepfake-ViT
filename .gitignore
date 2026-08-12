@@ -12,6 +12,13 @@ env/
 /outputs/results/
 /outputs/.plans/
 /outputs/drafts/
+*.mov
+*.avi
+*.wav
+*.dircksum
+*.zip
+*.log
+*.csv
 
 # Data & models
 data/raw/*
