@@ -74,9 +74,9 @@ Bảng dưới đây chỉ liệt kê các dataset **có trong benchmark thực 
 
 | Dataset | Năm | Quy mô (đã xác minh) | Các bài báo đã dùng (kiểm tra toàn văn) |
 |---|---|---|---|
-| **FaceForensics++** (1901.08971) | 2019 | 1.000 video thật + 4.000 fake (4 phương pháp: DeepFakes, Face2Face, FaceSwap, NeuralTextures); 3 mức nén RAW/HQ/LQ | Bài gốc FF++; **CViT** (test 4 nhóm); **M2TR** (RAW/HQ/LQ + SR-DF); **F3-Net** (RAW/HQ/LQ); **GenConViT** (ACC 97.0); **ICT** (test open-set); **UCF** (train HQ, cross-test); **RealForensics** (train + in-dist raw/c23/c40); survey ViT (benchmark 5 model) |
+| **FaceForensics++** (1901.08971) | 2019 | 1.000 video thật + 4.000 fake (4 phương pháp: DeepFakes, Face2Face, FaceSwap, NeuralTextures); 3 mức nén RAW/HQ/LQ; **⚠️ không có audio** (README chính thức: "downloaded the source video without audio"; audio YouTube phải tự tải lại — và 4 phương pháp không sửa audio nên audio không phân biệt được fake/thật) | Bài gốc FF++; **CViT** (test 4 nhóm); **M2TR** (RAW/HQ/LQ + SR-DF); **F3-Net** (RAW/HQ/LQ); **GenConViT** (ACC 97.0); **ICT** (test open-set); **UCF** (train HQ, cross-test); **RealForensics** (train + in-dist raw/c23/c40); survey ViT (benchmark 5 model) |
 | **Celeb-DF (v2)** (1909.12962) | 2020 | 590 video thật + 5.639 deepfake (face swap chất lượng cao) | Bài gốc (9 detector, AUC trung bình chỉ 56.9%); **M2TR** (in-set AUC 99.8; cross FF++→Celeb-DF 68.2); **GenConViT** (ACC 90.94); **ICT** (CD1 + CD2 open-set); **UCF** (cross AUC 0.824); **RealForensics** (cross AUC 86.9) |
-| **DFDC** (2006.07397) | 2020 | 128.154 clip: 23.654 thật + 104.500 fake (8 kỹ thuật, 3.426 diễn viên có đồng thuận); ~470GB bản đầy đủ | Bài gốc (challenge, best AP 0.753 in-the-wild); **CViT** (train + test, 91.5% ACC); **GenConViT** (train + test, ACC 98.5); **UCF** (cross-test AUC 0.805); **RealForensics** (cross-test AUC 75.9) |
+| **DFDC** (2006.07397) | 2020 | 128.154 clip: 23.654 thật + 104.500 fake (8 kỹ thuật, 3.426 diễn viên có đồng thuận); ~470GB bản đầy đủ; **có audio** (clip quay thực tế — dataset chuẩn cho hướng audio-visual: AVFF CVPR 2024, ACM MM 2020) | Bài gốc (challenge, best AP 0.753 in-the-wild); **CViT** (train + test, 91.5% ACC); **GenConViT** (train + test, ACC 98.5); **UCF** (cross-test AUC 0.805); **RealForensics** (cross-test AUC 75.9) |
 
 ### 3.2 Nhóm bổ sung (dùng cho test generalization / chuyên sâu)
 
