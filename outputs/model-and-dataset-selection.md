@@ -37,6 +37,8 @@
 
 **Nguồn gốc:** X. Dong, J. Bao, D. Chen, et al. (Microsoft Research Asia + USTC), "Protecting Celebrities from DeepFake with Identity Consistency Transformer", arXiv 2203.01318 (2022). Code: `github.com/LightDXY/ICT_DeepFake`.
 
+> **⚠️ Cập nhật quan trọng theo tiêu chí "tự test lại" (chi tiết ở mục 6):** ICT **có** pretrained weights (`ICT_Base.pth` + `ref.pkl` — link tải đã kiểm tra hoạt động, HTTP 200) nhưng repo **chỉ phát hành inference code, KHÔNG có training code** (README TODO: "[x] Release inference code. [ ] Release training code") và yêu cầu dependency cũ (`timm==0.3.4`, `torch>=1.4`, RetinaFace align riêng) → **không thể tự huấn luyện lại**, chỉ dùng được ở chế độ inference làm mốc literature. Nếu cần model ViT tự train được với pretrain "công bằng" với CNN → dùng **ViT-B/16 (timm, ImageNet-1k)** hoặc **DINOv2-ViT-B** (Apache 2.0).
+
 **Vì sao chọn ICT:**
 - Là **ViT thuần** (standalone): 12 blocks, 12 attention heads, patch 14×14, input 112×112, train từ đầu trên MS-Celeb-1M — không có CNN backbone, đúng nghĩa "1 model ViT".
 - Khác các ViT dựa trên artifact pixel: ICT học **high-level semantics** (độ nhất quán danh tính giữa vùng mặt trong/ngoài) → **generalization tốt nhất lớp standalone ViT** trong survey ViT (2405.08463), bền với suy giảm ảnh (nén, noise, blur).
@@ -60,7 +62,7 @@ So với baseline low-level tốt nhất cùng bảng (Face X-ray avg 79.16; Xce
 > - Muốn model ViT **được trích dẫn nhiều nhất** cho deepfake → **CViT** (2102.11126, CNN→ViT, 91.5% DFDC) — nhưng đây là hybrid CNN+ViT, không phải ViT thuần.
 > - Muốn ViT **mạnh nhất theo benchmark survey** (2405.08463) → **M2TR** (2104.09770, ViT đa tỉ lệ + nhánh frequency, FF++ LQ ACC 92.89/AUC 95.31; Celeb-DF in-set AUC 99.8) — hybrid với backbone EfficientNet-B4.
 > - Muốn ViT "sách giáo khoa" → fine-tune **ViT-B/16** (Dosovitskiy et al., ICLR 2021) với pipeline tiền xử lý giống CViT.
-> - Muốn ViT foundation model (mới 08/2025) → **DINOv3-ViT** (bản ViT là ViT thuần) — xem FAQ 5.1: mạnh cross-generator nhưng license thương mại, chưa có số chuẩn trên FF++/Celeb-DF, và pretrain 1,7 tỷ ảnh làm lệch phép so sánh CNN vs ViT.
+> - Muốn ViT foundation model (mới 08/2025) → **DINOv3-ViT** (bản ViT là ViT thuần) — xem FAQ 5.1: mạnh cross-generator nhưng license thương mại, chưa có số chuẩn trên FF++/Celeb-DF, và pretrain 1,7 tỷ ảnh làm lệch phép so sánh CNN vs ViT. **Cách hóa giải lệch pretrain: dùng cặp DINOv3-ViT-S+/16 (29M) vs DINOv3-ConvNeXt-Tiny (29M)** — cùng 1,7 tỷ ảnh, cùng recipe SSL, cùng teacher ViT-7B, khớp cỡ param, chỉ khác kiến trúc (mục 6.2). Lưu ý: ViT-S/16 (21M) KHÔNG khớp cỡ với ConvNeXt-Tiny (29M).
 
 ---
 
@@ -139,6 +141,7 @@ Tiền xử lý:      RetinaFace/MTCNN + crop mặt 1.3×, resize 224×224 (CViT
 
 **Khi nào DINOv3 là lựa chọn ĐÚNG:**
 - Mục tiêu = generalization với generator mới (AIGC/image forgery): 2511.22471 chứng minh **frozen DINOv3 không cần fine-tune** đã generalizes mạnh (dựa vào cấu trúc low-frequency toàn cục thay vì artifact high-frequency theo từng generator).
+- Muốn thí nghiệm **CNN vs ViT đối xứng hoàn hảo**: dùng cặp **DINOv3-ViT-S+/16 vs DINOv3-ConvNeXt-Tiny (cả hai 29M)** — cùng 1,7 tỷ ảnh, cùng recipe SSL, cùng teacher, khớp cỡ param (xem mục 6.2). Điều này **giải quyết luôn lo ngại "nhiễu pretrain" ở điểm 2**. Lưu ý: ViT-S/16 (21M) không khớp cỡ với ConvNeXt-Tiny (29M).
 - Đồ án muốn đóng góp mới (linear probe / token-ranking / LoRA trên DINOv3) thay vì tái lập baseline literature.
 - Nếu chọn DINOv3: dùng **ViT-S/16 (21M)** hoặc **ViT-B/16 (86M)**, fine-tune nhẹ (LoRA/linear probe), và **chạy song song ICT + Xception làm mốc** để vẫn có điểm neo so sánh với literature.
 
@@ -152,7 +155,85 @@ Tiền xử lý:      RetinaFace/MTCNN + crop mặt 1.3×, resize 224×224 (CViT
 
 ---
 
-## 6. Nguồn (Sources)
+## 6. Kế hoạch tự đánh giá lại (reproducible protocol)
+
+> Bạn nói đúng: nếu làm nghiêm túc thì phải **tự chạy lại trên bộ test của mình**, không tin số trên báo. Dưới đây là ma trận "model nào thực sự chạy được" (đã xác minh trực tiếp 2025-08) và protocol đề xuất.
+
+### 6.1 Ma trận khả dụng (weights / training code / license — đã xác minh)
+
+| Model | Pretrained weights | Training code | License | Thực tế khi chạy |
+|---|---|---|---|---|
+| **Xception** (timm) | ✓ ImageNet | ✓ (tự viết fine-tune) | Apache-2.0 | Dễ nhất; baseline chuẩn literature |
+| **ResNet-50** (timm) | ✓ ImageNet | ✓ | Apache-2.0 | CNN standard-conv (nếu cần "thuần") |
+| **ViT-B/16** (timm/HF) | ✓ ImageNet-1k | ✓ | Apache-2.0 | ViT thuần; **matched pretrain với Xception** → so sánh kiến trúc sạch nhất |
+| **DINOv2 ViT-B** | ✓ (torch.hub/HF) | ✓ (nhưng đắt: 142M ảnh) | Apache-2.0 | SSL mạnh; lưu ý pretrain lệch với CNN |
+| **DINOv3 ViT-B** | ✓ (HF, safetensors 342MB) | ✓ (rất đắt: 1,7 tỷ ảnh) | Meta commercial | Mới 08/2025; license hạn chế |
+| **DINOv3 ConvNeXt-T** (29M) | ✓ (HF `facebook/dinov3-convnext-tiny-pretrain-lvd1689m`) | ✓ (rất đắt) | Meta commercial | **CNN cùng recipe với DINOv3-ViT**: cùng LVD-1689M, cùng SSL, cùng teacher ViT-7B |
+| **DINOv3 ConvNeXt-S** (50M) | ✓ (HF `facebook/dinov3-convnext-small-pretrain-lvd1689m`) | ✓ (rất đắt) | Meta commercial | Bản to hơn nếu muốn chứng minh scaling |
+| **ICT** | ✓ `ICT_Base.pth` + `ref.pkl` (link test OK, HTTP 200) | ✗ **CHỈ inference** | không có LICENSE trong repo | `timm==0.3.4`, `torch>=1.4` cũ; cần RetinaFace align; không tự train lại được |
+| **CViT** | ✓ `cvit_*.pth` trong repo + HF mirror | ✓ | không rõ | Hybrid CNN→ViT; train trên DFDC |
+| **GenConViT** | ✓ HF `Deressa/GenConViT` (ed+vae, state dict) | ✓ | không rõ | Hybrid ConvNeXt+Swin; script `prediction.py` có preset `[dfdc, faceforensics, timit, celeb]`; VAE ~2,6GB |
+| **M2TR** | ✓ Model Zoo (Google Drive) | ✓ (`tools/train.py`) | MIT | Hybrid EfficientNet+transformer; **Model Zoo ghi rõ đánh giá trên subset FF-DF** (FF-C23 97.93 / FF-C40 92.89 / CelebDF 99.76) — không phải full FF++ 4 phương pháp |
+
+**Kết luận quan trọng:** lo ngại của bạn về ICT là có cơ sở — weights thì có, nhưng **không có training code** nên không thể tái lập/retrain; và nhiều bộ weights phát hành (M2TR Model Zoo, GenConViT state dict) chỉ tương ứng subset/protocol riêng, không tái lập số trên báo khi chạy full benchmark.
+
+### 6.2 Cặp model "đối xứng hoàn hảo" cho thí nghiệm (đã xác minh từ MODEL_CARD chính thức)
+
+**Câu trả lời cho "CNN nào train trên nhiều ảnh, cùng cỡ DINOv3 Small": DINOv3-ConvNeXt-Tiny — NHƯNG không khớp cỡ chính xác với ViT-S/16.** Cặp khớp cỡ đúng là **ViT-S+ vs ConvNeXt-Tiny (cả hai 29M)**.
+
+**Đo trực tiếp từ file weights (safetensors, fp32) trên Hugging Face:**
+
+| Model | Tham số đo được (bytes ÷ 4) | Tham số Meta công bố | File model.safetensors |
+|---|---|---|---|
+| DINOv3 **ViT-S/16** | **≈ 21,6M** | 21M | 86.406.384 bytes |
+| DINOv3 **ViT-S+/16** | **≈ 28,7M** | 29M | 114.794.096 bytes |
+| DINOv3 **ConvNeXt-Tiny** | **≈ 27,8M** | 29M | 111.299.216 bytes |
+
+→ **ViT-S/16 (21M) vs ConvNeXt-Tiny (29M): lệch ~29–38% — KHÔNG cùng cỡ.**
+→ **ViT-S+/16 (29M) vs ConvNeXt-Tiny (29M): khớp cỡ** (lệch <3% theo phép đo; Meta công bố cả hai = 29M).
+
+Meta đã train sẵn **cả ViT lẫn ConvNeXt bằng đúng một recipe** — bảng so sánh cặp khớp cỡ:
+
+| | DINOv3 **ViT-S+/16** (khuyến nghị) | DINOv3 **ConvNeXt-Tiny** | (tùy chọn) DINOv3 ViT-S/16 |
+|---|---|---|---|
+| Tham số | **29M** | **29M** | 21M |
+| Pretrain data | LVD-1689M (1,7 tỷ ảnh) | LVD-1689M (1,7 tỷ ảnh) | LVD-1689M |
+| Thuật toán SSL | DINO + iBOT + KoLeo + Gram anchoring | giống hệt | giống hệt |
+| Teacher distill | ViT-7B (đông cứng) | **cùng teacher ViT-7B** | cùng teacher |
+| Tải | `torch.hub` (`dinov3_vits16plus`) / HF | `torch.hub` (`dinov3_convnext_tiny`) / HF | `torch.hub` (`dinov3_vits16`) |
+| Kiến trúc | ViT thuần (patch 16, attention, RoPE, SwiGLU) | **CNN thuần** (conv, không attention) | ViT thuần |
+
+→ Chỉ còn **một biến số duy nhất: kiến trúc (CNN vs ViT)**. Đây là thiết kế thí nghiệm sạch nhất có thể; DINOv2 không có nhánh ConvNeXt (chỉ ViT), nên DINOv3 là gia đình duy nhất hiện có cặp ViT+CNN matched ở quy mô này.
+
+**Nguồn xác minh ViT-S+ tồn tại:** (1) README chính thức github.com/facebookresearch/dinov3 — bảng "ViT-S+/16 distilled, 29M, LVD-1689M"; (2) hubconf.py — hàm `dinov3_vits16plus` có thật; (3) HF repo facebook/dinov3-vits16plus-pretrain-lvd1689m — model.safetensors 114.794.096 bytes (đã liệt kê file). Đọc thêm: https://github.com/facebookresearch/dinov3/blob/main/hubconf.py, https://huggingface.co/facebook/dinov3-vits16plus-pretrain-lvd1689m
+
+**Hai lưu ý trung thực:**
+1. ConvNeXt dùng depthwise conv (7×7 depthwise + 1×1 pointwise) như Xception/EfficientNet — vẫn là CNN (không attention), nhưng không phải "standard convolution" kiểu ResNet. Nếu bạn yêu cầu strict standard-conv thì **không có** CNN nào pretrain ở quy mô tỷ ảnh để matched — ResNet-50 (ImageNet 1,28M) vẫn là lựa chọn cổ điển duy nhất.
+2. License: cả hai model đều thuộc **DINOv3 License (commercial)** — dùng cho nghiên cứu ổn, nhưng khi công bố code/phân phối weights cần xem kỹ điều khoản.
+
+**Ngoài DINO family (nếu muốn độc lập hơn):** CLIP ResNet-50 (~25M params, pretrain 400M cặp ảnh–text, license MIT) — nhưng học theo contrastive image-text chứ không phải SSL thuần, nên "matched" kém hơn.
+
+### 6.3 Cặp cổ điển (literature) và protocol
+
+**Cặp cổ điển (đối chiếu literature, nếu cần):** Xception (ImageNet) vs ViT-B/16 (ImageNet) — cùng pretrain ImageNet-1k, nhưng quy mô nhỏ hơn DINOv3 ~1000×.
+
+**Literature anchors (inference-only):** ICT (weights chính thức), M2TR (Model Zoo), CViT.
+
+**Protocol đề xuất:**
+
+1. **Dữ liệu:** train/val/test trên FF++ c23, split chuẩn **720/140/140** video (dùng list có sẵn trong repo `ondyari/FaceForensics`); test thêm **FF++ c40 + RAW** (đo robustness với nén); **Celeb-DF v2 test-only** (đo cross-domain). Tùy chọn: DFDC (test subset).
+2. **Tiền xử lý:** RetinaFace detect + align, resize 224×224, cố định N frames/video (vd 10) — **GIỮ NGUYÊN pipeline cho cả hai model** (đừng dùng pipeline riêng của từng paper, vì đó là lý do số trên báo không so sánh được với nhau).
+3. **Metric:** frame-level ACC + AUC; video-level (majority vote) ACC + AUC; cross-dataset AUC (train FF++ → test Celeb-DF); robustness (train c23 → test c40/RAW); chạy **3 seeds**, báo mean ± std.
+4. **Pitfall đã kiểm chứng cần ghi vào bài:**
+   - Cùng model Xception nhưng số lệch nhau vì protocol: F3-Net báo FF++ LQ **86.86%** (frame-level) trong khi bài FF++ báo **81.00%** (video-level + face tracking) → luôn tự chạy baseline Xception của bạn làm thước đo chuẩn hóa.
+   - M2TR Model Zoo công bố trên subset FF-DF, không phải full FF++ → weights phát hành ≠ số paper trên benchmark đầy đủ.
+   - Không để lọt video giữa train/test; không dùng Celeb-DF để train nếu muốn đo generalization.
+5. **Tải dữ liệu:** FF++ và Celeb-DF cần điền form (theo repo `ondyari/FaceForensics` và `yuezunli/celeb-deepfakeforensics`); DFDC full ~470GB. Bản FF++ RAW rất lớn — nếu hạn chế tài nguyên, test robustness bằng c40 là đủ.
+6. **Tài nguyên ước lượng:** fine-tune Xception/ViT-B/16 trên FF++ c23 (~3.600 video train) mất vài giờ trên 1 GPU; linear probe DINOv2/DINOv3 nhanh hơn nhiều.
+
+---
+
+## 7. Nguồn (Sources)
 
 - Xception: Chollet, CVPR 2017 — https://arxiv.org/abs/1610.02357
 - FF++: Rössler et al., ICCV 2019 — https://arxiv.org/abs/1901.08971

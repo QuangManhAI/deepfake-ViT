@@ -55,28 +55,35 @@ class Attention(nn.Module):
 
 
 class Mlp(nn.Module):
-    """MLP 2 lớp (up_proj → SiLU → down_proj). DINOv3 dùng SiLU cho nhánh ffn "mlp"."""
+    """MLP: chuẩn (up→act→down) hoặc gated (act(gate) * up → down) như SwiGLU."""
 
-    def __init__(self, in_features: int, hidden_features: int, out_features: int, act: str = "silu"):
+    def __init__(self, in_features: int, hidden_features: int, out_features: int,
+                 act: str = "silu", gated: bool = False):
         super().__init__()
+        self.gated = gated
         self.up_proj = nn.Linear(in_features, hidden_features)
+        if gated:
+            self.gate_proj = nn.Linear(in_features, hidden_features)
         self.down_proj = nn.Linear(hidden_features, out_features)
         self.act = {"silu": nn.SiLU(), "gelu": nn.GELU()}[act]
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        if self.gated:
+            return self.down_proj(self.act(self.gate_proj(x)) * self.up_proj(x))
         return self.down_proj(self.act(self.up_proj(x)))
 
 
 class Block(nn.Module):
     """Transformer block pre-norm: x = x + ls1(attn(norm1(x))); x = x + ls2(mlp(norm2(x)))."""
 
-    def __init__(self, dim: int, num_heads: int, mlp_ratio: float = 4.0, act: str = "silu"):
+    def __init__(self, dim: int, num_heads: int, mlp_ratio: float = 4.0, act: str = "silu",
+                 gated_mlp: bool = False):
         super().__init__()
         self.norm1 = nn.LayerNorm(dim)
         self.attention = Attention(dim, num_heads)
         self.layer_scale1 = LayerScale(dim)
         self.norm2 = nn.LayerNorm(dim)
-        self.mlp = Mlp(dim, int(dim * mlp_ratio), dim, act=act)
+        self.mlp = Mlp(dim, int(dim * mlp_ratio), dim, act=act, gated=gated_mlp)
         self.layer_scale2 = LayerScale(dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -99,11 +106,13 @@ class DinoViT(nn.Module):
         mlp_ratio: float = 4.0,
         num_registers: int = 4,
         act: str = "silu",
+        gated_mlp: bool = False,
     ):
         super().__init__()
         self.embed_dim = embed_dim
         self.num_registers = num_registers
         self.num_patches = (img_size // patch_size) ** 2
+        self.gated_mlp = gated_mlp
 
         # ---- embeddings ----
         self.embeddings = nn.Module()
@@ -114,7 +123,7 @@ class DinoViT(nn.Module):
 
         # ---- transformer blocks ----
         self.layer = nn.ModuleList(
-            [Block(embed_dim, num_heads, mlp_ratio, act=act) for _ in range(depth)]
+            [Block(embed_dim, num_heads, mlp_ratio, act=act, gated_mlp=gated_mlp) for _ in range(depth)]
         )
         self.norm = nn.LayerNorm(embed_dim)
 
@@ -139,10 +148,15 @@ class DinoViT(nn.Module):
 
 
 def load_dinov3(model_path: str, act: str = "silu", **kwargs) -> DinoViT:
-    """Load DINOv3 backbone từ file .safetensors."""
+    """Load DINOv3 backbone từ file .safetensors. Tự động phát hiện gated MLP."""
     from safetensors.torch import load_file
 
     sd = load_file(model_path)
+
+    # Auto-detect gated_mlp từ state_dict
+    if "gated_mlp" not in kwargs:
+        kwargs["gated_mlp"] = any("gate_proj" in k for k in sd.keys())
+
     model = DinoViT(act=act, **kwargs)
     missing, unexpected = model.load_state_dict(sd, strict=True)
     if missing or unexpected:
