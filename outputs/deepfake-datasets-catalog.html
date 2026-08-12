@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>deepfake-datasets-catalog.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="danh-mục-dataset-deepfake--ảnh--video--audio--audio-visual-bản-khảo-sát">Danh mục Dataset Deepfake — Ảnh / Video / Audio / Audio-Visual (bản khảo sát)</h1>
+<blockquote>
+<p>Mục đích: <strong>tài liệu giao cho nhóm khảo sát &amp; đánh giá model</strong>. Liệt kê toàn bộ dataset tìm được (đã lọc bớt các bộ không tải được hoặc mờ ám), phân theo modality, kèm link tải và mức xác minh.
+Quy tắc dùng: <strong>không tin số trên báo — tự chạy, tự test</strong> (xem §H). Số liệu trong bảng là <em>mô tả dataset</em>, không phải kết quả model.</p>
+</blockquote>
+<p><strong>Chú thích mức xác minh:</strong></p>
+<ul>
+<li><strong>[Đã xác minh]</strong> = tôi đã đọc trực tiếp README/paper/supplement hoặc đo kiểm chứng (link, số liệu, cấu trúc).</li>
+<li><strong>[Web]</strong> = tìm thấy qua tìm kiếm web với ≥2 nguồn khớp (ID arXiv đã kiểm tra, chưa đọc trực tiếp toàn văn).</li>
+<li><strong>[Tham khảo]</strong> = có thật nhưng thông tin chi tiết còn thiếu, cần người khảo sát kiểm lại.</li>
+</ul>
+<hr>
+<h2 id="0-bảng-tổng-quan-nhanh">0. Bảng tổng quan nhanh</h2>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Modality</th>
+<th>Quy mô</th>
+<th>Dung lượng</th>
+<th>Link chính</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FF++</strong></td>
+<td>Video</td>
+<td>1k real + 4k fake</td>
+<td>~13GB (c23)/30GB+ (RAW)</td>
+<td>form (repo <code>ondyari/FaceForensics</code>)</td>
+<td><strong>Không có audio</strong></td>
+</tr>
+<tr>
+<td><strong>Celeb-DF v2</strong></td>
+<td>Video</td>
+<td>5.639 fake + 890 real</td>
+<td>~10GB (Kaggle mirror)</td>
+<td>form / Kaggle</td>
+<td>Test list chuẩn 518 video</td>
+</tr>
+<tr>
+<td><strong>DFDC</strong></td>
+<td>Video (+audio)</td>
+<td>128.154 clip</td>
+<td>~470GB</td>
+<td>Meta / Kaggle</td>
+<td>Dataset AV chuẩn in-the-wild</td>
+</tr>
+<tr>
+<td><strong>DFDC Preview</strong></td>
+<td>Video</td>
+<td>5.214 clip</td>
+<td>nhỏ</td>
+<td>Meta</td>
+<td>2 kỹ thuật, test nhanh</td>
+</tr>
+<tr>
+<td><strong>DeeperForensics-1.0</strong></td>
+<td>Video</td>
+<td>60.000 video / 17,6M frame</td>
+<td>lớn (đa phần)</td>
+<td>GitHub <code>EndlessSora/DeeperForensics-1.0</code></td>
+<td>100 diễn viên, 26 quốc gia</td>
+</tr>
+<tr>
+<td><strong>KoDF</strong></td>
+<td>Video (+audio thật)</td>
+<td>237.942 video</td>
+<td>lớn</td>
+<td>GitHub <code>deepbrainai-research/kodf</code></td>
+<td>Người Hàn, audio <strong>không</strong> fake</td>
+</tr>
+<tr>
+<td><strong>ForgeryNet</strong></td>
+<td>Ảnh+Video</td>
+<td>2,9M ảnh + 221.247 video</td>
+<td>rất lớn</td>
+<td>yinanhe.github.io/projects/forgerynet</td>
+<td>15 kỹ thuật, 4 task (có localization)</td>
+</tr>
+<tr>
+<td><strong>WildDeepfake</strong></td>
+<td>Video</td>
+<td>7.314 chuỗi face (707 video)</td>
+<td>~chục GB</td>
+<td>GitHub <code>OpenTAI/wild-deepfake</code></td>
+<td>Video thu từ internet</td>
+</tr>
+<tr>
+<td><strong>UADFV</strong></td>
+<td>Video</td>
+<td>98 video (49/49)</td>
+<td><strong>~155MB</strong></td>
+<td>Drive / Kaggle</td>
+<td>Test nhanh, 1 kỹ thuật</td>
+</tr>
+<tr>
+<td><strong>DF-TIMIT</strong></td>
+<td>Video</td>
+<td>960 video</td>
+<td><strong>~0,2GB</strong></td>
+<td>Zenodo 4068245</td>
+<td>LQ/HQ 64/128px</td>
+</tr>
+<tr>
+<td><strong>DF40</strong></td>
+<td>Ảnh+Video</td>
+<td>40 kỹ thuật</td>
+<td>tùy chọn</td>
+<td>Google Form</td>
+<td>Benchmark hiện đại nhất (2024)</td>
+</tr>
+<tr>
+<td><strong>Deepfake-Eval-2024</strong></td>
+<td>AV</td>
+<td>44h video + 56,5h audio + 1.975 ảnh</td>
+<td>vừa</td>
+<td>HF <code>nuriachandra/Deepfake-Eval-2024</code></td>
+<td>88 website, 52 ngôn ngữ</td>
+</tr>
+<tr>
+<td><strong>GenVidBench</strong></td>
+<td>Video</td>
+<td>AI video gen</td>
+<td>—</td>
+<td>arXiv 2501.11340</td>
+<td>Benchmark video sinh (2025)</td>
+</tr>
+<tr>
+<td><strong>GenImage</strong></td>
+<td>Ảnh</td>
+<td>1,33M ảnh, 8 generator</td>
+<td>~60GB</td>
+<td>Google Drive</td>
+<td>Chuẩn AI-gen ảnh (ECCV 2024)</td>
+</tr>
+<tr>
+<td><strong>iFakeFaceDB</strong></td>
+<td>Ảnh</td>
+<td>~87.000 face StyleGAN</td>
+<td>~10GB</td>
+<td>GitHub <code>socialabubi/iFakeFaceDB</code></td>
+<td>Có bản đã gỡ fingerprint GAN</td>
+</tr>
+<tr>
+<td><strong>UniversalFakeDetect</strong></td>
+<td>Ảnh</td>
+<td>20 generator</td>
+<td>~20GB</td>
+<td>GitHub <code>WisconsinAIVision/...</code></td>
+<td>Tải bằng script</td>
+</tr>
+<tr>
+<td><strong>DiffusionDB</strong></td>
+<td>Ảnh</td>
+<td>14M ảnh (subset 2M)</td>
+<td>6,5TB (subset 1,6TB)</td>
+<td>HF <code>poloclub/diffusiondb</code></td>
+<td>SD thật của user; dựng pretrain</td>
+</tr>
+<tr>
+<td><strong>ArtiFact</strong></td>
+<td>Ảnh</td>
+<td>lớn (~1,3M, 25 kỹ thuật)</td>
+<td>lớn</td>
+<td>HF <code>bitmind/ArtiFact</code></td>
+<td>13 GAN + 7 diffusion + 5 khác</td>
+</tr>
+<tr>
+<td><strong>CIFAKE</strong></td>
+<td>Ảnh</td>
+<td>120.000 (60k real + 60k fake)</td>
+<td><strong>~1GB</strong></td>
+<td>Kaggle <code>birdy654/...</code></td>
+<td>Sanity-test AI-gen</td>
+</tr>
+<tr>
+<td><strong>ASVspoof 2019 LA</strong></td>
+<td>Audio</td>
+<td>train/dev/eval + keys</td>
+<td>~vài GB</td>
+<td>DataShare Edinburgh</td>
+<td><strong>Chuẩn audio</strong> (EER)</td>
+</tr>
+<tr>
+<td><strong>ASVspoof 2021</strong></td>
+<td>Audio</td>
+<td>LA + DF + PA</td>
+<td>~vài GB</td>
+<td>Zenodo 4837263/4835108</td>
+<td>Có track deepfake riêng</td>
+</tr>
+<tr>
+<td><strong>WaveFake</strong></td>
+<td>Audio</td>
+<td>~117k mẫu, 11 vocoder</td>
+<td><strong>~1GB</strong></td>
+<td>Zenodo 5642694</td>
+<td>Vocoder/synthetic speech</td>
+</tr>
+<tr>
+<td><strong>In-the-Wild</strong></td>
+<td>Audio</td>
+<td>58 speaker, 38h</td>
+<td>~vài GB</td>
+<td>HF <code>mueller91/In-The-Wild</code></td>
+<td>Audio deepfake in-the-wild</td>
+</tr>
+<tr>
+<td><strong>MLAAD</strong></td>
+<td>Audio</td>
+<td>11 ngôn ngữ</td>
+<td>~chục GB</td>
+<td>HF <code>mueller91/MLAAD</code></td>
+<td>Đa ngôn ngữ, CC-BY-NC-4.0</td>
+</tr>
+<tr>
+<td><strong>ADD 2022</strong></td>
+<td>Audio</td>
+<td>3 track (LF/PF/FG)</td>
+<td>vừa</td>
+<td>addchallenge.cn / Zenodo 12188127</td>
+<td>Partial-fake audio</td>
+</tr>
+<tr>
+<td><strong>FoR</strong></td>
+<td>Audio</td>
+<td>195k+ utterance</td>
+<td>~10GB</td>
+<td>bil.eecs.yorku.ca/datasets/</td>
+<td>TTS cũ (Deep Voice 3, Wavenet)</td>
+</tr>
+<tr>
+<td><strong>FakeAVCeleb</strong></td>
+<td><strong>AV</strong></td>
+<td>20.000 video (500 real)</td>
+<td>~chục GB</td>
+<td>GitHub <code>DASH-Lab/FakeAVCeleb</code></td>
+<td>Chuẩn train AV (NeurIPS 2021)</td>
+</tr>
+<tr>
+<td><strong>AV-Deepfake1M</strong></td>
+<td><strong>AV</strong></td>
+<td>1.886h, &gt;1M video</td>
+<td>≥254GB (train)</td>
+<td>HF <code>ControlNet/AV-Deepfake1M</code> (gated)</td>
+<td>Localization; <strong>không có face-swap</strong></td>
+</tr>
+<tr>
+<td><strong>LAV-DF</strong></td>
+<td><strong>AV</strong></td>
+<td>~1.500 video</td>
+<td>vừa</td>
+<td>HF/<code>ControlNet/LAV-DF</code></td>
+<td>AV localization (DICTA Best Award)</td>
+</tr>
+<tr>
+<td><strong>SWAN-DF</strong></td>
+<td><strong>AV</strong></td>
+<td>30 cặp</td>
+<td>nhỏ</td>
+<td>Idiap</td>
+<td>Thử nghiệm nhanh</td>
+</tr>
+<tr>
+<td><strong>DigiFakeAV</strong></td>
+<td><strong>AV</strong></td>
+<td>(2025)</td>
+<td>—</td>
+<td>arXiv 2505.16512</td>
+<td>[Tham khảo]</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="a-video-face-swap--face-reenactment--tổng-hợp">A. VIDEO (face-swap / face-reenactment / tổng hợp)</h2>
+<h3 id="a1-ff--faceforensics--arxiv-190108971-iccv-2019-đã-xác-minh">A1. FF++ — FaceForensics++ — arXiv <strong>1901.08971</strong> (ICCV 2019) [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 1.000 video thật + 4.000 fake từ 4 kỹ thuật: DeepFakes (DF), Face2Face (F2F), FaceSwap (FS), NeuralTextures (NT); 4 mức nén c0 (RAW), c23, c40.</li>
+<li><strong>Dùng:</strong> benchmark chính; split chuẩn <strong>720/140/140 video</strong>; test robustness nén (c23→c40/RAW).</li>
+<li>** Không có audio** (README chính thức: <em>&quot;We only downloaded the source video without audio&quot;</em>) — chỉ dùng visual.</li>
+<li><strong>Tải:</strong> form: https://docs.google.com/forms/d/e/1FAIpQLSdRRR3L5zAv6tQ_CKxmK4W96tAab_pfBu2EKAgQbeDVhmXagg/viewform (server EU/EU2); script <code>download-FaceForensics.py</code> trong repo <code>ondyari/FaceForensics</code>. License: nghiên cứu.</li>
+</ul>
+<h3 id="a2-celeb-df-v2--arxiv-190912962-cvpr-2020-đã-xác-minh">A2. Celeb-DF v2 — arXiv <strong>1909.12962</strong> (CVPR 2020) [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 590 Celeb-real + 300 YouTube-real + <strong>5.639 fake</strong> (DeepFakes + FSGAN, chất lượng cao); <strong>test list chuẩn = 518 video</strong> (<code>List_of_testing_videos.txt</code>).</li>
+<li><strong>Dùng:</strong> cross-dataset test sau khi train FF++ (đo generalization).</li>
+<li><strong>Tải:</strong> form https://forms.gle/2jYBby6y1FBU3u6q9 (alt Tencent https://wj.qq.com/s2/8540155/b5d9/) ; <strong>Kaggle mirror tải ngay, ~10,16GB:</strong> https://www.kaggle.com/datasets/reubensuju/celeb-df-v2</li>
+<li>Celeb-DF v1: subset nhỏ hơn, ít dùng (các paper cũ báo trên v1).</li>
+</ul>
+<h3 id="a3-dfdc--deepfake-detection-challenge--arxiv-200607397-2020-web">A3. DFDC — DeepFake Detection Challenge — arXiv <strong>2006.07397</strong> (2020) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 128.154 clip (23.654 thật + 104.500 fake; 8 kỹ thuật; 3.426 diễn viên có đồng thuận); <strong>có audio</strong> (quay thực tế) → dataset AV chuẩn in-the-wild.</li>
+<li><strong>Dùng:</strong> test generalization; hướng audio-visual (AVFF CVPR 2024 train FakeAVCeleb → test DFDC).</li>
+<li><strong>Tải:</strong> https://ai.meta.com/datasets/dfdc/ ; Kaggle https://www.kaggle.com/competitions/deepfake-detection-challenge/data (~470GB bản đầy đủ; có subset).</li>
+</ul>
+<h3 id="a4-dfdc-preview--arxiv-191008854-2019-web">A4. DFDC Preview — arXiv <strong>1910.08854</strong> (2019) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 5.214 clip, 2 kỹ thuật, tiền thân DFDC.</li>
+<li><strong>Tải:</strong> https://ai.meta.com/datasets/dfdc/</li>
+</ul>
+<h3 id="a5-deeperforensics-10--arxiv-200103024-cvpr-2020-web">A5. DeeperForensics-1.0 — arXiv <strong>2001.03024</strong> (CVPR 2020) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 60.000 video / 17,6M frame; 100 diễn viên trả phí, 26 quốc gia; 48.475 video nguồn + 11.000 manipulated; có biến dạng real-world (nén, blur, noise).</li>
+<li><strong>Tải:</strong> GitHub <code>EndlessSora/DeeperForensics-1.0</code> → thư mục <code>dataset/</code> chứa link (Google Drive, nhiều phần). License: nghiên cứu phi thương mại.</li>
+</ul>
+<h3 id="a6-kodf--korean-deepfake-dataset--arxiv-210310094-iccv-2021-web">A6. KoDF — Korean DeepFake Dataset — arXiv <strong>2103.10094</strong> (ICCV 2021) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> <strong>237.942 video</strong> (62.166 real + 175.776 fake); khuôn mặt Hàn Quốc; <strong>audio là audio thật</strong> (không fake) → chỉ dùng cho visual hoặc ghép AV.</li>
+<li><strong>Tải:</strong> GitHub <code>deepbrainai-research/kodf</code> ; site deepbrainai-research.github.io/kodf/</li>
+</ul>
+<h3 id="a7-forgerynet--arxiv-210305630-cvpr-2021-web">A7. ForgeryNet — arXiv <strong>2103.05630</strong> (CVPR 2021) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 2,9M ảnh + <strong>221.247 video</strong>; 15 kỹ thuật forgery (7 image-level + 8 video-level); 4 task: classification 2/3/n-way, <strong>spatial localization</strong>, <strong>temporal localization</strong>, face retrieval.</li>
+<li><strong>Dùng:</strong> khi cần task localization hoặc n-way classification (không chỉ binary).</li>
+<li><strong>Tải:</strong> project page https://yinanhe.github.io/projects/forgerynet (Google Drive tar parts, có MD5); repo <code>yinanhe/ForgeryNet</code>. Rất lớn — tải theo set.</li>
+</ul>
+<h3 id="a8-wilddeepfake--arxiv-210101456-acm-mm-2021-web">A8. WildDeepfake — arXiv <strong>2101.01456</strong> (ACM MM 2021) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 7.314 chuỗi face từ 707 video <strong>thu trên internet</strong> (diverse, real-world); 3.809 real + 3.505 fake.</li>
+<li><strong>Dùng:</strong> test in-the-wild (khác studio datasets).</li>
+<li><strong>Tải:</strong> GitHub <code>OpenTAI/wild-deepfake</code> (Baidu/Google Drive).</li>
+</ul>
+<h3 id="a9-uadfv--paper-đi-kèm-không-có-arxiv-độc-lập-đã-xác-minh">A9. UADFV — (paper đi kèm, không có arXiv độc lập) [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 98 video (49 real + 49 fake bằng FakeApp/DeepFakes), 1 kỹ thuật, độ phân giải thấp.</li>
+<li><strong>Dùng:</strong> <strong>sanity test nhanh nhất</strong> (155MB).</li>
+<li><strong>Tải:</strong> https://drive.google.com/drive/u/0/folders/1GEk1DSxmlV_61JtpEGzC9Fo_BffvyxpH ; Kaggle mirror <code>uadfv-new</code> (154,51MB).</li>
+</ul>
+<h3 id="a10-deepfake-timit-df-timit--idiap-đã-xác-minh">A10. DeepFake-TIMIT (DF-TIMIT) — (Idiap) [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 960 video (320 real + 640 fake); 2 chất lượng LQ (64×64) / HQ (128×128).</li>
+<li><strong>Dùng:</strong> cross-test nhỏ; <strong>~0,2GB</strong>.</li>
+<li><strong>Tải:</strong> https://zenodo.org/records/4068245 ; trang chính thức https://www.idiap.ch/en/scientific-research/data/deepfaketimit</li>
+</ul>
+<h3 id="a11-dfd--deepfakedetection-google-đã-xác-minh--nằm-trong-bộ-ff">A11. DFD — DeepFakeDetection (Google) [Đã xác minh — nằm trong bộ FF++]</h3>
+<ul>
+<li><strong>Nội dung:</strong> video YouTube thật + fake (1 kỹ thuật DeepFakes nội bộ Google), 363 video.</li>
+<li><strong>Tải:</strong> cùng form FF++ (thư mục <code>DeepFakeDetection</code> trong repo <code>ondyari/FaceForensics</code>).</li>
+</ul>
+<h3 id="a12-genvidbench--arxiv-250111340-2025-web">A12. GenVidBench — arXiv <strong>2501.11340</strong> (2025) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> benchmark cho <strong>video do AI sinh</strong> (text-to-video), nhiều generator hiện đại.</li>
+<li><strong>Dùng:</strong> khi cần test model trên video generation 2024–2025 (không phải faceswap).</li>
+<li><strong>Tải:</strong> theo repo/paper (chưa đọc trực tiếp chi tiết) [Tham khảo].</li>
+</ul>
+<hr>
+<h2 id="b-ảnh-face-forgery--ai-generated-images">B. ẢNH (face forgery + AI-generated images)</h2>
+<h3 id="b1-df40--arxiv-240613495-neurips-2024-db-web">B1. DF40 — arXiv <strong>2406.13495</strong> (NeurIPS 2024 D&amp;B) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> <strong>40 kỹ thuật tạo giả</strong>: 10 face-swap + 12 face-reenactment + 10 EFS (tổng hợp toàn khuôn mặt) + 5 face-editing; gồm cả generator mới (diffusion).</li>
+<li><strong>Dùng:</strong> benchmark generalization đa generator hiện đại nhất; có ảnh lẫn video.</li>
+<li><strong>Tải:</strong> Google Form https://docs.google.com/forms/d/1ESAWoWusOEGEEVnXCH_emv-wJqCYMhCbD6-85RMIoDk/edit ; repo <code>YZY-stack/DF40</code>.</li>
+</ul>
+<h3 id="b2-genimage--arxiv-230608571-eccv-2024-đã-xác-minh">B2. GenImage — arXiv <strong>2306.08571</strong> (ECCV 2024) [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> <strong>1,33M ảnh</strong> (1M fake + 0,33M real); 8 generator: ADM, BigGAN, GLIDE, Midjourney, Stable Diffusion v1.4/v1.5, VQDM, Wukong; kèm split train/val/test chuẩn.</li>
+<li><strong>Dùng:</strong> benchmark chuẩn cho AI-generated image detection (không phải faceswap).</li>
+<li><strong>Tải:</strong> Google Drive https://drive.google.com/drive/folders/1jGt10bwTbhEZuGXLyvrCuxOI0cBqQ1FS ; repo <code>GenImage-Dataset/GenImage</code>.</li>
+</ul>
+<h3 id="b3-ifakefacedb--arxiv-191105351-ganprintr-2019-web">B3. iFakeFaceDB — arXiv <strong>1911.05351</strong> (GANprintR, 2019) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> ~87.000 ảnh face StyleGAN; <strong>2 phiên bản: có và đã gỡ fingerprint GAN</strong> → test khả năng bắt artifact &quot;không-thuộc-về-phân-phối&quot;.</li>
+<li><strong>Tải:</strong> GitHub <code>socialabubi/iFakeFaceDB</code>.</li>
+</ul>
+<h3 id="b4-universalfakedetect--arxiv-230210174-cvpr-2023-web">B4. UniversalFakeDetect — arXiv <strong>2302.10174</strong> (CVPR 2023) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> ~20 generator (GAN + diffusion), ảnh tổng hợp nhiều loại (không chỉ face); dataset gốc từ nhiều nguồn.</li>
+<li><strong>Tải:</strong> repo <code>WisconsinAIVision/UniversalFakeDetect</code> (script download).</li>
+</ul>
+<h3 id="b5-diffusiondb--arxiv-221014896-ieee-vis-2023-web">B5. DiffusionDB — arXiv <strong>2210.14896</strong> (IEEE VIS 2023) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> <strong>14M ảnh Stable Diffusion + prompt thật của user</strong> (6,5TB); subset DiffusionDB 2M (2M ảnh / 1,5M prompt / 1,6TB). License CC0/MIT.</li>
+<li><strong>Dùng:</strong> nguồn pretrain/train cho AI-generated detection quy mô lớn.</li>
+<li><strong>Tải:</strong> HF https://huggingface.co/datasets/poloclub/diffusiondb</li>
+</ul>
+<h3 id="b6-artifact--arxiv-230211970-icip-2023-web">B6. ArtiFact — arXiv <strong>2302.11970</strong> (ICIP 2023) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> ảnh real + synthetic đa danh mục (human/face, animal, places, vehicles…); <strong>25 kỹ thuật sinh</strong> (13 GAN + 7 diffusion + 5 khác); quy mô lớn (~1,3M, cần xem card HF để chốt số).</li>
+<li><strong>Tải:</strong> HF https://huggingface.co/datasets/bitmind/ArtiFact ; repo <code>awsaf49/artifact</code>.</li>
+</ul>
+<h3 id="b7-cifake--arxiv-230314126-ieee-access-2024-web">B7. CIFAKE — arXiv <strong>2303.14126</strong> (IEEE Access 2024) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 120.000 ảnh = 60k real (CIFAR-10) + 60k fake (Stable Diffusion v1.4) — <strong>nhỏ, tải nhanh</strong> (~1GB) → sanity test.</li>
+<li><strong>Tải:</strong> Kaggle https://www.kaggle.com/datasets/birdy654/cifake-real-and-ai-generated-synthetic-images ; GitHub <code>jordan-bird/CIFAKE-Real-and-AI-Generated-Synthetic-Images</code>.</li>
+</ul>
+<h3 id="b8-ảnh-từ-dataset-video-extract-frames">B8. Ảnh từ dataset video (extract frames)</h3>
+<ul>
+<li>FF++ frames, Celeb-DF v2 frames, DFDC frames, DF40 images, Deepfake-Eval-2024 images (1.975 ảnh) — trích bằng ffmpeg theo pipeline cố định (xem §H).</li>
+</ul>
+<hr>
+<h2 id="c-audio-synthetic-speech--voice-cloning">C. AUDIO (synthetic speech / voice cloning)</h2>
+<h3 id="c1-asvspoof-2019-la--arxiv-191101601-challenge-tại-httpswwwasvspooforgdatabase-đã-xác-minh">C1. ASVspoof 2019 LA — arXiv <strong>1911.01601</strong>; challenge tại https://www.asvspoof.org/database [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> logical access — TTS/VC attacks (19 kỹ thuật); split <strong>train/dev/eval + keys chính thức</strong>; metric chuẩn <strong>EER</strong>.</li>
+<li><strong>Dùng:</strong> benchmark audio chuẩn nhất, protocol sẵn để so sánh.</li>
+<li><strong>Tải:</strong> https://datashare.ed.ac.uk/handle/10283/3336 (DOI 10.7488/ds/2555).</li>
+</ul>
+<h3 id="c2-asvspoof-2021-la--df--pa-web">C2. ASVspoof 2021 (LA + DF + PA) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> thêm <strong>track deepfake (DF)</strong> riêng + logical access (LA) khó hơn 2019 (có coding/transmission) + physical access (PA). License Open Data Commons Attribution.</li>
+<li><strong>Dùng:</strong> test nâng cao; baseline chính thức gồm RawNet2 (PyTorch).</li>
+<li><strong>Tải:</strong> LA: https://zenodo.org/records/4837263 ; DF: https://zenodo.org/records/4835108 ; keys: https://www.asvspoof.org/index2021.html ; code: github.com/asvspoof-challenge/2021</li>
+</ul>
+<h3 id="c3-wavefake--arxiv-211102813-2021-đã-xác-minh">C3. WaveFake — arXiv <strong>2111.02813</strong> (2021) [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> ~117.000 mẫu audio fake từ <strong>11 vocoder</strong> (WaveGAN, MelGAN, HiFi-GAN, MultiBand, Parallel WaveGAN…) + real (LJSpeech); nhỏ, tải nhanh (~1GB).</li>
+<li><strong>Dùng:</strong> test theo vocoder (phân tích từng loại artifact).</li>
+<li><strong>Tải:</strong> https://zenodo.org/records/5642694 ; repo <code>RUB-SysSec/WaveFake</code>.</li>
+</ul>
+<h3 id="c4-in-the-wild--arxiv-220316263-ieee-spl-2022-web">C4. In-the-Wild — arXiv <strong>2203.16263</strong> (IEEE SPL 2022) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> audio deepfake <strong>in-the-wild</strong>: 58 speaker, 20,8h bona-fide + 17,2h spoofed (11 TTS/VC).</li>
+<li><strong>Tải:</strong> HF https://huggingface.co/datasets/mueller91/In-The-Wild</li>
+</ul>
+<h3 id="c5-mlaad--arxiv-240109512-2024-web">C5. MLAAD — arXiv <strong>2401.09512</strong> (2024) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> <strong>11 ngôn ngữ</strong> (EN, DE, ES, FR, IT, PL, RU, UK, AR, ZH, HI…); synthetic speech đa TTS. License CC-BY-NC-4.0.</li>
+<li><strong>Dùng:</strong> test đa ngôn ngữ / đa TTS.</li>
+<li><strong>Tải:</strong> HF https://huggingface.co/datasets/mueller91/MLAAD</li>
+</ul>
+<h3 id="c6-add-2022--arxiv-220208433-ijcai-2022-challenge-web">C6. ADD 2022 — arXiv <strong>2202.08433</strong> (IJCAI 2022 challenge) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 3 track: <strong>LF</strong> (low-quality fake), <strong>PF</strong> (partial fake — fake xen giữa audio thật), <strong>FG</strong> (fake game); tiếng Quan thoại (AISHELL-1/3/4 + TTS/VC).</li>
+<li><strong>Dùng:</strong> bài toán partial-fake audio (sát thực tế nhất).</li>
+<li><strong>Tải:</strong> http://addchallenge.cn/downloadADD2022 ; <strong>train+dev mới lên Zenodo:</strong> https://zenodo.org/records/12188127. ADD 2023: http://addchallenge.cn/add2023</li>
+</ul>
+<h3 id="c7-for--fake-or-real-york-university-web">C7. FoR — Fake or Real (York University) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> &gt;195.000 utterance (real + TTS cũ: Deep Voice 3, Google Wavenet…).</li>
+<li><strong>Tải:</strong> https://bil.eecs.yorku.ca/datasets/ ; Kaggle mirror https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset</li>
+</ul>
+<h3 id="c8-audio-từ-dataset-av-xem-d">C8. Audio từ dataset AV (xem §D)</h3>
+<ul>
+<li>FakeAVCeleb (voice-clone SV2TTS), AV-Deepfake1M (VITS/YourTTS), DFDC (audio thật), Deepfake-Eval-2024 (56,5h audio).</li>
+</ul>
+<hr>
+<h2 id="d-audio-visual-video--audio--dùng-khi-cần-detect-2-modality-cùng-lúc">D. AUDIO-VISUAL (video + audio — dùng khi cần detect 2 modality cùng lúc)</h2>
+<h3 id="d1-fakeavceleb--arxiv-210805080-neurips-2021-db-đã-xác-minh">D1. FakeAVCeleb — arXiv <strong>2108.05080</strong> (NeurIPS 2021 D&amp;B) [Đã xác minh]</h3>
+<ul>
+<li><strong>Nội dung:</strong> <strong>20.000 video</strong> = 500 real + 19.500 fake <strong>4 loại</strong>: face-swap (DeepFakes/FSGAN), voice-clone (SV2TTS), face-swap+voice-clone, real; <strong>nhãn fine-grained</strong> → test được từng loại tấn công.</li>
+<li><strong>Dùng:</strong> <strong>dataset train chuẩn cho hướng audio-visual</strong> (AVFF CVPR 2024 train trên nó).</li>
+<li><strong>Tải:</strong> repo <code>DASH-Lab/FakeAVCeleb</code> (Google Form → script download, duyệt thủ công 1–2 tuần).</li>
+</ul>
+<h3 id="d2-av-deepfake1m--arxiv-231115308-acm-mm-2024-best-award-web">D2. AV-Deepfake1M — arXiv <strong>2311.15308</strong> (ACM MM 2024 Best Award) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> quy mô lớn nhất: <strong>1.886 giờ, &gt;1M video, 2.068 chủ thể</strong>; visual = <strong>TalkLip</strong> (lip-sync), audio = <strong>VITS</strong> (identity-dependent) + <strong>YourTTS</strong> (identity-independent); 3 loại (FA+FV / FA+RV / RA+FV); có fake xen real → thiết kế cho <strong>localization</strong>.</li>
+<li>** Không có face-swap** → model chỉ học artifact lip-sync sẽ mù với faceswap. Có imbalance real/fake (tác giả thừa nhận).</li>
+<li><strong>Tải:</strong> HF gated https://huggingface.co/datasets/ControlNet/AV-Deepfake1M (train ≥254GB, 254 file zip × 1GB); repo <code>ControlNet/AV-Deepfake1M</code>.</li>
+</ul>
+<h3 id="d3-lav-df--arxiv-220406228-dicta-2022-best-award-bản-mở-rộng-glitch-in-the-matrix-arxiv-230501979-web">D3. LAV-DF — arXiv <strong>2204.06228</strong> (DICTA 2022 Best Award; bản mở rộng &quot;Glitch in the Matrix&quot; arXiv <strong>2305.01979</strong>) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> dataset AV đầu tiên cho <strong>temporal forgery localization</strong> (video có đoạn fake xen real, audio có fake xen thật); ~1.500 video (xem README để chốt số).</li>
+<li><strong>Tải:</strong> HF https://huggingface.co/datasets/ControlNet/LAV-DF ; repo <code>ControlNet/LAV-DF</code>.</li>
+</ul>
+<h3 id="d4-swan-df-idiap-web">D4. SWAN-DF (Idiap) [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 30 cặp real/fake AV, thử nghiệm nhỏ.</li>
+<li><strong>Tải:</strong> https://www.idiap.ch/en/scientific-research/data/swan-df</li>
+</ul>
+<h3 id="d5-digifakeav--arxiv-250516512-2025-tham-khảo">D5. DigiFakeAV — arXiv <strong>2505.16512</strong> (2025) [Tham khảo]</h3>
+<ul>
+<li>Nội dung/dung lượng chưa đọc trực tiếp; link tải cần kiểm lại.</li>
+</ul>
+<h3 id="d6-deepfake-eval-2024--arxiv-250302857-web">D6. Deepfake-Eval-2024 — arXiv <strong>2503.02857</strong> [Web]</h3>
+<ul>
+<li><strong>Nội dung:</strong> 44h video + 56,5h audio + 1.975 ảnh, thu từ <strong>88 website, 52 ngôn ngữ</strong>; nhãn gán thủ công; <strong>chưa có split chính thức</strong> → tự chia theo nguồn.</li>
+<li><strong>Tải:</strong> HF https://huggingface.co/datasets/nuriachandra/Deepfake-Eval-2024 ; repo <code>nuriachandra/Deepfake-Eval-2024</code>.</li>
+</ul>
+<hr>
+<h2 id="e-khung-benchmark--công-cụ-tổng-hợp">E. Khung benchmark / công cụ tổng hợp</h2>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>arXiv</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DeepfakeBench</strong></td>
+<td><strong>2307.01426</strong> (NeurIPS 2023)</td>
+<td>Chuẩn hoá 9 dataset (FF++, Celeb-DF v1/v2, DFD, DFDC-P, DFDC, UADFV, FaceShifter, DF-1.0) + code đánh giá thống nhất (frame-level); repo <code>sclbd/deepfakebench</code>.  Chỉ frame-level, chưa có temporal detector.</td>
+</tr>
+<tr>
+<td><strong>DF40</strong></td>
+<td><strong>2406.13495</strong></td>
+<td>40 kỹ thuật, tích hợp pipeline DeepfakeBench.</td>
+</tr>
+<tr>
+<td><strong>GenVidBench</strong></td>
+<td><strong>2501.11340</strong></td>
+<td>Benchmark video AI-gen.</td>
+</tr>
+<tr>
+<td><strong>Deepfake-Eval-2024</strong></td>
+<td><strong>2503.02857</strong></td>
+<td>AV, generator 2024.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="f-nguồn-real-để-tự-dựng-test-set--trộn-âm-thanh-video">F. Nguồn REAL (để tự dựng test set / trộn âm-thanh-video)</h2>
+<table>
+<thead>
+<tr>
+<th>Nguồn</th>
+<th>arXiv</th>
+<th>Dùng để</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VoxCeleb1/2</strong></td>
+<td><strong>1706.08612</strong> / <strong>1806.05622</strong></td>
+<td>Video + audio thật của người nổi tiếng → nền tảng ghép fake (cũng là nguồn gốc nhiều dataset AV)</td>
+</tr>
+<tr>
+<td><strong>LRS3</strong></td>
+<td><strong>1809.00496</strong></td>
+<td>Video môi + audio thật (LipForensics pretrain trên nó)</td>
+</tr>
+<tr>
+<td><strong>FFHQ</strong></td>
+<td><strong>1812.04948</strong></td>
+<td>70k face thật độ phân giải cao → test nhầm lẫn face real</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="g-hướng-dẫn-chọn-nhanh-theo-nhu-cầu">G. Hướng dẫn chọn nhanh theo nhu cầu</h2>
+<table>
+<thead>
+<tr>
+<th>Mục tiêu</th>
+<th>Chọn</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sanity test nhanh (giờ đầu)</td>
+<td>UADFV (155MB) → CIFAKE (~1GB) → WaveFake (~1GB)</td>
+<td>Nhỏ, tải ngay, không cần form</td>
+</tr>
+<tr>
+<td>Benchmark video chuẩn</td>
+<td>FF++ c23/c40 + Celeb-DF v2 (test 518 video)</td>
+<td>Protocol có sẵn, so sánh được với paper</td>
+</tr>
+<tr>
+<td>Cross-dataset generalization</td>
+<td>train FF++ → test Celeb-DF v2; train FakeAVCeleb → test DFDC/DF-TIMIT</td>
+<td>Protocol của AVFF/RealForensics</td>
+</tr>
+<tr>
+<td>Robustness với nén</td>
+<td>FF++ c23→c40→RAW; ADD 2022 LF</td>
+<td>Đo độ bền</td>
+</tr>
+<tr>
+<td>AI-generated ảnh (diffusion/GAN)</td>
+<td>GenImage, UniversalFakeDetect, ArtiFact, CIFAKE, DiffusionDB</td>
+<td>8–25 generator</td>
+</tr>
+<tr>
+<td>Audio chuẩn</td>
+<td>ASVspoof 2019 LA (train/dev/eval + keys, EER)</td>
+<td>Protocol chuẩn nhất</td>
+</tr>
+<tr>
+<td>Audio in-the-wild / đa ngôn ngữ</td>
+<td>In-the-Wild, MLAAD</td>
+<td>Realistic</td>
+</tr>
+<tr>
+<td>Audio partial-fake</td>
+<td>ADD 2022 PF</td>
+<td>Sát thực tế</td>
+</tr>
+<tr>
+<td>Video + audio cùng lúc</td>
+<td>FakeAVCeleb (train) + DFDC subset (test)</td>
+<td>AVFF protocol</td>
+</tr>
+<tr>
+<td>AV localization</td>
+<td>LAV-DF, AV-Deepfake1M, ForgeryNet (temporal)</td>
+<td>Tìm đoạn giả</td>
+</tr>
+<tr>
+<td>Đa kỹ thuật / đa quốc tịch</td>
+<td>DF40, ForgeryNet, KoDF, Deepfake-Eval-2024</td>
+<td>Generalization rộng</td>
+</tr>
+<tr>
+<td>Video AI-gen 2024–2025</td>
+<td>GenVidBench</td>
+<td>Ngoài faceswap</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="h-lưu-ý-protocol--giấy-phép-đọc-trước-khi-khảo-sát">H. Lưu ý protocol &amp; giấy phép (đọc trước khi khảo sát)</h2>
+<ol>
+<li><strong>Tự chạy, đừng tin số báo:</strong> số trên paper không so sánh được (protocol khác nhau). Ví dụ đã kiểm chứng: Xception FF++ LQ báo 81.00% (video-level) vs 86.86% (frame-level, F3-Net) — cùng model khác protocol. DeepfakeBench cảnh báo chính việc này.</li>
+<li><strong>Frame-level ≠ video-level:</strong> quy ước rõ metric bạn báo là gì; frame-level (mỗi frame 1 dự đoán) hay video-level (gộp majority vote/mean). Báo cả hai.</li>
+<li><strong>Split chuẩn:</strong> FF++ = 720/140/140 video (không để lọt video giữa train/test); Celeb-DF v2 = test 518 video; ASVspoof = train/dev/eval + keys chính thức; audio báo <strong>EER</strong>.</li>
+<li><strong>Form duyệt thủ công 1–2 tuần:</strong> FF++, Celeb-DF, DF40, FakeAVCeleb → <strong>xin sớm</strong>. Tải ngay không cần form: UADFV, DF-TIMIT, GenImage (Drive), CIFAKE, WaveFake, In-the-Wild, MLAAD, Deepfake-Eval-2024, ASVspoof 2019 (DataShare), Celeb-DF v2 (Kaggle mirror).</li>
+<li><strong>Audio có hay không (đã kiểm chứng):</strong> FF++ <strong>không</strong> audio; KoDF audio thật (không fake); DFDC/FakeAVCeleb/AV-Deepfake1M/LAV-DF/Deepfake-Eval-2024 <strong>có</strong> audio.</li>
+<li><strong>Giấy phép:</strong> phần lớn dùng cho nghiên cứu phi thương mại (FF++, Celeb-DF, DeeperForensics, MLAAD CC-BY-NC-4.0, ADD). Kiểm license từng bộ trước khi publish code/weights. ASVspoof 2021: Open Data Commons Attribution.</li>
+<li><strong>Công bố dataset trên HF</strong> cần đọc lại card license (DiffusionDB CC0/MIT; gated repos cần accept license).</li>
+</ol>
+<hr>
+<h2 id="nguồn-urls-đã-dùng-khi-xác-minh">Nguồn (URLs đã dùng khi xác minh)</h2>
+<ul>
+<li>FF++: https://arxiv.org/abs/1901.08971 ; repo https://github.com/ondyari/FaceForensics</li>
+<li>Celeb-DF: https://arxiv.org/abs/1909.12962 ; https://forms.gle/2jYBby6y1FBU3u6q9 ; Kaggle https://www.kaggle.com/datasets/reubensuju/celeb-df-v2</li>
+<li>DFDC: https://arxiv.org/abs/2006.07397 ; https://ai.meta.com/datasets/dfdc/ ; DFDC-P https://arxiv.org/abs/1910.08854</li>
+<li>DeeperForensics-1.0: https://arxiv.org/abs/2001.03024 ; https://github.com/EndlessSora/DeeperForensics-1.0</li>
+<li>KoDF: https://arxiv.org/abs/2103.10094 ; https://github.com/deepbrainai-research/kodf</li>
+<li>ForgeryNet: https://arxiv.org/abs/2103.05630 ; https://yinanhe.github.io/projects/forgerynet</li>
+<li>WildDeepfake: https://arxiv.org/abs/2101.01456 ; https://github.com/OpenTAI/wild-deepfake</li>
+<li>DF-TIMIT: https://zenodo.org/records/4068245 ; https://www.idiap.ch/en/scientific-research/data/deepfaketimit</li>
+<li>UADFV: https://drive.google.com/drive/u/0/folders/1GEk1DSxmlV_61JtpEGzC9Fo_BffvyxpH ; Kaggle <code>uadfv-new</code></li>
+<li>DF40: https://arxiv.org/abs/2406.13495 ; https://docs.google.com/forms/d/1ESAWoWusOEGEEVnXCH_emv-wJqCYMhCbD6-85RMIoDk/edit ; https://github.com/YZY-stack/DF40</li>
+<li>GenImage: https://arxiv.org/abs/2306.08571 ; https://drive.google.com/drive/folders/1jGt10bwTbhEZuGXLyvrCuxOI0cBqQ1FS</li>
+<li>iFakeFaceDB: https://arxiv.org/abs/1911.05351 ; https://github.com/socialabubi/iFakeFaceDB</li>
+<li>UniversalFakeDetect: https://arxiv.org/abs/2302.10174 ; https://github.com/WisconsinAIVision/UniversalFakeDetect</li>
+<li>DiffusionDB: https://arxiv.org/abs/2210.14896 ; https://huggingface.co/datasets/poloclub/diffusiondb</li>
+<li>ArtiFact: https://arxiv.org/abs/2302.11970 ; https://huggingface.co/datasets/bitmind/ArtiFact</li>
+<li>CIFAKE: https://arxiv.org/abs/2303.14126 ; https://www.kaggle.com/datasets/birdy654/cifake-real-and-ai-generated-synthetic-images</li>
+<li>ASVspoof 2019: https://arxiv.org/abs/1911.01601 ; https://datashare.ed.ac.uk/handle/10283/3336</li>
+<li>ASVspoof 2021: https://zenodo.org/records/4837263 ; https://zenodo.org/records/4835108 ; https://www.asvspoof.org</li>
+<li>WaveFake: https://arxiv.org/abs/2111.02813 ; https://zenodo.org/records/5642694</li>
+<li>In-the-Wild: https://arxiv.org/abs/2203.16263 ; https://huggingface.co/datasets/mueller91/In-The-Wild</li>
+<li>MLAAD: https://arxiv.org/abs/2401.09512 ; https://huggingface.co/datasets/mueller91/MLAAD</li>
+<li>ADD 2022: https://arxiv.org/abs/2202.08433 ; http://addchallenge.cn/downloadADD2022 ; https://zenodo.org/records/12188127</li>
+<li>FoR: https://bil.eecs.yorku.ca/datasets/ ; https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset</li>
+<li>FakeAVCeleb: https://arxiv.org/abs/2108.05080 ; https://github.com/DASH-Lab/FakeAVCeleb</li>
+<li>AV-Deepfake1M: https://arxiv.org/abs/2311.15308 ; https://huggingface.co/datasets/ControlNet/AV-Deepfake1M</li>
+<li>LAV-DF: https://arxiv.org/abs/2204.06228 ; bản mở rộng https://arxiv.org/abs/2305.01979 ; https://huggingface.co/datasets/ControlNet/LAV-DF</li>
+<li>Deepfake-Eval-2024: https://arxiv.org/abs/2503.02857 ; https://huggingface.co/datasets/nuriachandra/Deepfake-Eval-2024</li>
+<li>DigiFakeAV: https://arxiv.org/abs/2505.16512 ; SWAN-DF: https://www.idiap.ch/en/scientific-research/data/swan-df</li>
+<li>GenVidBench: https://arxiv.org/abs/2501.11340</li>
+<li>DeepfakeBench: https://arxiv.org/abs/2307.01426 ; https://github.com/sclbd/deepfakebench</li>
+<li>VoxCeleb1/2: https://arxiv.org/abs/1706.08612 ; https://arxiv.org/abs/1806.05622</li>
+<li>LRS3: https://arxiv.org/abs/1809.00496 ; FFHQ: https://arxiv.org/abs/1812.04948</li>
+</ul>
+
+</body>
+</html>

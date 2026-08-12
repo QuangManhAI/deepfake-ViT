@@ -1,0 +1,346 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===== Packages =====
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+
+\captionsetup{font=small,labelfont=bf}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{1em}
+
+% ===== Title =====
+\title{\textbf{Detecting Deepfakes with Vision Transformers and Convolutional Neural Networks}\\
+\large A Comparative Study under Matched Parameter Budgets}
+\author{Nhu Pham Quang Manh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Deepfake detection is a challenging binary classification problem in which a model must
+distinguish authentic face images from synthetically manipulated ones. This coursework
+implements and compares two families of vision backbones---a Vision Transformer (ViT)
+and a modern Convolutional Neural Network (ConvNeXt)---for the task of facial manipulation
+detection. Both backbones are initialized from the self-supervised \textsc{DINOv3} weights
+released by Meta, are distilled from the same ViT-7B teacher, and are evaluated at a matched
+parameter budget of approximately $28$M parameters, so that any observed performance
+difference is attributable to the inductive bias of the architecture rather than to scale or
+training signal. We evaluate the frozen backbones with a linear probe trained on the
+DeepFakeFace dataset and report cross-identity accuracy, precision, recall, F1 and ROC-AUC.
+Our results show that at a matched parameter count the two architectures perform nearly
+identically on a diverse, modern manipulation benchmark ($74.1\%$ vs.\ $74.5\%$ F1), while
+the convolutional backbone substantially outperforms the transformer on an older
+faceswap-GAN dataset ($98.9\%$ vs.\ $75.8\%$ detection rate), consistent with the hypothesis
+that convolution is better suited to capturing the local, low-level blending artifacts that
+dominate earlier generation deepfakes. We discuss the implications of these findings for
+architecture selection in forgery detection and outline the extension toward temporal
+(video-level) detection.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+The rapid improvement of generative face-manipulation methods---ranging from autoencoder-based
+faceswaps to modern diffusion-based synthesis---has made the detection of manipulated facial
+imagery an increasingly important problem in computer vision, with applications in media
+forensics, content moderation, and identity protection. A detector must reliably separate
+\emph{pristine} (real) images from \emph{manipulated} (fake) images, a binary classification
+task whose difficulty stems from the fact that modern manipulations are often imperceptible to
+the human eye.
+
+From an architectural standpoint, the field has recently migrated from convolutional neural
+networks (CNNs) toward vision transformers (ViTs) and their self-supervised descendants.
+Two inductive biases are in tension here: CNNs impose \emph{local} receptive fields and
+translation equivariance, which are naturally suited to capturing the fine-grained, low-level
+artifacts (blending seams, color inconsistencies, resampling traces) left by generators, whereas
+ViTs model \emph{global} long-range dependencies through self-attention, which may be better
+suited to high-level semantic reasoning about face identity and structure.
+
+This coursework investigates this trade-off directly. We implement a ViT and a ConvNeXt
+backbone, both initialized from \textsc{DINOv3} self-supervised weights, and evaluate them under
+a controlled comparison in which (i) both models share the same pretraining signal and teacher,
+and (ii) both operate at a matched parameter budget of about $28$M parameters. Our contributions
+are as follows:
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item We reconstruct the \textsc{DINOv3} ViT-S/16 (Plus) and ConvNeXt-Tiny backbones from
+        their released weight files and validate exact state-dict loading.
+  \item We establish a controlled evaluation protocol (frozen backbone + linear probe) and apply
+        it identically to both architectures on the DeepFakeFace dataset using an identity-disjoint
+        split to avoid data leakage.
+  \item We compare the two architectures at matched parameter counts and report a near-tie on
+        modern, diverse manipulations, alongside a large gap on an older faceswap-GAN dataset.
+  \item We discuss the architectural interpretation of these results and outline a path toward
+        temporal (video-level) detection.
+\end{enumerate}
+
+\section{Background and Related Work}
+
+\subsection{Vision Transformers}
+The Vision Transformer (ViT)~\cite{dosovitskiy2021vit} adapts the Transformer architecture to
+images by splitting an input image into a grid of non-overlapping patches, linearly embedding
+each patch into a token, and processing the resulting token sequence through a stack of
+multi-head self-attention and MLP blocks. A learnable \texttt{[CLS]} token is prepended to the
+sequence and its final representation is used for classification. ViT therefore lacks the
+built-in locality and translation equivariance of CNNs and must learn such structure from data,
+which is why it is typically pretrained on very large corpora before being transferred to
+downstream tasks.
+
+\subsection{Modern Convolutional Networks (ConvNeXt)}
+ConvNeXt~\cite{liu2022convnext} is a ``modernized'' ResNet that closes the gap between CNNs and
+transformers by adopting a set of design choices borrowed from ViTs: a patchify stem (a $4\times4$
+convolution with stride $4$), depthwise convolutions with large $7\times7$ kernels, inverted
+bottlenecks, fewer activation functions, and layer normalization instead of batch normalization.
+ConvNeXt retains the convolutional inductive bias while incorporating transformer-style macro
+design, making it a natural CNN counterpart for a controlled ViT-vs-CNN comparison.
+
+\subsection{Self-Supervised Pretraining: DINOv3}
+\textsc{DINOv3}~\cite{dinov3} is a family of self-supervised vision foundation models trained
+with a Gram-anchored self-distillation objective that stabilizes scaling up to $7$B parameters.
+Importantly for this work, \textsc{DINOv3} is released in both ViT and ConvNeXt variants, all
+\emph{distilled from the same frozen ViT-7B teacher} on the same LVD-1689M web dataset. This is
+the key property that makes our comparison controlled: the two backbones differ only in their
+architecture, not in their pretraining signal, teacher, data, or objective.
+
+\subsection{Deepfake Datasets and Benchmarks}
+FaceForensics++~\cite{rossler2019faceforensics} is the canonical benchmark for facial
+manipulation detection, comprising videos manipulated by four methods (DeepFakes, Face2Face,
+FaceSwap, NeuralTextures) at multiple compression levels. DeepfakeTIMIT~\cite{korshunov2018deepfakes}
+is an early faceswap-GAN dataset of $640$ manipulated videos derived from VidTIMIT. More recent
+datasets such as DeepFakeFace provide large-scale, diverse image-level manipulations across
+multiple generator families. Together these datasets span the spectrum of manipulation difficulty,
+from coarse early-generation artifacts to near-imperceptible modern synthesis.
+
+\section{Methodology}
+
+\subsection{Backbones}
+We implement two backbones by reconstructing their architectures to exactly match the released
+\textsc{DINOv3} weight files.
+
+\textbf{DINOv3 ViT-S/16 (Plus).} A ViT-Small with $12$ transformer blocks, embedding dimension
+$384$, $6$ attention heads, patch size $16$, and $4$ register tokens. The ``Plus'' variant uses a
+\emph{gated MLP} (a SwiGLU-style activation of the form $\text{down}(\sigma(\text{gate}(x)) \odot
+\text{up}(x))$) in place of the standard two-layer MLP, which adds roughly $7$M parameters and
+brings the total to $28.7$M. The forward pass prepends the \texttt{[CLS]} token and register
+tokens to the patch sequence, and the final \texttt{[CLS]} representation (after layer norm) is
+returned as a $384$-dimensional feature vector.
+
+\textbf{DINOv3 ConvNeXt-Tiny.} A ConvNeXt-Tiny with stage depths $[3,3,9,3]$ and channel widths
+$[96,192,384,768]$. Each block consists of a $7\times7$ depthwise convolution, layer normalization,
+a $1\times1$ pointwise expansion ($4\times$), a GELU activation, a $1\times1$ projection, and a
+layer-scale residual. The final feature map is globally average-pooled and layer-normalized to
+yield a $768$-dimensional feature vector. The model totals $27.8$M parameters.
+
+Table~\ref{tab:backbones} summarizes the two backbones. Note that both models are used as
+\emph{frozen feature extractors}; no fine-tuning of the backbone is performed.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of the two backbones used in this study.}
+\label{tab:backbones}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Property} & \textbf{ViT-S/16 (Plus)} & \textbf{ConvNeXt-Tiny} \\
+\midrule
+Architecture family & Transformer & Convolutional \\
+Parameters & $28.7$M & $27.8$M \\
+Feature dimension & $384$ & $768$ \\
+MLP / block type & Gated MLP (SwiGLU) & Inverted bottleneck \\
+Attention / locality & Global self-attention & Local $7\times7$ depthwise \\
+Pretraining & DINOv3 (self-supervised) & DINOv3 (self-supervised) \\
+Teacher & ViT-7B & ViT-7B \\
+Pretrain data & LVD-1689M & LVD-1689M \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Evaluation Protocol}
+To isolate the effect of the backbone architecture, we freeze both backbones and train a
+\emph{linear probe}---a logistic regression classifier with $L_2$ regularization and balanced
+class weights---on top of the extracted features. Inputs are resized to $256\times256$ and
+normalized with ImageNet statistics. The probe is trained on the training split and evaluated on
+the identity-disjoint test split. Reported metrics are accuracy, precision, recall, F1, and
+ROC-AUC, with \emph{fake} treated as the positive class.
+
+\subsection{Datasets}
+\textbf{DeepFakeFace} is used for the primary benchmark. It contains roughly $120$k images across
+real (wiki) faces and three families of fakes (insight, inpainting, and text-to-image). We use an
+identity-disjoint split (train / validation / test partitioned by person) to prevent the model
+from exploiting identity-level leakage. For the controlled comparison we use the balanced
+``insight'' split ($43{,}294$ train / $11{,}920$ test samples).
+
+\textbf{DeepfakeTIMIT} is used as an auxiliary, out-of-distribution evaluation. All $640$ videos
+are faceswapped (i.e., fake), so we report the \emph{detection rate}---the fraction of extracted
+frames correctly flagged as fake---rather than a full accuracy score, since no real class is
+present.
+
+\textbf{FaceForensics++ benchmark} ($1000$ unlabeled compressed images) is used qualitatively to
+probe cross-domain generalization; because labels are withheld, no quantitative score is reported.
+
+\section{Experiments and Results}
+
+\subsection{Experiment 1: Matched-Parameter Comparison on DeepFakeFace}
+We first compare the two backbones at their natural scales. Table~\ref{tab:deepfakeface}
+reports linear-probe performance on the identity-disjoint DeepFakeFace test split.
+
+\begin{table}[H]
+\centering
+\caption{Linear-probe performance on DeepFakeFace (identity-disjoint test split). Both models
+are frozen \textsc{DINOv3} backbones; the probe is logistic regression.}
+\label{tab:deepfakeface}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model} & \textbf{Params} & \textbf{Acc.} & \textbf{Prec.} & \textbf{Rec.} & \textbf{F1} & \textbf{AUC} \\
+\midrule
+ViT-S/16 (std.\ MLP)      & $21.6$M & $67.4\%$ & $67.7\%$ & $66.5\%$ & $67.1\%$ & $73.8\%$ \\
+ViT-S/16 (Plus, gated)    & $28.7$M & $73.8\%$ & $73.2\%$ & $75.0\%$ & $74.1\%$ & $81.6\%$ \\
+ConvNeXt-Tiny             & $27.8$M & $74.5\%$ & $74.0\%$ & $75.5\%$ & $74.7\%$ & $82.0\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two observations follow directly. First, the gated MLP confers a substantial improvement to the
+ViT: moving from the standard MLP ($21.6$M) to the gated variant ($28.7$M) raises accuracy by
+$+6.4$ points ($67.4\% \to 73.8\%$). Second, at a \emph{matched} parameter count ($28.7$M vs.\
+$27.8$M), the ViT and the ConvNeXt are statistically indistinguishable, differing by only $0.7$
+points of accuracy and $0.7$ points of F1. This is the central result of the study: once scale,
+pretraining signal, and teacher are controlled, the architectural choice between ViT and CNN has
+little effect on a diverse, modern manipulation benchmark.
+
+\subsection{Experiment 2: Out-of-Distribution Detection on DeepfakeTIMIT}
+To stress-test the inductive biases further, we evaluate both backbones on DeepfakeTIMIT, an older
+faceswap-GAN dataset whose manipulations exhibit coarse, local blending artifacts. Because every
+video is fake, we report the detection rate in Table~\ref{tab:df_timit}, further broken down by
+quality level (HQ: $128\times128$ swaps; LQ: $64\times64$ swaps).
+
+\begin{table}[H]
+\centering
+\caption{Detection rate on DeepfakeTIMIT (all $640$ videos are faceswapped / fake). A higher
+rate means more frames are correctly flagged as fake.}
+\label{tab:df_timit}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Overall} & \textbf{HQ} & \textbf{LQ} & \textbf{Mean $p(\text{fake})$} \\
+\midrule
+ViT-S/16 (Plus)   & $75.8\%$ & $65.6\%$ & $85.9\%$ & $0.653$ \\
+ConvNeXt-Tiny     & $98.9\%$ & $99.1\%$ & $98.8\%$ & $0.895$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Here the architectures diverge sharply: the ConvNeXt detects $98.9\%$ of the fake frames, whereas
+the ViT detects only $75.8\%$. Moreover, the ViT's performance is quality-dependent---it performs
+much worse on high-quality swaps ($65.6\%$) than on low-quality ones ($85.9\%$)---whereas the
+ConvNeXt is robust across both quality levels ($99.1\%$ / $98.8\%$). This supports the hypothesis
+that the convolutional backbone, with its local receptive fields, is better equipped to capture the
+low-level blending seams and color inconsistencies that characterize early-generation faceswaps,
+whereas the transformer's global attention is comparatively insensitive to these subtle, spatially
+localized cues.
+
+\subsection{Experiment 3: Cross-Domain Probe on FaceForensics++}
+Finally, we probe generalization to the FaceForensics++ benchmark ($1000$ unlabeled, heavily
+compressed images). Without ground-truth labels no accuracy can be computed; however, the two
+models agree on only $58\%$ of images and both produce near-random confidence distributions
+(mean predicted fake probability $\approx0.53$), indicating that features learned on DeepFakeFace
+do not transfer well to this distribution. This is consistent with the known difficulty of
+cross-dataset generalization in deepfake detection and highlights the importance of in-domain
+training for benchmark-grade performance.
+
+\section{Discussion}
+
+\subsection{Why Convolution Wins on Old, Coarse Artifacts}
+The divergent behavior on DeepfakeTIMIT is instructive. Faceswap-GAN (2018) produces artifacts
+that are \emph{local} and \emph{low-level}: visible seams at the face boundary, slight color
+mismatches between the swapped face and the surrounding skin, and blurring around the mouth and
+eyes. A depthwise $7\times7$ convolution is precisely tuned to detect such local texture
+statistics, and the hierarchical nature of ConvNeXt (shallow stages for fine detail, deep stages
+for semantics) mirrors the multi-scale structure of these artifacts. In contrast, a ViT's
+self-attention aggregates information globally from the outset, which can dilute spatially
+localized but diagnostically important cues.
+
+\subsection{Why the Gap Disappears on Modern, Diverse Data}
+On DeepFakeFace---which spans three modern generator families with more subtle, diverse, and
+semantic manipulations---the architectures converge to a near-tie. We attribute this to two
+factors. First, modern manipulations leave fewer consistent low-level artifacts, shifting the
+discriminative signal toward higher-level, identity- and structure-related cues that attention
+models capture well. Second, the matched parameter count and shared DINOv3 pretraining remove the
+confounding scale advantages that would otherwise favor one architecture, leaving a fair test in
+which neither inductive bias dominates.
+
+\subsection{Limitations}
+Our study has several limitations. (i) We use a frozen-backbone linear probe, which measures the
+quality of the pretrained features but not the full capacity of fine-tuned models. (ii) The
+evaluation is image-level; temporal (video-level) artifacts---flicker, unnatural blinking,
+frame-to-frame inconsistency---are ignored, and these are often the strongest cues in real-world
+deepfakes. (iii) The DeepfakeTIMIT evaluation is one-sided (no real class), so it reports detection
+rate rather than a balanced accuracy. (iv) Cross-domain results are qualitative only. Each of
+these is a natural target for future work.
+
+\section{Conclusion and Future Work}
+We implemented a Vision Transformer and a ConvNeXt backbone, both initialized from \textsc{DINOv3}
+self-supervised weights, and compared them for deepfake detection under a matched parameter budget
+of approximately $28$M parameters. Our key findings are: (1) at matched scale, ViT and CNN perform
+nearly identically on a diverse modern manipulation benchmark ($74.1\%$ vs.\ $74.5\%$ F1);
+(2) the gated MLP improves the ViT by $+6.4$ accuracy points; and (3) the convolutional backbone
+substantially outperforms the transformer on an older faceswap-GAN dataset ($98.9\%$ vs.\ $75.8\%$
+detection rate), supporting the view that convolution is better suited to local, low-level
+artifacts while attention excels at semantic reasoning.
+
+Future work will extend this comparison in two directions. First, we will move from image-level to
+\emph{video-level} detection by aggregating predictions across multiple frames per video (late
+fusion) or by introducing temporal models (3D convolutions or temporal transformers), which can
+exploit motion cues that single frames cannot reveal. Second, we will replace the linear probe
+with full fine-tuning of the backbone and evaluate cross-dataset generalization on FaceForensics++
+and Celeb-DF, which remains the most practically meaningful test of a deepfake detector.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{dosovitskiy2021vit}
+A. Dosovitskiy, L. Beyer, A. Kolesnikov, D. Weissenborn, X. Zhai, T. Unterthiner,
+M. Dehghani, M. Minderer, G. Heigold, S. Gelly, J. Uszkoreit, and N. Houlsby.
+An image is worth $16\times16$ words: Transformers for image recognition at scale.
+\emph{International Conference on Learning Representations (ICLR)}, 2021.
+
+\bibitem{liu2022convnext}
+Z. Liu, H. Mao, C.-Y. Wu, C. Feichtenhofer, T. Darrell, and S. Xie.
+A ConvNet for the 2020s.
+\emph{IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 2022.
+
+\bibitem{dinov3}
+Meta AI. DINOv3: Scaling self-supervised learning for vision foundation models.
+arXiv:2508.10104, 2025.
+
+\bibitem{rossler2019faceforensics}
+A. R\"ossler, D. Cozzolino, L. Verdoliva, C. Riess, J. Thies, and M. Nie{\ss}ner.
+FaceForensics++: Learning to detect manipulated facial images.
+\emph{IEEE/CVF International Conference on Computer Vision (ICCV)}, 2019.
+
+\bibitem{korshunov2018deepfakes}
+P. Korshunov and S. Marcel.
+DeepFakes: a new threat to face recognition? Assessment and detection.
+arXiv:1812.08685, 2018.
+
+\bibitem{chollet2017xception}
+F. Chollet.
+Xception: Deep learning with depthwise separable convolutions.
+\emph{IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 2017.
+
+\end{thebibliography}
+
+\end{document}

@@ -73,6 +73,45 @@
 - Mở rộng tự nhiên từ Gap A: giữ nguyên 2 model (DINOv3 ViT-S+ vs ConvNeXt-Tiny) → thêm nhánh audio (Wav2Vec2/AST) → so 3 chế độ: visual-only / audio-only / fused, trên FakeAVCeleb 4-way + cross-test DFDC subset.
 - Chi phí: trung bình (cần thêm encoder audio + fusion); dữ liệu FakeAVCeleb tải qua form — xin trước vì duyệt thủ công.
 
+## 7. Bằng chứng: phương pháp audio-visual ĐÃ tồn tại và đang thắng (xác minh 2025)
+
+**Trả lời trực tiếp câu hỏi "detect video + giọng nói cùng lúc có không?": CÓ — đây là subfield đang tăng nhanh (CVPR 2024, ACM MM 2024, ICCV 2025), không phải "không có" và không còn quá kén người làm kể từ khi có dataset audio-visual chuẩn (FakeAVCeleb 2021, AV-Deepfake1M 2024).**
+
+### 7.1 Số liệu mẫu mốc: AVFF (CVPR 2024) — cross-dataset train FakeAVCeleb → test DFDC subset [Đã đọc supplement]
+
+| Method | Modality | DF-TIMIT AP / AUC | DFDC AP / AUC |
+|---|---|---|---|
+| Xception | Visual | 86.0 / 90.5 | 68.0 / 67.6 |
+| LipForensics | Visual | 96.7 / 98.4 | 76.8 / 77.4 |
+| FTCN | Visual | 100 / 99.8 | 70.5 / 71.1 |
+| RealForensics | Visual | 99.2 / 99.5 | 82.9 / 83.7 |
+| **AVFF** | **Audio+Visual** | **100 / 100** | **87.0 / 86.2** |
+
+→ Trên cross-dataset DFDC, **audio+visual thắng visual-only tốt nhất +4.1 AP** (87.0 vs 82.9). Lý do chiến lược: face-swap giữ **audio thật** → lộ qua mismatch audio-visual; lip-sync/voice-clone giữ **video thật** → lộ qua mismatch ngược lại. Single-modality chỉ bắt được một nửa.
+
+### 7.2 Danh sách paper audio-visual đã xác minh (ID đều kiểm tra)
+
+| Paper | ID | Năm/venue | Ghi chú |
+|---|---|---|---|
+| **AVFF** (Oorloff et al., UMD + Reality Defender) | **2406.02951** | CVPR 2024 | Visual backbone + audio branch, fusion; cross-dataset FakeAVCeleb→DFDC |
+| **AVTENet** | **2310.13103** | 2023 | Audio-visual transformer ensemble nhiều expert |
+| **AVT²-DWF** | **2403.14974** | 2024 | Dual transformers + dynamic weight fusion |
+| **Explicit Correlation Learning** | **2404.19171** | 2024 | Học tương quan cross-modal, generalization |
+| **LIPINC** | **2401.10113** | 2024 | Lip-sync: temporal inconsistency vùng miệng |
+| **Lips Are Lying** | **2401.15668** | 2024 | Temporal inconsistency audio↔visual cho lip-sync |
+| Intra-/Cross-modal Synchronization | (ICCV 2025) | ICCV 2025 | Detection + temporal localization audio-visual — https://openaccess.thecvf.com/content/ICCV2025/papers/Anshul_Intra-modal_and_Cross-modal_Synchronization_for_Audio-visual_Deepfake_Detection_and_Temporal_ICCV_2025_paper.pdf |
+| Detecting AV Deepfakes (fine-grained) | (BMVC 2024) | BMVC 2024 | https://bmva-archive.org.uk/bmvc/2024/papers/Paper_695/paper.pdf |
+| **LAV-DF** (dataset + temporal localization) | **2204.06228** | DICTA 2022 Best Award | Bản journal mở rộng "Glitch in the Matrix" **2305.01979** |
+
+⚠️ Chính xác hoá: **HAMMER** ("Detecting and Grounding Multi-Modal Media Manipulation", CVPR 2023, **2304.02556**) thường bị nhầm là audio-visual — thực ra là **image + text**, không phải video + audio.
+
+### 7.3 Vì sao vẫn "kén người làm" hơn visual-only (trung thực)
+1. **Dữ liệu khó**: FF++/Celeb-DF (benchmark chuẩn) không có audio phân biệt → muốn làm AV phải xin FakeAVCeleb/AV-Deepfake1M (form duyệt thủ công, hoặc >254GB).
+2. **Chưa có benchmark AV chuẩn hoá**: các paper AV tự chọn protocol (FakeAVCeleb→DFDC của AVFF, hay →DF-TIMIT) → số liệu khó so sánh chéo, ít người dám vào.
+3. **Phức tạp hơn**: 2 pipeline + fusion; compute cao hơn.
+
+→ Nhưng đây chính là **lợi thế cạnh tranh cho đồ án**: ít đối thủ, dataset đã có sẵn, và bằng chứng AVFF cho thấy AV thắng visual-only rõ ràng trên in-the-wild (DFDC).
+
 ---
 
 ## Nguồn
@@ -82,5 +121,7 @@
 - Deepfake-Eval-2024: https://arxiv.org/abs/2503.02857 ; repo https://github.com/nuriachandra/Deepfake-Eval-2024 [Web]
 - DigiFakeAV: https://arxiv.org/abs/2505.16512 [Web]
 - SWAN-DF: https://www.idiap.ch/en/scientific-research/data/swan-df [Web]
-- AVFF (CVPR 2024, train FakeAVCeleb → cross-test): https://openaccess.thecvf.com/content/CVPR2024/supplemental/Oorloff_AVFF_Audio-Visual_Feature_CVPR_2024_supplemental.pdf [Web]
+- AVFF (CVPR 2024, train FakeAVCeleb → cross-test): https://openaccess.thecvf.com/content/CVPR2024/supplemental/Oorloff_AVFF_Audio-Visual_Feature_CVPR_2024_supplemental.pdf ; main paper https://arxiv.org/abs/2406.02951 [Đã đọc supplement]
+- AVTENet: https://arxiv.org/abs/2310.13103 ; AVT²-DWF: https://arxiv.org/abs/2403.14974 ; Explicit Correlation: https://arxiv.org/abs/2404.19171 ; LIPINC: https://arxiv.org/abs/2401.10113 ; Lips Are Lying: https://arxiv.org/abs/2401.15668 [Web]
+- LAV-DF: https://arxiv.org/abs/2204.06228 ; Glitch in the Matrix: https://arxiv.org/abs/2305.01979 [Web]
 - DFDC: https://ai.meta.com/datasets/dfdc/ ; Kaggle https://www.kaggle.com/competitions/deepfake-detection-challenge/data [Web]
