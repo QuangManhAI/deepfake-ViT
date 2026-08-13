@@ -26,12 +26,16 @@
 | **DF40** | Ảnh+Video | 40 kỹ thuật | tùy chọn | Google Form | Benchmark hiện đại nhất (2024) |
 | **Deepfake-Eval-2024** | AV | 44h video + 56,5h audio + 1.975 ảnh | vừa | HF `nuriachandra/Deepfake-Eval-2024` | 88 website, 52 ngôn ngữ |
 | **GenVidBench** | Video | AI video gen | — | arXiv 2501.11340 | Benchmark video sinh (2025) |
-| **GenImage** | Ảnh | 1,33M ảnh, 8 generator | ~60GB | Google Drive | Chuẩn AI-gen ảnh (ECCV 2024) |
-| **iFakeFaceDB** | Ảnh | ~87.000 face StyleGAN | ~10GB | GitHub `socialabubi/iFakeFaceDB` | Có bản đã gỡ fingerprint GAN |
-| **UniversalFakeDetect** | Ảnh | 20 generator | ~20GB | GitHub `WisconsinAIVision/...` | Tải bằng script |
-| **DiffusionDB** | Ảnh | 14M ảnh (subset 2M) | 6,5TB (subset 1,6TB) | HF `poloclub/diffusiondb` | SD thật của user; dựng pretrain |
-| **ArtiFact** | Ảnh | lớn (~1,3M, 25 kỹ thuật) | lớn | HF `bitmind/ArtiFact` | 13 GAN + 7 diffusion + 5 khác |
-| **CIFAKE** | Ảnh | 120.000 (60k real + 60k fake) | **~1GB** | Kaggle `birdy654/...` | Sanity-test AI-gen |
+| **OpenForensics** | Ảnh | 115K ảnh, 334K face | vừa | Zenodo 5528418 | **Deepfake ảnh** in-the-wild, multi-face + segmentation |
+| **DiffusionFace** | Ảnh | 630K | lớn | arXiv 2403.18471 | Face forgery bằng diffusion |
+| **GenFace** | Ảnh | large-scale | — | arXiv 2402.02003 | Face forgery fine-grained |
+| **GenImage** | Ảnh | 1,33M ảnh, 8 generator | ~60GB | Google Drive | **[AI-gen — bài toán khác]** (ECCV 2024) |
+| **iFakeFaceDB** | Ảnh | ~87.000 face StyleGAN | ~10GB | GitHub `socialabubi/iFakeFaceDB` | **[AI-gen]** face; bản đã gỡ fingerprint GAN |
+| **UniversalFakeDetect** | Ảnh | 20 generator | ~20GB | GitHub `WisconsinAIVision/...` | **[AI-gen]** tải bằng script |
+| **DiffusionDB** | Ảnh | 14M ảnh (subset 2M) | 6,5TB (subset 1,6TB) | HF `poloclub/diffusiondb` | **[AI-gen]** SD thật của user; dựng pretrain |
+| **ArtiFact** | Ảnh | lớn (~1,3M, 25 kỹ thuật) | lớn | HF `bitmind/ArtiFact` | **[AI-gen]** 13 GAN + 7 diffusion + 5 khác |
+| **CIFAKE** | Ảnh | 120.000 (60k real + 60k fake) | **~1GB** | Kaggle `birdy654/...` | **[AI-gen]** sanity test |
+| **DeepFakeFace** | Ảnh | ~120K face | vừa | HF `OpenRL/DeepFakeFace` | **[AI-gen face]** mặt người nổi tiếng bằng diffusion |
 | **ASVspoof 2019 LA** | Audio | train/dev/eval + keys | ~vài GB | DataShare Edinburgh | **Chuẩn audio** (EER) |
 | **ASVspoof 2021** | Audio | LA + DF + PA | ~vài GB | Zenodo 4837263/4835108 | Có track deepfake riêng |
 | **WaveFake** | Audio | ~117k mẫu, 11 vocoder | **~1GB** | Zenodo 5642694 | Vocoder/synthetic speech |
@@ -109,41 +113,74 @@
 
 ---
 
-## B. ẢNH (face forgery + AI-generated images)
+## B. ẢNH
 
-### B1. DF40 — arXiv **2406.13495** (NeurIPS 2024 D&B) [Web]
+> ⚠️ **Phân biệt 2 bài toán (quan trọng — tránh đánh giá sai model):**
+> 1. **Deepfake / face forgery** = làm giả **khuôn mặt người thật** (face-swap, reenactment, face-editing) — ảnh nền gốc là thật, chỉ vùng mặt bị biến đổi. Đây là bài toán deepfake kinh điển.
+> 2. **AI-generated (synthetic) image** = **tạo sinh toàn bộ ảnh** từ đầu (StyleGAN, Stable Diffusion, Midjourney…) — không có "người thật gốc". Đây là bài toán khác (synthetic media detection), dù có chung kỹ thuật ML.
+> → Dataset ở **B.1** dùng cho deepfake; dataset ở **B.2** là bài toán khác — đừng trộn làm benchmark chính. (Tham khảo: UADFV/DF-TIMIT/Celeb-DF/DeeperForensics/ForgeryNet chỉ có 1–2 kỹ thuật; FF++/DFDC mới có đủ loại — arXiv 2203.02115.)
+> Ngoài ra: deepfake là hiện tượng **video**, nên ảnh face-forgery chuẩn của cộng đồng là **frame trích từ video** theo protocol thống nhất (DeepfakeBench, NeurIPS 2023, đánh giá frame-level — xem §B1.6).
+
+### B.1 — DEEPFAKE ẢNH (face forgery — bài toán chính)
+
+#### B1.1. DF40 — arXiv **2406.13495** (NeurIPS 2024 D&B) [Web]
 - **Nội dung:** **40 kỹ thuật tạo giả**: 10 face-swap + 12 face-reenactment + 10 EFS (tổng hợp toàn khuôn mặt) + 5 face-editing; gồm cả generator mới (diffusion).
 - **Dùng:** benchmark generalization đa generator hiện đại nhất; có ảnh lẫn video.
 - **Tải:** Google Form https://docs.google.com/forms/d/1ESAWoWusOEGEEVnXCH_emv-wJqCYMhCbD6-85RMIoDk/edit ; repo `YZY-stack/DF40`.
 
-### B2. GenImage — arXiv **2306.08571** (ECCV 2024) [Đã xác minh]
+#### B1.2. OpenForensics — arXiv **2107.14480** (ICCV 2021) [Web]
+- **Nội dung:** **115K ảnh in-the-wild với 334K khuôn mặt**; annotation chi tiết theo từng mặt: loại forgery, bounding box, **segmentation mask**, ranh giới vùng giả, landmarks. Bài toán: multi-face forgery detection **và segmentation**.
+- **Dùng:** khi cần phát hiện face giả trong ảnh nhiều người + định vị vùng giả (không chỉ binary ảnh).
+- **Tải:** Zenodo https://zenodo.org/records/5528418 (v1.0.0) ; repo `ltnghia/openforensics`.
+
+#### B1.3. DiffusionFace — arXiv **2403.18471** [Web]
+- **Nội dung:** dataset face forgery **bằng diffusion** (~630K ảnh theo bảng tổng hợp SEED 2604.10522): face swapping/editing dùng diffusion — cầu nối giữa deepfake cổ điển và generator mới.
+- **Tải:** theo repo/paper (chưa đọc trực tiếp chi tiết).
+
+#### B1.4. GenFace — arXiv **2402.02003** [Web]
+- **Nội dung:** benchmark face forgery **fine-grained** quy mô lớn (phân loại chi tiết loại giả, không chỉ real/fake).
+- **Tải:** theo repo/paper (chưa đọc trực tiếp chi tiết).
+
+#### B1.5. FaceShifter (dataset đi kèm bản phân phối FF++) — paper **1912.13457** (CVPR 2020) [Đã xác minh README]
+- **Nội dung:** 1.000 video gốc của FF++ được swap bằng FaceShifter (high-fidelity, occlusion-aware) — tác giả gửi cho nhóm FaceForensics; tải trong bản phân phối FF++ (thư mục `manipulated_sequences/FaceShifter`). Trích frame → ảnh face forgery chất lượng cao.
+- **Tải:** cùng form FF++ (repo `ondyari/FaceForensics`, mục FaceShifter); paper https://arxiv.org/abs/1912.13457
+
+#### B1.6. Frames trích từ dataset video (cách chuẩn để có ảnh deepfake)
+- FF++ (DF/F2F/FS/NT + FaceShifter), Celeb-DF v2, DFDC (+Preview), DFD (Google), DF-TIMIT, UADFV, DeeperForensics-1.0, WildDeepfake, KoDF, ForgeryNet (2,9M ảnh), DF40 (ảnh) — xem §A cho link tải.
+- Trích frame bằng ffmpeg theo pipeline cố định; frame-level là protocol chuẩn của DeepfakeBench (arXiv 2307.01426).
+
+### B.2 — AI-GENERATED ẢNH (bài toán KHÁC — synthetic image detection; đặt riêng để không nhầm)
+
+> Các bộ này phát hiện ảnh **tạo sinh toàn bộ** (không phải biến đổi mặt người thật). Dùng cho bài toán riêng hoặc test generalization mở rộng; **không dùng làm benchmark chính cho deepfake face forgery**.
+
+#### B2.1. GenImage — arXiv **2306.08571** (ECCV 2024) [Đã xác minh]
 - **Nội dung:** **1,33M ảnh** (1M fake + 0,33M real); 8 generator: ADM, BigGAN, GLIDE, Midjourney, Stable Diffusion v1.4/v1.5, VQDM, Wukong; kèm split train/val/test chuẩn.
-- **Dùng:** benchmark chuẩn cho AI-generated image detection (không phải faceswap).
 - **Tải:** Google Drive https://drive.google.com/drive/folders/1jGt10bwTbhEZuGXLyvrCuxOI0cBqQ1FS ; repo `GenImage-Dataset/GenImage`.
 
-### B3. iFakeFaceDB — arXiv **1911.05351** (GANprintR, 2019) [Web]
-- **Nội dung:** ~87.000 ảnh face StyleGAN; **2 phiên bản: có và đã gỡ fingerprint GAN** → test khả năng bắt artifact "không-thuộc-về-phân-phối".
-- **Tải:** GitHub `socialabubi/iFakeFaceDB`.
-
-### B4. UniversalFakeDetect — arXiv **2302.10174** (CVPR 2023) [Web]
-- **Nội dung:** ~20 generator (GAN + diffusion), ảnh tổng hợp nhiều loại (không chỉ face); dataset gốc từ nhiều nguồn.
-- **Tải:** repo `WisconsinAIVision/UniversalFakeDetect` (script download).
-
-### B5. DiffusionDB — arXiv **2210.14896** (IEEE VIS 2023) [Web]
-- **Nội dung:** **14M ảnh Stable Diffusion + prompt thật của user** (6,5TB); subset DiffusionDB 2M (2M ảnh / 1,5M prompt / 1,6TB). License CC0/MIT.
-- **Dùng:** nguồn pretrain/train cho AI-generated detection quy mô lớn.
-- **Tải:** HF https://huggingface.co/datasets/poloclub/diffusiondb
-
-### B6. ArtiFact — arXiv **2302.11970** (ICIP 2023) [Web]
-- **Nội dung:** ảnh real + synthetic đa danh mục (human/face, animal, places, vehicles…); **25 kỹ thuật sinh** (13 GAN + 7 diffusion + 5 khác); quy mô lớn (~1,3M, cần xem card HF để chốt số).
-- **Tải:** HF https://huggingface.co/datasets/bitmind/ArtiFact ; repo `awsaf49/artifact`.
-
-### B7. CIFAKE — arXiv **2303.14126** (IEEE Access 2024) [Web]
+#### B2.2. CIFAKE — arXiv **2303.14126** (IEEE Access 2024) [Web]
 - **Nội dung:** 120.000 ảnh = 60k real (CIFAR-10) + 60k fake (Stable Diffusion v1.4) — **nhỏ, tải nhanh** (~1GB) → sanity test.
 - **Tải:** Kaggle https://www.kaggle.com/datasets/birdy654/cifake-real-and-ai-generated-synthetic-images ; GitHub `jordan-bird/CIFAKE-Real-and-AI-Generated-Synthetic-Images`.
 
-### B8. Ảnh từ dataset video (extract frames)
-- FF++ frames, Celeb-DF v2 frames, DFDC frames, DF40 images, Deepfake-Eval-2024 images (1.975 ảnh) — trích bằng ffmpeg theo pipeline cố định (xem §H).
+#### B2.3. DiffusionDB — arXiv **2210.14896** (IEEE VIS 2023) [Web]
+- **Nội dung:** **14M ảnh Stable Diffusion + prompt thật của user** (6,5TB); subset DiffusionDB 2M (2M ảnh / 1,5M prompt / 1,6TB). License CC0/MIT.
+- **Dùng:** nguồn pretrain/train cho synthetic-image detection quy mô lớn.
+- **Tải:** HF https://huggingface.co/datasets/poloclub/diffusiondb
+
+#### B2.4. ArtiFact — arXiv **2302.11970** (ICIP 2023) [Web]
+- **Nội dung:** ảnh real + synthetic đa danh mục (human/face, animal, places, vehicles…); **25 kỹ thuật sinh** (13 GAN + 7 diffusion + 5 khác); quy mô lớn (~1,3M, cần xem card HF để chốt số).
+- **Tải:** HF https://huggingface.co/datasets/bitmind/ArtiFact ; repo `awsaf49/artifact`.
+
+#### B2.5. UniversalFakeDetect — arXiv **2302.10174** (CVPR 2023) [Web]
+- **Nội dung:** ~20 generator (GAN + diffusion), ảnh tổng hợp nhiều loại (không chỉ face); dataset gốc từ nhiều nguồn.
+- **Tải:** repo `WisconsinAIVision/UniversalFakeDetect` (script download).
+
+#### B2.6. iFakeFaceDB — arXiv **1911.05351** (GANprintR, 2019) [Web]
+- **Nội dung:** ~87.000 ảnh face StyleGAN; **2 phiên bản: có và đã gỡ fingerprint GAN** → test khả năng bắt artifact "không-thuộc-về-phân-phối".
+- **Tải:** GitHub `socialabubi/iFakeFaceDB`.
+
+#### B2.7. DeepFakeFace (DFF) — arXiv **2309.02218** [Web]
+- **Nội dung:** ~120K ảnh **mặt người nổi tiếng giả tạo bằng diffusion** (theo bảng tổng hợp SEED 2604.10522); nghiên cứu robustness/generalizability khi generator là diffusion. → Hybrid: thuộc nhóm AI-gen nhưng chuyên về face.
+- **Tải:** HF https://huggingface.co/datasets/OpenRL/DeepFakeFace ; repo `OpenRL-Lab/DeepFakeFace`.
 
 ---
 
@@ -245,7 +282,8 @@
 | Benchmark video chuẩn | FF++ c23/c40 + Celeb-DF v2 (test 518 video) | Protocol có sẵn, so sánh được với paper |
 | Cross-dataset generalization | train FF++ → test Celeb-DF v2; train FakeAVCeleb → test DFDC/DF-TIMIT | Protocol của AVFF/RealForensics |
 | Robustness với nén | FF++ c23→c40→RAW; ADD 2022 LF | Đo độ bền |
-| AI-generated ảnh (diffusion/GAN) | GenImage, UniversalFakeDetect, ArtiFact, CIFAKE, DiffusionDB | 8–25 generator |
+| Deepfake ẢNH (face forgery) | OpenForensics, DiffusionFace, GenFace, DF40 ảnh + frame trích từ FF++/Celeb-DF/DFDC | Đúng bài toán deepfake kinh điển |
+| AI-generated ảnh (bài toán KHÁC) | GenImage, UniversalFakeDetect, ArtiFact, CIFAKE, DiffusionDB | Chỉ dùng cho synthetic-image detection / test mở rộng |
 | Audio chuẩn | ASVspoof 2019 LA (train/dev/eval + keys, EER) | Protocol chuẩn nhất |
 | Audio in-the-wild / đa ngôn ngữ | In-the-Wild, MLAAD | Realistic |
 | Audio partial-fake | ADD 2022 PF | Sát thực tế |
@@ -257,6 +295,8 @@
 ---
 
 ## H. Lưu ý protocol & giấy phép (đọc trước khi khảo sát)
+
+0. **Đừng trộn 2 bài toán:** deepfake (làm giả mặt người thật) ≠ AI-generated ảnh (tạo sinh toàn bộ). Model chuyên deepfake có thể rớt hoàn toàn trên ảnh diffusion và ngược lại — báo cáo phải ghi rõ bài toán nào (xem §B).
 
 1. **Tự chạy, đừng tin số báo:** số trên paper không so sánh được (protocol khác nhau). Ví dụ đã kiểm chứng: Xception FF++ LQ báo 81.00% (video-level) vs 86.86% (frame-level, F3-Net) — cùng model khác protocol. DeepfakeBench cảnh báo chính việc này.
 2. **Frame-level ≠ video-level:** quy ước rõ metric bạn báo là gì; frame-level (mỗi frame 1 dự đoán) hay video-level (gộp majority vote/mean). Báo cả hai.
