@@ -1,0 +1,77 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\pgfsyspdfmark {pgfid1}{19937948}{49998395}
+\HyPL@Entry{1<</S/D>>}
+\citation{dosovitskiy2021vit}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Vision Transformers}{2}{subsection.2.1}\protected@file@percent }
+\citation{liu2022convnext}
+\citation{dinov3}
+\citation{rossler2019faceforensics}
+\citation{korshunov2018deepfakes}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Modern Convolutional Networks (ConvNeXt)}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Self-Supervised Pretraining: DINOv3}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Deepfake Datasets and Benchmarks}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Backbones}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparison of the two backbones used in this study.}}{4}{table.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:backbones}{{1}{4}{Comparison of the two backbones used in this study}{table.caption.2}{}}
+\newlabel{fig:vit_pipe}{{1a}{4}{ViT pipeline}{figure.caption.3}{}}
+\newlabel{sub@fig:vit_pipe}{{a}{4}{ViT pipeline}{figure.caption.3}{}}
+\newlabel{fig:vit_block}{{1b}{4}{Transformer block (gated variant)}{figure.caption.3}{}}
+\newlabel{sub@fig:vit_block}{{b}{4}{Transformer block (gated variant)}{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {DINOv3 ViT-S/16 (Plus).} (a) Full pipeline: the image is split into $16\times 16$ patches, embedded to $384$ dimensions, prepended with a \texttt  {[CLS]} token and $4$ register tokens, and passed through $12$ transformer blocks; the final \texttt  {[CLS]} embedding is classified by a linear head. (b) One transformer block, with a gated (SwiGLU) MLP and residual connections around both sub-layers.}}{4}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:vit_arch}{{1}{4}{\textbf {DINOv3 ViT-S/16 (Plus).} (a) Full pipeline: the image is split into $16\times 16$ patches, embedded to $384$ dimensions, prepended with a \texttt {[CLS]} token and $4$ register tokens, and passed through $12$ transformer blocks; the final \texttt {[CLS]} embedding is classified by a linear head. (b) One transformer block, with a gated (SwiGLU) MLP and residual connections around both sub-layers}{figure.caption.3}{}}
+\newlabel{fig:cnn_pipe}{{2a}{5}{ConvNeXt pipeline}{figure.caption.4}{}}
+\newlabel{sub@fig:cnn_pipe}{{a}{5}{ConvNeXt pipeline}{figure.caption.4}{}}
+\newlabel{fig:cnn_block}{{2b}{5}{ConvNeXt block}{figure.caption.4}{}}
+\newlabel{sub@fig:cnn_block}{{b}{5}{ConvNeXt block}{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {DINOv3 ConvNeXt-Tiny.} (a) Full pipeline: a patchify stem followed by four stages with depths $[3,3,9,3]$ and widths $[96,192,384,768]$, separated by $2\times 2$ stride-$2$ downsampling layers, ending in global average pooling and a linear head. (b) One ConvNeXt block: a $7\times 7$ depthwise convolution, layer normalization, an inverted bottleneck ($1\times 1$, expand $4\times $, GELU, $1\times 1$), LayerScale, and a residual connection.}}{5}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:cnn_arch}{{2}{5}{\textbf {DINOv3 ConvNeXt-Tiny.} (a) Full pipeline: a patchify stem followed by four stages with depths $[3,3,9,3]$ and widths $[96,192,384,768]$, separated by $2\times 2$ stride-$2$ downsampling layers, ending in global average pooling and a linear head. (b) One ConvNeXt block: a $7\times 7$ depthwise convolution, layer normalization, an inverted bottleneck ($1\times 1$, expand $4\times $, GELU, $1\times 1$), LayerScale, and a residual connection}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluation Protocol}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Datasets}{5}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment 1: Matched-Parameter Linear-Probe Comparison on DeepFakeFace}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Linear-probe performance on DeepFakeFace (identity-disjoint test split). Both models are frozen \textsc  {DINOv3} backbones; the probe is logistic regression.}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:deepfakeface}{{2}{6}{Linear-probe performance on DeepFakeFace (identity-disjoint test split). Both models are frozen \textsc {DINOv3} backbones; the probe is logistic regression}{table.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Linear-probe metrics for the matched-parameter pair (ViT-S/16 Plus, $28.7$M, vs.\ ConvNeXt-Tiny, $27.8$M) on the DeepFakeFace identity-disjoint test split.}}{6}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:linprobe}{{3}{6}{Linear-probe metrics for the matched-parameter pair (ViT-S/16 Plus, $28.7$M, vs.\^^MConvNeXt-Tiny, $27.8$M) on the DeepFakeFace identity-disjoint test split}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experiment 2: End-to-End Fine-Tuning of the ViT}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:finetune}{{4.2}{6}{Experiment 2: End-to-End Fine-Tuning of the ViT}{subsection.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Fine-tuning dynamics of DINOv3 ViT-S/16 over five epochs. Left axis (blue): train loss; right axis (red/gray): validation accuracy and F1.}}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:finetune_loss}{{4}{7}{Fine-tuning dynamics of DINOv3 ViT-S/16 over five epochs. Left axis (blue): train loss; right axis (red/gray): validation accuracy and F1}{figure.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Fine-tuning vs.\ linear probe on the same ViT-S/16 backbone (DeepFakeFace ``insight'' split, identity-disjoint test).}}{7}{table.caption.8}\protected@file@percent }
+\newlabel{tab:finetune}{{3}{7}{Fine-tuning vs.\ linear probe on the same ViT-S/16 backbone (DeepFakeFace ``insight'' split, identity-disjoint test)}{table.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Confusion matrix of the fine-tuned ViT on the $11{,}920$-sample test set. Rows are true labels, columns are predictions; \emph  {fake} is the positive class.}}{7}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:finetune_cm}{{5}{7}{Confusion matrix of the fine-tuned ViT on the $11{,}920$-sample test set. Rows are true labels, columns are predictions; \emph {fake} is the positive class}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiment 3: Out-of-Distribution Detection on DeepfakeTIMIT}{8}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Detection rate on DeepfakeTIMIT (all $640$ videos are faceswapped / fake). A higher rate means more frames are correctly flagged as fake.}}{8}{table.caption.10}\protected@file@percent }
+\newlabel{tab:df_timit}{{4}{8}{Detection rate on DeepfakeTIMIT (all $640$ videos are faceswapped / fake). A higher rate means more frames are correctly flagged as fake}{table.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces DeepfakeTIMIT detection rate by quality level. The ConvNeXt is near-perfect and robust across quality, whereas the ViT degrades sharply on high-quality swaps.}}{8}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:timit}{{6}{8}{DeepfakeTIMIT detection rate by quality level. The ConvNeXt is near-perfect and robust across quality, whereas the ViT degrades sharply on high-quality swaps}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Distribution of predicted $p(\text  {fake})$ over the $640$ DeepfakeTIMIT frames. The dashed line marks the $0.5$ decision boundary. The ConvNeXt is confidently correct; the ViT is uncertain on a large fraction of frames.}}{9}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:timit_hist}{{7}{9}{Distribution of predicted $p(\text {fake})$ over the $640$ DeepfakeTIMIT frames. The dashed line marks the $0.5$ decision boundary. The ConvNeXt is confidently correct; the ViT is uncertain on a large fraction of frames}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Experiment 4: Attention Visualization}{9}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces DINOv3 ViT attention maps (CLS token, averaged over heads) for a matched real/fake pair at layers 5, 8, and 11. Deeper layers concentrate attention on facial structure; the attended regions differ between real and fake inputs.}}{9}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:attention}{{8}{9}{DINOv3 ViT attention maps (CLS token, averaged over heads) for a matched real/fake pair at layers 5, 8, and 11. Deeper layers concentrate attention on facial structure; the attended regions differ between real and fake inputs}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experiment 5: Cross-Domain Probe on FaceForensics++}{10}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{10}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Convolution Wins on Old, Coarse Artifacts}{10}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Why the Gap Disappears on Modern, Diverse Data}{10}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}The Role of Fine-Tuning}{10}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{10}{subsection.5.4}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{dosovitskiy2021vit}{1}
+\bibcite{liu2022convnext}{2}
+\bibcite{dinov3}{3}
+\bibcite{rossler2019faceforensics}{4}
+\bibcite{korshunov2018deepfakes}{5}
+\bibcite{chollet2017xception}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion and Future Work}{11}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Future Work}{11}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:future}{{6.1}{11}{Future Work}{subsection.6.1}{}}
+\gdef \@abspage@last{12}

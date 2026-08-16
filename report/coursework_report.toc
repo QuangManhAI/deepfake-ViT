@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Vision Transformers}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Modern Convolutional Networks (ConvNeXt)}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Self-Supervised Pretraining: DINOv3}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Deepfake Datasets and Benchmarks}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Methodology}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Backbones}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Evaluation Protocol}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Datasets}{5}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Experiments and Results}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Experiment 1: Matched-Parameter Linear-Probe Comparison on DeepFakeFace}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Experiment 2: End-to-End Fine-Tuning of the ViT}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Experiment 3: Out-of-Distribution Detection on DeepfakeTIMIT}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Experiment 4: Attention Visualization}{9}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Experiment 5: Cross-Domain Probe on FaceForensics++}{10}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Discussion}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Why Convolution Wins on Old, Coarse Artifacts}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Why the Gap Disappears on Modern, Diverse Data}{10}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}The Role of Fine-Tuning}{10}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Limitations}{10}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Conclusion and Future Work}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Future Work}{11}{subsection.6.1}%

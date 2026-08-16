@@ -50,6 +50,7 @@ class Attention(nn.Module):
 
         attn = (q @ k.transpose(-2, -1)) * (D ** -0.5)
         attn = F.softmax(attn, dim=-1)
+        self.attn = attn  # lưu để visualize (B, H, N, N)
         out = (attn @ v).transpose(1, 2).reshape(B, N, C)
         return self.o_proj(out)
 

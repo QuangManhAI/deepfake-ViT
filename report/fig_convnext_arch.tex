@@ -1,0 +1,61 @@
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.46\textwidth}
+\centering
+\begin{tikzpicture}[node distance=3.2mm]
+\node[tensor] (img) {Input\\$256\times256\times3$};
+\node[cnn, below=of img] (stem) {Patchify stem\\Conv $4\times4$, stride $4$ $\to 96$};
+\node[cnn, below=of stem] (s1) {Stage 1: $3\times$ block\\$C=96$, $64\times64$};
+\node[cnn, below=of s1] (s2) {Stage 2: $3\times$ block\\$C=192$, $32\times32$};
+\node[cnn, below=of s2] (s3) {Stage 3: $9\times$ block\\$C=384$, $16\times16$};
+\node[cnn, below=of s3] (s4) {Stage 4: $3\times$ block\\$C=768$, $8\times8$};
+\node[cnn, below=of s4] (gap) {Global average pool};
+\node[cnn, below=of gap] (ln) {LayerNorm};
+\node[cnn, below=of ln] (head) {Linear head $\to 2$};
+\node[tensor, below=of head] (out) {Real / Fake};
+\draw[arr] (img) -- (stem);
+\draw[arr] (stem) -- (s1);
+\draw[arr] (s1) -- node[right, font=\tiny]{$\downarrow$ LN + Conv $2\times2$ s2} (s2);
+\draw[arr] (s2) -- node[right, font=\tiny]{$\downarrow$ LN + Conv $2\times2$ s2} (s3);
+\draw[arr] (s3) -- node[right, font=\tiny]{$\downarrow$ LN + Conv $2\times2$ s2} (s4);
+\draw[arr] (s4) -- (gap);
+\draw[arr] (gap) -- (ln);
+\draw[arr] (ln) -- (head);
+\draw[arr] (head) -- (out);
+\end{tikzpicture}
+\caption{ConvNeXt pipeline}
+\label{fig:cnn_pipe}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.46\textwidth}
+\centering
+\begin{tikzpicture}[node distance=3.2mm]
+\node[tensor] (x) {$x$};
+\node[cnn, below=of x] (dw) {Depthwise Conv\\$7\times7$, groups $=C$};
+\node[cnn, below=of dw] (ln) {LayerNorm};
+\node[cnn, below=of ln] (pw1) {Conv $1\times1$\\expand $4\times$};
+\node[cnn, below=of pw1] (gelu) {GELU};
+\node[cnn, below=of gelu] (pw2) {Conv $1\times1$\\project};
+\node[cnn, below=of pw2] (ls) {$\times\gamma$ (LayerScale)};
+\node[op, below=of ls] (add) {$+$};
+\node[tensor, below=of add] (y) {$y$};
+\coordinate (lane) at ([xshift=2.0cm]x.center);
+\draw[arr] (x) -- (dw);
+\draw[arr] (dw) -- (ln);
+\draw[arr] (ln) -- (pw1);
+\draw[arr] (pw1) -- (gelu);
+\draw[arr] (gelu) -- (pw2);
+\draw[arr] (pw2) -- (ls);
+\draw[arr] (ls) -- (add);
+\draw[arr] (add) -- (y);
+\draw[res] (x.east) -- (lane |- x.east) |- (add.east);
+\end{tikzpicture}
+\caption{ConvNeXt block}
+\label{fig:cnn_block}
+\end{subfigure}
+\caption{\textbf{DINOv3 ConvNeXt-Tiny.} (a) Full pipeline: a patchify stem followed by four
+stages with depths $[3,3,9,3]$ and widths $[96,192,384,768]$, separated by $2\times2$ stride-$2$
+downsampling layers, ending in global average pooling and a linear head. (b) One ConvNeXt block:
+a $7\times7$ depthwise convolution, layer normalization, an inverted bottleneck ($1\times1$,
+expand $4\times$, GELU, $1\times1$), LayerScale, and a residual connection.}
+\label{fig:cnn_arch}
+\end{figure}

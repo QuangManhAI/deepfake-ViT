@@ -1,0 +1,52 @@
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.46\textwidth}
+\centering
+\begin{tikzpicture}[node distance=3.2mm]
+\node[tensor] (img) {Input\\$256\times256\times3$};
+\node[vit, below=of img] (patch) {Patchify\\$16\times16$, stride $16$};
+\node[vit, below=of patch] (proj) {Linear embed $\to 384$};
+\node[vit, below=of proj] (toks) {\texttt{[CLS]} + 4 registers\\+ 256 patch tokens};
+\node[vit, below=of toks] (blocks) {$12\times$ Transformer block};
+\node[vit, below=of blocks] (ln) {LayerNorm};
+\node[vit, below=of ln] (cls) {\texttt{[CLS]} token};
+\node[vit, below=of cls] (head) {Linear head $\to 2$};
+\node[tensor, below=of head] (out) {Real / Fake};
+\foreach \from/\to in {img/patch, patch/proj, proj/toks, toks/blocks, blocks/ln, ln/cls, cls/head, head/out}
+  \draw[arr] (\from) -- (\to);
+\end{tikzpicture}
+\caption{ViT pipeline}
+\label{fig:vit_pipe}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.46\textwidth}
+\centering
+\begin{tikzpicture}[node distance=3.2mm]
+\node[tensor] (x) {$x$};
+\node[vit, below=of x] (ln1) {LayerNorm};
+\node[vit, below=of ln1] (mhsa) {Multi-head self-attention\\$6$ heads};
+\node[op, below=of mhsa] (add1) {$+$};
+\node[vit, below=of add1] (ln2) {LayerNorm};
+\node[vit, below=of ln2] (mlp) {Gated MLP (SwiGLU)\\$384\to1536\to384$};
+\node[op, below=of mlp] (add2) {$+$};
+\node[tensor, below=of add2] (y) {$y$};
+\coordinate (lane) at ([xshift=2.0cm]x.center);
+\draw[arr] (x) -- (ln1);
+\draw[arr] (ln1) -- (mhsa);
+\draw[arr] (mhsa) -- (add1);
+\draw[arr] (add1) -- (ln2);
+\draw[arr] (ln2) -- (mlp);
+\draw[arr] (mlp) -- (add2);
+\draw[arr] (add2) -- (y);
+\draw[res] (x.east) -- (lane |- x.east) |- (add1.east);
+\draw[res] (add1.east) -- (lane |- add1.east) |- (add2.east);
+\end{tikzpicture}
+\caption{Transformer block (gated variant)}
+\label{fig:vit_block}
+\end{subfigure}
+\caption{\textbf{DINOv3 ViT-S/16 (Plus).} (a) Full pipeline: the image is split into $16\times16$
+patches, embedded to $384$ dimensions, prepended with a \texttt{[CLS]} token and $4$ register
+tokens, and passed through $12$ transformer blocks; the final \texttt{[CLS]} embedding is
+classified by a linear head. (b) One transformer block, with a gated (SwiGLU) MLP and residual
+connections around both sub-layers.}
+\label{fig:vit_arch}
+\end{figure}

@@ -121,6 +121,24 @@
 > → Dataset ở **B.1** dùng cho deepfake; dataset ở **B.2** là bài toán khác — đừng trộn làm benchmark chính. (Tham khảo: UADFV/DF-TIMIT/Celeb-DF/DeeperForensics/ForgeryNet chỉ có 1–2 kỹ thuật; FF++/DFDC mới có đủ loại — arXiv 2203.02115.)
 > Ngoài ra: deepfake là hiện tượng **video**, nên ảnh face-forgery chuẩn của cộng đồng là **frame trích từ video** theo protocol thống nhất (DeepfakeBench, NeurIPS 2023, đánh giá frame-level — xem §B1.6).
 
+### B.0 — Phân nhóm data ảnh deepfake (4 nhóm chính theo loại tấn công)
+
+| Nhóm | Làm gì với khuôn mặt | Dataset trong danh mục | Độ khó detect |
+|---|---|---|---|
+| **1. Face-swap (FS)** | Thay **toàn bộ khuôn mặt** = đổi danh tính | FF++ (DeepFakes/FaceSwap/FaceShifter), Celeb-DF, DFDC, DF-TIMIT, UADFV, OpenForensics (một phần) | Trung bình — có biên ghép, artifact vùng mặt |
+| **2. Face-reenactment (FR)** | **Giữ danh tính**, đổi biểu cảm / miệng / tư thế đầu | FF++ (Face2Face / NeuralTextures), DiffusionFace (một phần) | Khó hơn FS — chỉ vùng miệng/biểu cảm đổi |
+| **3. Face-editing (FE)** | Chỉnh **thuộc tính** (tuổi, tóc, giới tính…) | DF40 (5 kỹ thuật FE), GenFace (fine-grained) | Rất khó — thay đổi tinh vi, gần với ảnh thật |
+| **4. Entire Face Synthesis (EFS)** | **Tạo khuôn mặt hoàn toàn mới** (không tồn tại người thật) | DF40 (10 kỹ thuật EFS), DeepFakeFace, iFakeFaceDB | Trung bình — có fingerprint generator |
+| (5. AI-generated — **bài toán khác**) | Tạo sinh **toàn bộ ảnh**, không phải face | GenImage, DiffusionDB, ArtiFact, CIFAKE, UniversalFakeDetect | — (không thuộc deepfake) |
+
+**Các cách cắt ngang khác (độc lập với 4 nhóm trên — dùng để chọn data cho thí nghiệm):**
+- **Theo nguồn gốc:** frame trích từ video (chuẩn — FF++/Celeb-DF/DFDC…) vs dataset ảnh thuần (OpenForensics, DiffusionFace, GenFace, DFF…).
+- **Theo độ sâu nhãn:** binary real/fake → multi-class (kỹ thuật nào) → **pixel-level mask** (vùng nào giả: OpenForensics, ForgeryNet spatial).
+- **Theo đa dạng kỹ thuật:** 1 kỹ thuật (UADFV, DF-TIMIT, DFD) → đa kỹ thuật (FF++ 5, DFDC 8, ForgeryNet 15, DF40 40).
+- **Theo môi trường:** controlled/studio (hầu hết) vs in-the-wild (OpenForensics, WildDeepfake, Deepfake-Eval-2024).
+
+**Hệ quả thực dụng:** FF++ + Celeb-DF chỉ phủ nhóm 1–2; muốn phủ đủ 4 nhóm → dùng **DF40** (10 FS + 12 FR + 10 EFS + 5 FE); muốn thêm ảnh thuần + mask → OpenForensics. Ảnh của anh phủ bao nhiêu nhóm sẽ quyết định model "khỏe" tới đâu — báo cáo nên ghi rõ.
+
 ### B.1 — DEEPFAKE ẢNH (face forgery — bài toán chính)
 
 #### B1.1. DF40 — arXiv **2406.13495** (NeurIPS 2024 D&B) [Web]

@@ -1,9 +1,9 @@
 \documentclass[11pt,a4paper]{article}
 
 % ===== Packages =====
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+% Compile with XeLaTeX (Vietnamese UTF-8 support)
+\usepackage{fontspec}
+\setmainfont{Times}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -16,10 +16,54 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc, fit, backgrounds, shapes.multipart}
+
+% ===== Colors (UTH style) =====
+\definecolor{titleblue}{RGB}{25,55,109}
+\definecolor{sectionblue}{RGB}{44,120,180}
+\definecolor{greenaccent}{RGB}{39,174,96}
+\definecolor{orangeaccent}{RGB}{230,126,34}
+\definecolor{redaccent}{RGB}{192,57,43}
+
+\graphicspath{{figures/}}
 
 \captionsetup{font=small,labelfont=bf}
 \setlength{\parskip}{0.4em}
 \setlength{\parindent}{1em}
+
+% ===== Cover page frame (drawn only inside the titlepage) =====
+\newcommand{\coverframe}{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \coordinate (bl) at ([shift={(1.5cm,-1.5cm)}]current page.south west);
+    \coordinate (br) at ([shift={(-1.5cm,-1.5cm)}]current page.south east);
+    \coordinate (tr) at ([shift={(-1.5cm,1.5cm)}]current page.north east);
+    \coordinate (tl) at ([shift={(1.5cm,1.5cm)}]current page.north west);
+    \coordinate (ibl) at ([shift={(2.2cm,-2.2cm)}]current page.south west);
+    \coordinate (ibr) at ([shift={(-2.2cm,-2.2cm)}]current page.south east);
+    \coordinate (itr) at ([shift={(-2.2cm,2.2cm)}]current page.north east);
+    \coordinate (itl) at ([shift={(2.2cm,2.2cm)}]current page.north west);
+    \draw[line width=2.5pt,color=titleblue] (bl) rectangle (tr);
+    \draw[line width=0.6pt,color=sectionblue!70] (ibl) rectangle (itr);
+    \fill[titleblue] ([shift={(-10pt,-10pt)}]bl) rectangle ([shift={(10pt,10pt)}]bl);
+    \fill[titleblue] ([shift={(10pt,-10pt)}]br) rectangle ([shift={(-10pt,10pt)}]br);
+    \fill[titleblue] ([shift={(10pt,10pt)}]tr) rectangle ([shift={(-10pt,-10pt)}]tr);
+    \fill[titleblue] ([shift={(-10pt,10pt)}]tl) rectangle ([shift={(10pt,-10pt)}]tl);
+  \end{tikzpicture}%
+}
+
+% ===== TikZ styles for architecture diagrams =====
+\tikzset{
+  pnode/.style={draw, rounded corners=1.5pt, align=center, font=\scriptsize, inner sep=2.5pt, minimum height=6mm},
+  vit/.style={pnode, fill=blue!12},
+  cnn/.style={pnode, fill=orange!15},
+  op/.style={pnode, fill=gray!15, circle, minimum size=5mm, inner sep=0pt},
+  tensor/.style={pnode, fill=green!12},
+  arr/.style={-{Stealth[length=1.8mm]}, line width=0.55pt},
+  res/.style={arr, dashed},
+}
+
+% (cover page content is set inline in the titlepage below)
 
 % ===== Title =====
 \title{\textbf{Detecting Deepfakes with Vision Transformers and Convolutional Neural Networks}\\
@@ -29,7 +73,52 @@
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+\coverframe
+\centering
+\vspace*{0.5cm}
+
+{\Large\bfseries\color{titleblue} University of Transport Ho Chi Minh City\\[0.3cm]}
+\includegraphics[height=2.5cm]{Logo_UTH.png}
+
+\vfill
+
+{\Huge\bfseries\color{titleblue} Deep Learning\\[0.5cm]}
+{\Huge\bfseries\color{titleblue} Course Report\\[1cm]}
+{\Large\color{sectionblue} Detecting Deepfakes with Vision Transformers and Convolutional Neural Networks\par}
+
+\vfill
+
+\begin{tikzpicture}
+  \draw[line width=2pt,color=sectionblue] (-6,0) -- (6,0);
+  \node[circle,fill=titleblue,minimum size=10pt] at (-6,0) {};
+  \node[circle,fill=titleblue,minimum size=10pt] at (6,0) {};
+  \node[circle,fill=greenaccent,minimum size=8pt] at (-3,0) {};
+  \node[circle,fill=orangeaccent,minimum size=8pt] at (0,0) {};
+  \node[circle,fill=redaccent,minimum size=8pt] at (3,0) {};
+\end{tikzpicture}
+
+\vfill
+
+{\Large\bfseries\color{titleblue} Lecturer: PhD Nguyen Thi Khanh Tien\\[0.7cm]}
+
+{\Large\bfseries\color{titleblue} Students\\[0.4cm]}
+\begin{tabular}{r l}
+{\color{titleblue}067206006852} & {\color{titleblue}Nhữ Phạm Quang Mạnh} \\
+{\color{titleblue}056206009261} & {\color{titleblue}Trương Đỗ Vương} \\
+{\color{titleblue}079204034414} & {\color{titleblue}Lê Hoàng Tuấn} \\
+{\color{titleblue}082306000670} & {\color{titleblue}Nguyễn Ngọc Phương Uyên} \\
+{\color{titleblue}064206001079} & {\color{titleblue}Nguyễn Trần Việt Nhật} \\
+{\color{titleblue}054206006377} & {\color{titleblue}Nguyễn Đình Khánh Nguyên} \\
+\end{tabular}
+
+\vfill
+
+{\normalsize\color{sectionblue} Ho Chi Minh City, 2026}
+
+\vspace*{0.5cm}
+\end{titlepage}
+\clearpage
 
 \begin{abstract}
 Deepfake detection is a challenging binary classification problem in which a model must
@@ -47,9 +136,11 @@ identically on a diverse, modern manipulation benchmark ($74.1\%$ vs.\ $74.5\%$ 
 the convolutional backbone substantially outperforms the transformer on an older
 faceswap-GAN dataset ($98.9\%$ vs.\ $75.8\%$ detection rate), consistent with the hypothesis
 that convolution is better suited to capturing the local, low-level blending artifacts that
-dominate earlier generation deepfakes. We discuss the implications of these findings for
-architecture selection in forgery detection and outline the extension toward temporal
-(video-level) detection.
+dominate earlier generation deepfakes. We further show that full fine-tuning of the ViT
+backbone lifts test accuracy from $67.4\%$ (linear probe) to $96.3\%$, and that the two
+architectures attend to different spatial regions, corroborating the architectural
+interpretation. We discuss the implications of these findings for architecture selection in
+forgery detection and outline the extension toward temporal (video-level) detection.
 \end{abstract}
 
 \tableofcontents
@@ -85,6 +176,10 @@ are as follows:
         split to avoid data leakage.
   \item We compare the two architectures at matched parameter counts and report a near-tie on
         modern, diverse manipulations, alongside a large gap on an older faceswap-GAN dataset.
+  \item We fine-tune the ViT backbone end-to-end and show that this recovers the gap to the
+        linear probe by a wide margin, with visualizations of the training dynamics.
+  \item We visualize the spatial attention of the ViT and discuss how it differs from the
+        convolutional inductive bias, corroborating the architectural interpretation.
   \item We discuss the architectural interpretation of these results and outline a path toward
         temporal (video-level) detection.
 \end{enumerate}
@@ -136,9 +231,10 @@ We implement two backbones by reconstructing their architectures to exactly matc
 $384$, $6$ attention heads, patch size $16$, and $4$ register tokens. The ``Plus'' variant uses a
 \emph{gated MLP} (a SwiGLU-style activation of the form $\text{down}(\sigma(\text{gate}(x)) \odot
 \text{up}(x))$) in place of the standard two-layer MLP, which adds roughly $7$M parameters and
-brings the total to $28.7$M. The forward pass prepends the \texttt{[CLS]} token and register
-tokens to the patch sequence, and the final \texttt{[CLS]} representation (after layer norm) is
-returned as a $384$-dimensional feature vector.
+brings the total to $28.7$M. We also evaluate the \emph{standard} MLP variant ($21.6$M) as an
+ablation. The forward pass prepends the \texttt{[CLS]} token and register tokens to the patch
+sequence, and the final \texttt{[CLS]} representation (after layer norm) is returned as a
+$384$-dimensional feature vector.
 
 \textbf{DINOv3 ConvNeXt-Tiny.} A ConvNeXt-Tiny with stage depths $[3,3,9,3]$ and channel widths
 $[96,192,384,768]$. Each block consists of a $7\times7$ depthwise convolution, layer normalization,
@@ -146,8 +242,9 @@ a $1\times1$ pointwise expansion ($4\times$), a GELU activation, a $1\times1$ pr
 layer-scale residual. The final feature map is globally average-pooled and layer-normalized to
 yield a $768$-dimensional feature vector. The model totals $27.8$M parameters.
 
-Table~\ref{tab:backbones} summarizes the two backbones. Note that both models are used as
-\emph{frozen feature extractors}; no fine-tuning of the backbone is performed.
+Table~\ref{tab:backbones} summarizes the two backbones. Both models are used as \emph{frozen
+feature extractors} in the linear-probe experiments; the ViT is additionally fine-tuned
+end-to-end in a separate experiment (Section~\ref{sec:finetune}).
 
 \begin{table}[H]
 \centering
@@ -169,6 +266,12 @@ Pretrain data & LVD-1689M & LVD-1689M \\
 \end{tabular}
 \end{table}
 
+Figures~\ref{fig:vit_arch} and~\ref{fig:cnn_arch} illustrate the two architectures in detail.
+
+\input{fig_vit_arch}
+
+\input{fig_convnext_arch}
+
 \subsection{Evaluation Protocol}
 To isolate the effect of the backbone architecture, we freeze both backbones and train a
 \emph{linear probe}---a logistic regression classifier with $L_2$ regularization and balanced
@@ -176,6 +279,11 @@ class weights---on top of the extracted features. Inputs are resized to $256\tim
 normalized with ImageNet statistics. The probe is trained on the training split and evaluated on
 the identity-disjoint test split. Reported metrics are accuracy, precision, recall, F1, and
 ROC-AUC, with \emph{fake} treated as the positive class.
+
+For the fine-tuning experiment, we attach a single linear classification head to the frozen
+backbone and train the full model (backbone + head) end-to-end with a low learning rate for the
+backbone ($10^{-5}$) and a higher learning rate for the head ($10^{-3}$), using AdamW with
+weight decay and cosine annealing. Full details are reported with the results.
 
 \subsection{Datasets}
 \textbf{DeepFakeFace} is used for the primary benchmark. It contains roughly $120$k images across
@@ -194,9 +302,11 @@ probe cross-domain generalization; because labels are withheld, no quantitative 
 
 \section{Experiments and Results}
 
-\subsection{Experiment 1: Matched-Parameter Comparison on DeepFakeFace}
-We first compare the two backbones at their natural scales. Table~\ref{tab:deepfakeface}
-reports linear-probe performance on the identity-disjoint DeepFakeFace test split.
+\subsection{Experiment 1: Matched-Parameter Linear-Probe Comparison on DeepFakeFace}
+We first compare the backbones at their natural scales by training a linear probe on frozen
+features. Table~\ref{tab:deepfakeface} reports performance on the identity-disjoint DeepFakeFace
+test split, and Figure~\ref{fig:linprobe} visualizes the same metrics for the matched-parameter
+pair.
 
 \begin{table}[H]
 \centering
@@ -214,6 +324,14 @@ ConvNeXt-Tiny             & $27.8$M & $74.5\%$ & $74.0\%$ & $75.5\%$ & $74.7\%$ 
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{linprobe_comparison.png}
+\caption{Linear-probe metrics for the matched-parameter pair (ViT-S/16 Plus, $28.7$M, vs.\
+ConvNeXt-Tiny, $27.8$M) on the DeepFakeFace identity-disjoint test split.}
+\label{fig:linprobe}
+\end{figure}
+
 Two observations follow directly. First, the gated MLP confers a substantial improvement to the
 ViT: moving from the standard MLP ($21.6$M) to the gated variant ($28.7$M) raises accuracy by
 $+6.4$ points ($67.4\% \to 73.8\%$). Second, at a \emph{matched} parameter count ($28.7$M vs.\
@@ -222,11 +340,65 @@ points of accuracy and $0.7$ points of F1. This is the central result of the stu
 pretraining signal, and teacher are controlled, the architectural choice between ViT and CNN has
 little effect on a diverse, modern manipulation benchmark.
 
-\subsection{Experiment 2: Out-of-Distribution Detection on DeepfakeTIMIT}
+\subsection{Experiment 2: End-to-End Fine-Tuning of the ViT}\label{sec:finetune}
+The linear probe measures the quality of the \emph{frozen} features but leaves the full capacity
+of the backbone untapped. We therefore fine-tune the standard ViT-S/16 ($21.6$M) end-to-end for
+five epochs on the same ``insight'' split, keeping the backbone learning rate low to preserve the
+pretrained representations. Figure~\ref{fig:finetune_loss} shows the training dynamics: the train
+loss falls from $0.346$ to $0.046$ while validation accuracy climbs from $88.5\%$ to $96.5\%$,
+indicating fast, stable convergence without overfitting.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{finetune_loss.png}
+\caption{Fine-tuning dynamics of DINOv3 ViT-S/16 over five epochs. Left axis (blue): train loss;
+right axis (red/gray): validation accuracy and F1.}
+\label{fig:finetune_loss}
+\end{figure}
+
+Table~\ref{tab:finetune} contrasts fine-tuning against the linear probe on the \emph{same}
+backbone. End-to-end fine-tuning raises accuracy by $+28.9$ points ($67.4\% \to 96.3\%$) and
+ROC-AUC by $+25.6$ points ($73.8\% \to 99.4\%$), confirming that the frozen linear probe
+substantially understates what the pretrained backbone can achieve once its weights are adapted to
+the target distribution.
+
+\begin{table}[H]
+\centering
+\caption{Fine-tuning vs.\ linear probe on the same ViT-S/16 backbone (DeepFakeFace ``insight''
+split, identity-disjoint test).}
+\label{tab:finetune}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Setting} & \textbf{Acc.} & \textbf{Prec.} & \textbf{Rec.} & \textbf{F1} & \textbf{AUC} \\
+\midrule
+Linear probe (frozen)   & $67.4\%$ & $67.7\%$ & $66.5\%$ & $67.1\%$ & $73.8\%$ \\
+Fine-tuned (5 epochs)   & $96.3\%$ & $96.3\%$ & $96.3\%$ & $96.3\%$ & $99.4\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.42\textwidth]{finetune_cm.png}
+\caption{Confusion matrix of the fine-tuned ViT on the $11{,}920$-sample test set. Rows are true
+labels, columns are predictions; \emph{fake} is the positive class.}
+\label{fig:finetune_cm}
+\end{figure}
+
+The confusion matrix (Figure~\ref{fig:finetune_cm}) is nearly diagonal: only $218$ real images are
+misclassified as fake and $223$ fake images as real, out of $11{,}920$ samples. The model is
+balanced across classes (precision $96.3\%$ vs.\ recall $96.3\%$), with no sign of the class
+imbalance that can degrade a linear probe. We note that, because the fine-tuned standard ViT
+($21.6$M) already exceeds the linear-probe Plus variant ($28.7$M) by a wide margin, the natural
+next step is to fine-tune the ConvNeXt and the gated ViT under identical settings---the paired
+fine-tuning comparison is left as future work (Section~\ref{sec:future}).
+
+\subsection{Experiment 3: Out-of-Distribution Detection on DeepfakeTIMIT}
 To stress-test the inductive biases further, we evaluate both backbones on DeepfakeTIMIT, an older
 faceswap-GAN dataset whose manipulations exhibit coarse, local blending artifacts. Because every
-video is fake, we report the detection rate in Table~\ref{tab:df_timit}, further broken down by
-quality level (HQ: $128\times128$ swaps; LQ: $64\times64$ swaps).
+video is fake, we report the detection rate in Table~\ref{tab:df_timit} and
+Figure~\ref{fig:timit}, further broken down by quality level (HQ: $128\times128$ swaps; LQ:
+$64\times64$ swaps).
 
 \begin{table}[H]
 \centering
@@ -243,16 +415,56 @@ ConvNeXt-Tiny     & $98.9\%$ & $99.1\%$ & $98.8\%$ & $0.895$ \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.68\textwidth]{timit_detection.png}
+\caption{DeepfakeTIMIT detection rate by quality level. The ConvNeXt is near-perfect and robust
+across quality, whereas the ViT degrades sharply on high-quality swaps.}
+\label{fig:timit}
+\end{figure}
+
 Here the architectures diverge sharply: the ConvNeXt detects $98.9\%$ of the fake frames, whereas
 the ViT detects only $75.8\%$. Moreover, the ViT's performance is quality-dependent---it performs
 much worse on high-quality swaps ($65.6\%$) than on low-quality ones ($85.9\%$)---whereas the
-ConvNeXt is robust across both quality levels ($99.1\%$ / $98.8\%$). This supports the hypothesis
-that the convolutional backbone, with its local receptive fields, is better equipped to capture the
-low-level blending seams and color inconsistencies that characterize early-generation faceswaps,
-whereas the transformer's global attention is comparatively insensitive to these subtle, spatially
-localized cues.
+ConvNeXt is robust across both quality levels ($99.1\%$ / $98.8\%$). Figure~\ref{fig:timit_hist}
+offers a complementary view: the ConvNeXt's per-frame confidence is sharply concentrated near
+$p(\text{fake})=1$, while the ViT's confidence is spread across the full $[0,1]$ range. This
+supports the hypothesis that the convolutional backbone, with its local receptive fields, is
+better equipped to capture the low-level blending seams and color inconsistencies that
+characterize early-generation faceswaps, whereas the transformer's global attention is
+comparatively insensitive to these subtle, spatially localized cues.
 
-\subsection{Experiment 3: Cross-Domain Probe on FaceForensics++}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{timit_prob_hist.png}
+\caption{Distribution of predicted $p(\text{fake})$ over the $640$ DeepfakeTIMIT frames. The
+dashed line marks the $0.5$ decision boundary. The ConvNeXt is confidently correct; the ViT is
+uncertain on a large fraction of frames.}
+\label{fig:timit_hist}
+\end{figure}
+
+\subsection{Experiment 4: Attention Visualization}
+To probe \emph{where} the ViT looks when classifying a face, we extract the \texttt{[CLS]}-to-patch
+attention from selected layers (5, 8, and 11), average across the $6$ heads, and overlay the
+resulting heatmap on the input image (Figure~\ref{fig:attention}). Two patterns emerge. First,
+attention is spatially diffuse in early layers and progressively concentrates on the face interior
+(eyes, nose, mouth) in deeper layers, consistent with the transition from local texture to global
+semantic grouping that ViTs are known to undergo. Second, the attended regions differ qualitatively
+between real and fake inputs, suggesting that the transformer keys in on identity- and
+structure-related cues rather than the localized blending seams that a CNN exploits. This is the
+spatial counterpart of the quantitative result in Experiment 3: the two architectures look at
+different evidence, and they therefore fail on different distributions.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{attention_grid.png}
+\caption{DINOv3 ViT attention maps (CLS token, averaged over heads) for a matched real/fake pair
+at layers 5, 8, and 11. Deeper layers concentrate attention on facial structure; the attended
+regions differ between real and fake inputs.}
+\label{fig:attention}
+\end{figure}
+
+\subsection{Experiment 5: Cross-Domain Probe on FaceForensics++}
 Finally, we probe generalization to the FaceForensics++ benchmark ($1000$ unlabeled, heavily
 compressed images). Without ground-truth labels no accuracy can be computed; however, the two
 models agree on only $58\%$ of images and both produce near-random confidence distributions
@@ -271,7 +483,8 @@ eyes. A depthwise $7\times7$ convolution is precisely tuned to detect such local
 statistics, and the hierarchical nature of ConvNeXt (shallow stages for fine detail, deep stages
 for semantics) mirrors the multi-scale structure of these artifacts. In contrast, a ViT's
 self-attention aggregates information globally from the outset, which can dilute spatially
-localized but diagnostically important cues.
+localized but diagnostically important cues---as corroborated by the diffuse, semantics-driven
+attention maps in Figure~\ref{fig:attention}.
 
 \subsection{Why the Gap Disappears on Modern, Diverse Data}
 On DeepFakeFace---which spans three modern generator families with more subtle, diverse, and
@@ -282,31 +495,45 @@ models capture well. Second, the matched parameter count and shared DINOv3 pretr
 confounding scale advantages that would otherwise favor one architecture, leaving a fair test in
 which neither inductive bias dominates.
 
+\subsection{The Role of Fine-Tuning}
+The fine-tuning experiment reframes the linear-probe comparison. Under a frozen linear probe, the
+two backbones sit near $74\%$ F1; once the ViT is fine-tuned, it reaches $96.3\%$ accuracy with a
+near-diagonal confusion matrix. This implies that the ``architecture matters little'' conclusion
+is a property of the \emph{linear-probe} regime: the pretrained features of both backbones are
+comparably discriminative, but each still holds substantial task-specific capacity that only
+adaptation releases. A complete architecture comparison therefore requires matched fine-tuning of
+both backbones, which we leave to future work.
+
 \subsection{Limitations}
-Our study has several limitations. (i) We use a frozen-backbone linear probe, which measures the
-quality of the pretrained features but not the full capacity of fine-tuned models. (ii) The
-evaluation is image-level; temporal (video-level) artifacts---flicker, unnatural blinking,
-frame-to-frame inconsistency---are ignored, and these are often the strongest cues in real-world
-deepfakes. (iii) The DeepfakeTIMIT evaluation is one-sided (no real class), so it reports detection
-rate rather than a balanced accuracy. (iv) Cross-domain results are qualitative only. Each of
-these is a natural target for future work.
+Our study has several limitations. (i) The linear-probe results measure the quality of the
+pretrained features but not the full capacity of fine-tuned models; only the ViT is fine-tuned
+here. (ii) The evaluation is image-level; temporal (video-level) artifacts---flicker, unnatural
+blinking, frame-to-frame inconsistency---are ignored, and these are often the strongest cues in
+real-world deepfakes. (iii) The DeepfakeTIMIT evaluation is one-sided (no real class), so it
+reports detection rate rather than a balanced accuracy. (iv) Cross-domain results are qualitative
+only. Each of these is a natural target for future work.
 
 \section{Conclusion and Future Work}
 We implemented a Vision Transformer and a ConvNeXt backbone, both initialized from \textsc{DINOv3}
 self-supervised weights, and compared them for deepfake detection under a matched parameter budget
 of approximately $28$M parameters. Our key findings are: (1) at matched scale, ViT and CNN perform
 nearly identically on a diverse modern manipulation benchmark ($74.1\%$ vs.\ $74.5\%$ F1);
-(2) the gated MLP improves the ViT by $+6.4$ accuracy points; and (3) the convolutional backbone
+(2) the gated MLP improves the ViT by $+6.4$ accuracy points; (3) the convolutional backbone
 substantially outperforms the transformer on an older faceswap-GAN dataset ($98.9\%$ vs.\ $75.8\%$
 detection rate), supporting the view that convolution is better suited to local, low-level
-artifacts while attention excels at semantic reasoning.
+artifacts while attention excels at semantic reasoning; and (4) end-to-end fine-tuning of the ViT
+lifts accuracy from $67.4\%$ to $96.3\%$, showing that the architecture gap is largely a property
+of the linear-probe regime.
 
-Future work will extend this comparison in two directions. First, we will move from image-level to
-\emph{video-level} detection by aggregating predictions across multiple frames per video (late
-fusion) or by introducing temporal models (3D convolutions or temporal transformers), which can
-exploit motion cues that single frames cannot reveal. Second, we will replace the linear probe
-with full fine-tuning of the backbone and evaluate cross-dataset generalization on FaceForensics++
-and Celeb-DF, which remains the most practically meaningful test of a deepfake detector.
+\subsection{Future Work}\label{sec:future}
+Future work will extend this comparison in several directions. First, we will complete the
+\emph{matched fine-tuning} of both backbones (the paired fine-tuning script already exists) to
+test whether the ConvNeXt retains its edge on older artifacts once adapted. Second, we will move
+from image-level to \emph{video-level} detection by aggregating predictions across multiple frames
+per video (late fusion) or by introducing temporal models (3D convolutions or temporal
+transformers), which can exploit motion cues that single frames cannot reveal. Third, we will
+evaluate cross-dataset generalization on FaceForensics++ and Celeb-DF under fine-tuning, which
+remains the most practically meaningful test of a deepfake detector.
 
 \bibliographystyle{plain}
 \begin{thebibliography}{9}
