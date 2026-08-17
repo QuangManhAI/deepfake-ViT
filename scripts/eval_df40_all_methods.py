@@ -187,6 +187,8 @@ def main():
     ap.add_argument("--batch-size", type=int, default=16)
     ap.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     ap.add_argument("--no-cache", action="store_true")
+    ap.add_argument("--tag", default="df40",
+                    help="prefix tên cache feature (tách cache theo dataset)")
     ap.add_argument("--lr-max-train", type=int, default=20000,
                     help="số mẫu tối đa fit LR (giữ cân bằng real/fake), giảm RAM")
     ap.add_argument("--output", default="outputs/results/df40_all_methods_report.json")
@@ -208,8 +210,8 @@ def main():
               "split": {"train": len(train), "test": len(test)}, "models": {}}
     for cfg in MODELS:
         print(f"\n→ {cfg['name']}")
-        cache_tr = None if args.no_cache else f"outputs/features/df40_{cfg['key']}.mmap"
-        cache_te = None if args.no_cache else f"outputs/features/df40_{cfg['key']}_test.mmap"
+        cache_tr = None if args.no_cache else f"outputs/features/{args.tag}_{cfg['key']}.mmap"
+        cache_te = None if args.no_cache else f"outputs/features/{args.tag}_{cfg['key']}_test.mmap"
         t0 = time.time()
         X_tr, y_tr, _ = extract_features_stream(None if (cache_tr and os.path.exists(cache_tr + ".meta.npz")) else cfg["loader"](cfg["path"], **cfg["kw"]),
                                                 train, device, args.batch_size, cache_tr, 768 if cfg["key"] == "cnn" else 384)
