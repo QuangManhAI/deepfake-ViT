@@ -156,6 +156,15 @@ def main():
     print(f"Train: {len(train_items)} (real={n_tr_real}, fake={n_tr_fake})")
     print(f"Test : {len(test_items)} (real={n_te_real}, fake={n_te_fake})")
 
+    if not train_items or not test_items:
+        print("ERROR: no images found — this eval needs the RAW DF40 frame sources below,")
+        for root, _label, name in SOURCES:
+            print(f"  - {name:<10} {root}  (exists={os.path.isdir(root)})")
+        raise SystemExit(
+            "Raw DF40 sources not present. Use eval_identity_disjoint.py --root test_data_v3 "
+            "to evaluate on the downloaded test set instead."
+        )
+
     models = [
         {"name": "DINOv3 ViT-S/16 Plus", "key": "vit", "path": args.vit_model, "loader": load_dinov3, "kw": {"img_size": IMG_SIZE}},
         {"name": "DINOv3 ConvNeXt-Tiny", "key": "cnn", "path": args.cnn_model, "loader": load_dinov3_convnext, "kw": {}},
