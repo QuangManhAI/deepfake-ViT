@@ -6,7 +6,7 @@
 
 ```
 deepfake/
-├── .venv/              # Môi trường ảo (Python 3.9)
+├── .venv/              # Môi trường ảo (Python ≥ 3.10, chuẩn 3.11)
 ├── agents/             # Agent AI knowledge base (rules, phases, progress)
 ├── configs/            # File cấu hình (YAML)
 ├── data/
@@ -48,7 +48,8 @@ pip install -r requirements.lock.txt
 
 - **DINOv3**: yêu cầu PyTorch ≥ 2.7.1, timm ≥ 1.0.20 (hoặc HuggingFace Transformers ≥ 4.56).
   Pretrained weights tải từ HuggingFace Hub (`facebook/dinov3-*`), cần chấp nhận license của Meta.
-- **Python**: 3.9 (system). Lưu ý 3.9 đã EOL từ 10/2025 — khuyến nghị nâng lên 3.10+ sau này.
+- **Python**: chuẩn hoá ở **3.11** (xem [src/utils/setup_ubuntu.sh](src/utils/setup_ubuntu.sh));
+  môi trường local nên dùng ≥ 3.10 (3.9 đã EOL từ 10/2025).
 - **DF40_ROOT**: đường dẫn tới data DF40 gốc (mặc định `data/raw/DF40`). Các script
   `src/data/build_*` và `src/data/download_df40.py` đọc nó từ env var `DF40_ROOT`
   (hoặc đối số `--src`) — không hardcode đường dẫn máy.
