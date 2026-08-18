@@ -30,7 +30,9 @@ Celeb-DF. The project needs a deterministic, one-face-per-image binary
 
 ## How to do it (general plan)
 
-1. Download/extract DF40 + real faces (see `download_df40.py`, `download_faceforensics.py`).
+1. Download/extract DF40 + real faces. Prefer Hugging Face
+   (`hf download ManhQuangAI/DF40_train --repo-type dataset --local-dir data/raw/DF40`);
+   `download_df40.py` (Google Drive/gdown) is unreliable and not recommended.
 2. Build balanced real/fake subsets (`build_df40_balanced.py`,
    `build_df40_subset.py`).
 3. Build test sets and manifests (`build_test_data.py`, `build_test_data_v2.py`,

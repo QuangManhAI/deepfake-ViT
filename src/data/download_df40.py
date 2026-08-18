@@ -1,8 +1,14 @@
 #!/usr/bin/env python
 """Tải toàn bộ data DF40 từ Google Drive (có retry + log).
 
-- Lưu vào data/raw/DF40/
-- Log từng bước ra data/raw/DF40/download.log (timestamp, retry quota, summary)
+⚠️ KHÔNG còn là nguồn khuyến nghị: các link Google Drive của DF40 thường
+không truy cập được (gdown rc=1) và `gdown` không tải được folder lồng sâu.
+Nguồn ưu tiên hiện tại là Hugging Face Hub:
+    hf download ManhQuangAI/DF40_train --repo-type dataset --local-dir data/raw/DF40
+Script này giữ lại cho trường hợp Drive vẫn hoạt động (real files + JSON).
+
+- Lưu vào data/DF40/
+- Log từng bước ra data/DF40/download.log (timestamp, retry quota, summary)
 - Tự retry khi Google Drive báo "Too many users" (hết quota tạm thời)
 - Resume được (gdown --continue / --remaining-ok)
 

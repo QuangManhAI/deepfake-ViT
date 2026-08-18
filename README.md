@@ -60,9 +60,11 @@ python -m pytest                 # structural smoke tests (torch-gated test tự
 ### Data (download / build / split)
 
 ```bash
-# Tải DF40 từ Google Drive (hoặc tải từ HF rồi trỏ DF40_ROOT)
+# Raw DF40 training corpus — tải từ Hugging Face (khuyến nghị, ~74.7 GB):
+#   hf download ManhQuangAI/DF40_train --repo-type dataset --local-dir data/raw/DF40
 export DF40_ROOT=/path/to/DF40    # mặc định data/raw/DF40
-python src/data/download_df40.py --only real_ffpp,real_celebdf,dataset_json
+# LƯU Ý: src/data/download_df40.py (Google Drive/gdown) KHÔNG còn đáng tin —
+# các link Drive thường không truy cập được (gdown rc=1). Dùng HF Hub làm nguồn chính.
 
 # Build subset cân bằng real/fake
 python src/data/build_df40_balanced.py --n 750 --dry-run
