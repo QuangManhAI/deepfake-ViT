@@ -82,7 +82,7 @@ def main():
 
     backbone = load_dinov3(args.backbone, img_size=IMG_SIZE)
     model = DinoViTClassifier(backbone)
-    ckpt = torch.load(args.ckpt, map_location=device)
+    ckpt = torch.load(args.ckpt, map_location=device, weights_only=True)
     model.load_state_dict(ckpt["state_dict"])
     model.to(device).eval()
     print(f"Loaded {args.ckpt} (epoch {ckpt.get('epoch')})")

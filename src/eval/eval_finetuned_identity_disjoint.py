@@ -125,7 +125,7 @@ def main():
         if args.device == "auto" else args.device
     print(f"Device: {device} | ckpt: {args.ckpt}")
 
-    ck = torch.load(args.ckpt, map_location="cpu")
+    ck = torch.load(args.ckpt, map_location="cpu", weights_only=True)
     backbone = DinoViT(img_size=IMG_SIZE, gated_mlp=True)  # model-3 pretrained có gated_mlp=True
     if "lora_config" in ck:
         lc = ck["lora_config"]

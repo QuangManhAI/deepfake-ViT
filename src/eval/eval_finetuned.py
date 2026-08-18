@@ -129,7 +129,7 @@ def main():
         if args.device == "auto" else args.device
     print(f"Device: {device}")
 
-    ck = torch.load(CKPT, map_location="cpu")
+    ck = torch.load(CKPT, map_location="cpu", weights_only=True)
     # checkpoint là ViT-S/16 KHÔNG gated (gate_proj=0) — build thẳng kiến trúc
     backbone = DinoViT(img_size=IMG_SIZE)   # defaults = ViT-S/16, gated_mlp=False
     model = BackboneClassifier(backbone)

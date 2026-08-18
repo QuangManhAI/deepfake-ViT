@@ -209,7 +209,7 @@ def main():
                         "val_metrics": val_metrics}, best_path)
 
     # ---------- Test ----------
-    ckpt = torch.load(best_path, map_location=device)
+    ckpt = torch.load(best_path, map_location=device, weights_only=True)
     model.load_state_dict(ckpt["state_dict"])
     test_metrics = evaluate(model, test_loader, device)
 

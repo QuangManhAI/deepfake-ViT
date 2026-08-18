@@ -56,7 +56,7 @@ def main():
     args = ap.parse_args()
 
     device = "mps" if torch.backends.mps.is_available() else "cpu"
-    ck = torch.load(args.ckpt, map_location="cpu")
+    ck = torch.load(args.ckpt, map_location="cpu", weights_only=True)
     backbone = DinoViT(img_size=IMG_SIZE, gated_mlp=True)
     if "lora_config" in ck:
         lc = ck["lora_config"]
