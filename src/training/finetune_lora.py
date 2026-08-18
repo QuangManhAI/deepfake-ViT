@@ -188,7 +188,7 @@ def main():
         for x, y in pbar:
             x, y = x.to(device), y.to(device)
             optimizer.zero_grad()
-            with torch.autocast(device_type=device_type, dtype=torch.bfloat16, enabled=args.amp):
+            with torch.autocast(device_type=device_type, dtype=torch.bfloat16, enabled=args.amp and device != "mps"):
                 out = model(x)
                 loss = criterion(out, y)
             loss.backward()
