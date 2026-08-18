@@ -45,7 +45,7 @@ OUT = "test_data_v2"
 MANIFEST = os.path.join(OUT, "manifest.csv")
 CELEB_REAL = "data/raw/real-root/Celeb-DF-v2"
 FF_REAL = "data/FaceForensics++/original_sequences/youtube/c23/frames"
-AIR = "/Volumes/quangmanh/Downloads/DF40"
+AIR = os.environ.get("DF40_ROOT", "data/raw/DF40")
 DF40_SUB = "data/df40_subset"
 
 # [A] 20 method có cdf trên Air

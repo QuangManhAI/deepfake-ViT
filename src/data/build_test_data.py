@@ -9,8 +9,8 @@ Nhóm / method:
 
 Nguồn:
   real known (cdf): data/raw/real-root/Celeb-DF-v2/...          (đã trích theo JSON)
-  fake known (cdf): /Volumes/quangmanh/Downloads/DF40/<method>/cdf/frames/
-  unknown (FE)    : /Volumes/quangmanh/Downloads/DF40/<method>/{real,fake}/*.jpg
+  fake known (cdf): $DF40_ROOT/<method>/cdf/frames/
+  unknown (FE)    : $DF40_ROOT/<method>/{real,fake}/*.jpg
 
 Cân bằng: mỗi method lấy N real + N fake (mặc định 1000), seed cố định theo method.
 Manifest test_data/manifest.csv: method,video,path — real rows method="real"
@@ -31,7 +31,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 JSON_PREFIX = "deepfakes_detection_datasets/"
 JSON_DIR = "data/dataset_json"
-AIR = "/Volumes/quangmanh/Downloads/DF40"
+AIR = os.environ.get("DF40_ROOT", "data/raw/DF40")
 CELEB_REAL = "data/raw/real-root"
 DST = "test_data"
 WORKERS = 8

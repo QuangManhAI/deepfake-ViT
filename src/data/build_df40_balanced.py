@@ -3,7 +3,7 @@
 Chỉ lấy các method có BOTH real/ và fake/. Mỗi method: n real == n fake
 (giới hạn bởi số ảnh có sẵn). Tổng ~ 12k ảnh cho test nhanh.
 
-Nguồn  : /Volumes/quangmanh/Downloads/DF40 (SMB, Air)
+Nguồn  : $DF40_ROOT (mặc định data/raw/DF40)
 Đích   : data/df40_subset
 Manifest: method, video, path — real ảnh method="real", fake method=<tên method>.
           (eval_df40_all_methods.py: method=="real" -> label 0, else 1)
@@ -26,7 +26,7 @@ SKIP_DIRS = {"landmarks", "__MACOSX", ".DS_Store"}
 # để split video-disjoint không gộp cả method vào 1 nhóm (lỗi: toàn bộ vào train).
 FLAT_METHODS = {"MidJourney", "stargan", "starganv2", "styleclip", "whichfaceisreal"}
 
-SRC = "/Volumes/quangmanh/Downloads/DF40"
+SRC = os.environ.get("DF40_ROOT", "data/raw/DF40")
 DST = "data/df40_subset"
 
 # method -> (real_root, fake_root) relative to SRC

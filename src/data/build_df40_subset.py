@@ -1,6 +1,6 @@
 """Xây dựng subset DF40 CÂN BẰNG real/fake để test ViT vs CNN.
 
-- Nguồn : /Volumes/quangmanh/Downloads/DF40 (Downloads của MacBook Air, qua SMB)
+- Nguồn : $DF40_ROOT (mặc định data/raw/DF40)
 - Đích  : data/df40_subset
 - Fake  : mỗi method ~N ảnh (mặc định 1000), nhóm theo video để split video-disjoint.
 - Real  : lấy CÂN BẰNG với fake (test không lệch về fake):
@@ -126,7 +126,7 @@ def copy_items(src_items, method, src_base, dst_root, writer, dst_subdir=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", default="/Volumes/quangmanh/Downloads/DF40")
+    ap.add_argument("--src", default=os.environ.get("DF40_ROOT", "data/raw/DF40"))
     ap.add_argument("--dst", default="data/df40_subset")
     ap.add_argument("--ffpp-real", default="data/FaceForensics++/original_sequences/youtube/c23/frames")
     ap.add_argument("--n", type=int, default=1000, help="số fake mỗi method")

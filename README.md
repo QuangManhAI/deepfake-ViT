@@ -45,3 +45,6 @@ pip install matplotlib tqdm pandas scikit-learn tensorboard
 - **DINOv3**: yêu cầu PyTorch ≥ 2.7.1, timm ≥ 1.0.20 (hoặc HuggingFace Transformers ≥ 4.56).
   Pretrained weights tải từ HuggingFace Hub (`facebook/dinov3-*`), cần chấp nhận license của Meta.
 - **Python**: 3.9 (system). Lưu ý 3.9 đã EOL từ 10/2025 — khuyến nghị nâng lên 3.10+ sau này.
+- **DF40_ROOT**: đường dẫn tới data DF40 gốc (mặc định `data/raw/DF40`). Các script
+  `src/data/build_*` và `src/data/download_df40.py` đọc nó từ env var `DF40_ROOT`
+  (hoặc đối số `--src`) — không hardcode đường dẫn máy.
