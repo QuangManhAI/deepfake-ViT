@@ -32,6 +32,8 @@ deepfake/
 ## Cài đặt môi trường
 
 ```bash
+python -m venv venv
+
 # Kích hoạt môi trường ảo
 source .venv/bin/activate
 
