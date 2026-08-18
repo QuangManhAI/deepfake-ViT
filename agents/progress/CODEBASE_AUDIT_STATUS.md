@@ -31,10 +31,10 @@ Legend: `To Do` → `In Progress` → `Done` (or `Wontfix`). Priority tier in pa
 
 | ID | Area | Sev | Action (commit to make) | Verification | Status |
 |---|---|---|---|---|---|
-| SEC-1 | Security | High | Add `weights_only=True` to 6 `torch.load` calls | `grep -rn "torch.load" src/` shows `weights_only=True` on all | To Do |
-| SEC-2 | Security | Med | Drop `allow_pickle=True` in `evaluate.py`/`predict.py` | grep shows no `allow_pickle=True`; eval smoke-run loads NPZ | To Do |
+| SEC-1 | Security | High | Add `weights_only=True` to 6 `torch.load` calls | `grep -rn "torch.load" src/` shows `weights_only=True` on all | Done |
+| SEC-2 | Security | Med | Drop `allow_pickle=True` in `evaluate.py`/`predict.py` | grep shows no `allow_pickle=True`; eval smoke-run loads NPZ | Done |
 | ARCH-1 | Architecture | High | Implement `LOGGING_CHECKPOINT_RULES` in `train.py` OR rescope rules | `train.py` saves full-state + `_last.pt` + JSONL, OR rules updated to match | To Do |
-| TST-1 | Tests | High | Add `tests/conftest.py`, `tests/test_smoke.py`, `pytest.ini` | `pytest` passes | To Do |
+| TST-1 | Tests | High | Add `tests/conftest.py`, `tests/test_smoke.py`, `pytest.ini` | `pytest` passes | Done |
 | CQ-1 | Quality | Med | Replace `/Volumes/...` with configurable `--src`/env root | grep shows no `/Volumes/quangmanh`; smoke `--help` shows arg | To Do |
 | CQ-2 | Quality | Med | Full RNG seeding (CPU/CUDA/python/dataloader) | grep shows `manual_seed_all`/`generator=`; seed logged | To Do |
 | DEP-1 | Dependencies | Med | Pin deps / add lockfile; document torch cu124 install | `pip freeze`-based lockfile present; README notes versions | To Do |
@@ -52,6 +52,7 @@ Positive findings (SEC-3, ARCH-3, PERF-3): **no action** — keep as-is.
 
 - 2026-08-18: Audit report created and committed (`7c6f75d`); tracker created.
 - 2026-08-18: Tracker initialized with all 12 findings as `To Do`.
+- 2026-08-18: SEC-1 done (`2f8b595`); SEC-2 done (`a1f9cad`); TST-1 done (`be374a0`).
 
 ## Blockers (if any)
 
@@ -67,7 +68,8 @@ Positive findings (SEC-3, ARCH-3, PERF-3): **no action** — keep as-is.
 
 ## Next step
 
-- Execute **P0** in order: SEC-1 → SEC-2 → TST-1 → ARCH-1 (decision-gated).
+- P0 remaining: **ARCH-1** (decision-gated — see Blockers). Then proceed to P1
+  (CQ-1, CQ-2, DEP-1, DEP-2, ARCH-2).
 
 ## Links
 
