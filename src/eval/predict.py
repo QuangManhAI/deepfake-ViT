@@ -29,7 +29,7 @@ TRANSFORM = transforms.Compose([
 
 def train_probe(features_path: str, seed: int = 42, test_size: float = 0.2):
     """Train linear probe trên train split của features đã cache."""
-    data = np.load(features_path, allow_pickle=True)
+    data = np.load(features_path)
     X, y = data["features"], data["labels"]
     X_train, _, y_train, _ = train_test_split(
         X, y, test_size=test_size, stratify=y, random_state=seed

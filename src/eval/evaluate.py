@@ -27,7 +27,7 @@ CLASS_NAMES = {0: "real", 1: "fake"}
 
 
 def load_features(path: str):
-    data = np.load(path, allow_pickle=True)
+    data = np.load(path)
     X, y = data["features"], data["labels"]
     print(f"  {os.path.basename(path)}: {X.shape} | real={int((y == 0).sum())}, fake={int((y == 1).sum())}")
     return X, y
