@@ -33,13 +33,13 @@ Legend: `To Do` → `In Progress` → `Done` (or `Wontfix`). Priority tier in pa
 |---|---|---|---|---|---|
 | SEC-1 | Security | High | Add `weights_only=True` to 6 `torch.load` calls | `grep -rn "torch.load" src/` shows `weights_only=True` on all | Done |
 | SEC-2 | Security | Med | Drop `allow_pickle=True` in `evaluate.py`/`predict.py` | grep shows no `allow_pickle=True`; eval smoke-run loads NPZ | Done |
-| ARCH-1 | Architecture | High | Implement `LOGGING_CHECKPOINT_RULES` in `train.py` OR rescope rules | `train.py` saves full-state + `_last.pt` + JSONL, OR rules updated to match | To Do |
+| ARCH-1 | Architecture | High | Implement `LOGGING_CHECKPOINT_RULES` in `train.py` OR rescope rules | `train.py` saves full-state + `_last.pt` + JSONL, OR rules updated to match | On Hold |
 | TST-1 | Tests | High | Add `tests/conftest.py`, `tests/test_smoke.py`, `pytest.ini` | `pytest` passes | Done |
-| CQ-1 | Quality | Med | Replace `/Volumes/...` with configurable `--src`/env root | grep shows no `/Volumes/quangmanh`; smoke `--help` shows arg | To Do |
-| CQ-2 | Quality | Med | Full RNG seeding (CPU/CUDA/python/dataloader) | grep shows `manual_seed_all`/`generator=`; seed logged | To Do |
-| DEP-1 | Dependencies | Med | Pin deps / add lockfile; document torch cu124 install | `pip freeze`-based lockfile present; README notes versions | To Do |
-| DEP-2 | Dependencies | Med | Standardize Python 3.10+ in setup docs | README/SETUP state 3.10+ | To Do |
-| ARCH-2 | Architecture | Med | Fill `OVERVIEW.md`; create or prune phase/status docs | OVERVIEW has no `[Fill in]`; links resolve | To Do |
+| CQ-1 | Quality | Med | Replace `/Volumes/...` with configurable `--src`/env root | grep shows no `/Volumes/quangmanh`; smoke `--help` shows arg | Done |
+| CQ-2 | Quality | Med | Full RNG seeding (CPU/CUDA/python/dataloader) | grep shows `manual_seed_all`/`generator=`; seed logged | Done |
+| DEP-1 | Dependencies | Med | Pin deps / add lockfile; document torch cu124 install | `pip freeze`-based lockfile present; README notes versions | Done |
+| DEP-2 | Dependencies | Med | Standardize Python 3.10+ in setup docs | README/SETUP state 3.10+ | Done |
+| ARCH-2 | Architecture | Med | Fill `OVERVIEW.md`; create or prune phase/status docs | OVERVIEW has no `[Fill in]`; links resolve | Done |
 | PERF-1 | Performance | Low | Set `num_workers>0` + `pin_memory` | grep shows non-zero workers | To Do |
 | PERF-2 | Performance | Low | Add opt-in AMP (`torch.autocast`) | `--amp` flag present | To Do |
 | ARCH-4 | Architecture | Low | Gitignore + untrack `.feynman/` | `git check-ignore .feynman/` succeeds; file untracked | To Do |
@@ -53,6 +53,9 @@ Positive findings (SEC-3, ARCH-3, PERF-3): **no action** — keep as-is.
 - 2026-08-18: Audit report created and committed (`7c6f75d`); tracker created.
 - 2026-08-18: Tracker initialized with all 12 findings as `To Do`.
 - 2026-08-18: SEC-1 done (`2f8b595`); SEC-2 done (`a1f9cad`); TST-1 done (`be374a0`).
+- 2026-08-18: ARCH-1 deferred by user; P1 started — CQ-1 (hardcoded paths) first.
+- 2026-08-18: CQ-1 done (`cb2dcee`); CQ-2 done (`d08f658`).
+- 2026-08-18: DEP-1 done (`bae8f1a`); DEP-2 done (`47be5fc`); ARCH-2 done (`588c9fc`). P1 complete.
 
 ## Blockers (if any)
 
@@ -65,11 +68,14 @@ Positive findings (SEC-3, ARCH-3, PERF-3): **no action** — keep as-is.
 - Use `agents/progress/CODEBASE_AUDIT_STATUS.md` as the single source of truth
   for remediation status — it mirrors the P0/P1/P2 plan in
   [../CODEBASE_AUDIT.md](../CODEBASE_AUDIT.md) one-to-one.
+- 2026-08-18: **ARCH-1 deferred** until after P1 (user decision). It remains
+  the only open P0 item; revisit before the deadline.
 
 ## Next step
 
-- P0 remaining: **ARCH-1** (decision-gated — see Blockers). Then proceed to P1
-  (CQ-1, CQ-2, DEP-1, DEP-2, ARCH-2).
+- P1 complete ✅ (CQ-1, CQ-2, DEP-1, DEP-2, ARCH-2).
+- P2 remaining: **PERF-1** (workers), **PERF-2** (AMP), **ARCH-4** (`.feynman/`).
+- ARCH-1 remains on hold (only open P0) — revisit before deadline.
 
 ## Links
 
