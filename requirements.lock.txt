@@ -1,8 +1,10 @@
 # requirements.lock.txt — Pinned (reproducible) versions of requirements.txt.
 #
 # Pinned at the minimum floors declared in requirements.txt. For a fully
-# accurate lock of the real environment, regenerate with:
-#   pip freeze > requirements.lock.txt     (inside the GPU .venv)
+# accurate lock of the real environment, regenerate with (excluding torch,
+# which is installed separately with the CUDA index):
+#   pip freeze | grep -vE '^(torch|torchvision|torchaudio|nvidia-)' > requirements.lock.txt
+#     (inside the GPU .venv)
 #
 # torch + torchvision are installed SEPARATELY with the CUDA index (NOT here):
 #   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
