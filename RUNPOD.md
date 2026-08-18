@@ -24,8 +24,8 @@ Luồng chung: **local push lên Hugging Face Hub → RunPod pull về → cài 
 ### 1.3 Push (chạy script — tự exclude data lớn / cache)
 
 ```bash
-bash scripts/push_to_hub.sh              # code + models/ (298MB) -> model repo
-bash scripts/push_dataset_to_hub.sh      # test_data_v3.zip (4.2GB) -> dataset repo
+bash src/utils/push_to_hub.sh              # code + weights (298MB) -> model repo
+bash src/utils/push_dataset_to_hub.sh      # test_data_v3.zip (4.2GB) -> dataset repo
 ```
 
 > Nếu repo đã tồn tại thì bỏ qua bước `hf repo create`, chạy thẳng script push.
@@ -36,7 +36,7 @@ bash scripts/push_dataset_to_hub.sh      # test_data_v3.zip (4.2GB) -> dataset r
 
 1. **Deploy → GPU pod → On-demand / Secure Cloud**.
 2. **Template:** chọn **RunPod PyTorch** (Ubuntu 22.04 + CUDA + PyTorch) — nhanh nhất.
-   Nếu muốn tự cài từ đầu: chọn **Ubuntu** rồi tự chạy `setup_ubuntu.sh` (bước 3.3).
+   Nếu muốn tự cài từ đầu: chọn **Ubuntu** rồi tự chạy `src/utils/setup_ubuntu.sh` (bước 3.3).
 3. **GPU:** RTX 4090 (~$0.79/h) hoặc A10 (~$0.69/h) đủ cho eval + fine-tune nhỏ.
 4. **Storage (tuỳ chọn):** gắn Network Volume ~10GB nếu muốn giữ data giữa các pod.
 5. **Start pod → Connect → Web Terminal** (hoặc SSH).
@@ -73,7 +73,7 @@ python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
 # Nếu template là Ubuntu thuần (tự cài mọi thứ):
-bash scripts/setup_ubuntu.sh
+bash src/utils/setup_ubuntu.sh
 ```
 
 Kiểm tra GPU:
@@ -85,30 +85,30 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 ### 3.4 Chạy eval (identity-disjoint, 40 method)
 
 ```bash
-python scripts/eval_identity_disjoint.py --model vit --root test_data_v3 --tag test_data_v3 --device cuda
-python scripts/eval_identity_disjoint.py --model cnn --root test_data_v3 --tag test_data_v3 --device cuda
+python src/eval/eval_identity_disjoint.py --model vit --root test_data_v3 --tag test_data_v3 --device cuda
+python src/eval/eval_identity_disjoint.py --model cnn --root test_data_v3 --tag test_data_v3 --device cuda
 ```
 
 Tạo report 40 method:
 
 ```bash
-python scripts/make_method_report_md.py \
-  --vit outputs/eval/identity_disjoint_v3_vit.json \
-  --cnn outputs/eval/identity_disjoint_v3_cnn.json \
-  --output outputs/eval/report_40_methods_v3.md
+python src/experiments/make_method_report_md.py \
+  --vit experiments/results/eval/identity_disjoint_v3_vit.json \
+  --cnn experiments/results/eval/identity_disjoint_v3_cnn.json \
+  --output experiments/results/eval/report_40_methods_v3.md
 ```
 
 ---
 
 ## 4. Fine-tune trên GPU (tuỳ chọn — đây là lý do chính thuê GPU)
 
-Xem cách dùng của `scripts/train.py` và `scripts/finetune_compare.py`:
+Xem cách dùng của `src/training/train.py` và `src/training/finetune_compare.py`:
 
 ```bash
-python scripts/train.py --help
+python src/training/train.py --help
 ```
 
-Tham khảo `scripts/eval_finetuned.py` để đánh giá checkpoint sau fine-tune.
+Tham khảo `src/eval/eval_finetuned.py` để đánh giá checkpoint sau fine-tune.
 
 ---
 
@@ -116,7 +116,7 @@ Tham khảo `scripts/eval_finetuned.py` để đánh giá checkpoint sau fine-tu
 
 | Triệu chứng | Cách xử lý |
 |---|---|
-| `torch.cuda.is_available() = False` | Driver GPU thiếu / driver cũ → đổi `cu124` thành `cu121` trong `setup_ubuntu.sh`, hoặc chọn template RunPod PyTorch |
+| `torch.cuda.is_available() = False` | Driver GPU thiếu / driver cũ → đổi `cu124` thành `cu121` trong `src/utils/setup_ubuntu.sh`, hoặc chọn template RunPod PyTorch |
 | `OOM` khi extract | Giảm `--batch-size` (mặc định 16) |
 | Lỗi thiếu file ảnh | Chưa `unzip test_data_v3.zip` hoặc chạy sai `--root` (phải là `test_data_v3`) |
 | Pull repo private không được | Đã `export HF_TOKEN`? Token có quyền đọc repo đó? |
@@ -127,7 +127,7 @@ Tham khảo `scripts/eval_finetuned.py` để đánh giá checkpoint sau fine-tu
 
 ```
 HF Hub
-├── ManhQuangAI/dinov3-deepfake-detection   (model repo: code + models/ 298MB)
+├── ManhQuangAI/dinov3-deepfake-detection   (model repo: code + weights 298MB)
 └── ManhQuangAI/df40-test-data-v3           (dataset repo: test_data_v3.zip 4.2GB)
         │
 RunPod (Ubuntu + CUDA)

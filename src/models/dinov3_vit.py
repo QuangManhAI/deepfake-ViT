@@ -1,5 +1,5 @@
 """
-DINOv3 ViT-Small/16 backbone — tái dựng theo đúng tên tensor trong `models/model.safetensors`.
+DINOv3 ViT-Small/16 backbone — tái dựng theo đúng tên tensor trong `experiments/checkpoints/weights/model.safetensors`.
 
 Định dạng tên param (211 tensor):
   embeddings.cls_token            [1, 1, 384]

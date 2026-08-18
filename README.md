@@ -7,23 +7,25 @@
 ```
 deepfake/
 ├── .venv/              # Môi trường ảo (Python 3.9)
+├── agents/             # Agent AI knowledge base (rules, phases, progress)
+├── configs/            # File cấu hình (YAML)
 ├── data/
 │   ├── raw/            # Data thô (ảnh deepfake / real)
 │   ├── processed/      # Data đã xử lý (crop, resize...)
-│   └── splits/         # Bộ train/val/test
-├── models/             # Pretrained weights DINOv3 / checkpoints
-├── src/                # Package chính
-│   ├── data/           # Dataset, transforms
-│   ├── models/         # ViT model, classifier head
-│   ├── training/       # Train loop, loss
-│   └── utils/          # Logger, metrics, helpers
-├── configs/            # File cấu hình (YAML)
-├── scripts/            # train.py / evaluate.py / predict.py
-├── notebooks/          # Notebook thử nghiệm
-├── outputs/
-│   ├── checkpoints/    # Checkpoint model
-│   ├── logs/           # Log huấn luyện
-│   └── results/        # Kết quả đánh giá
+│   └── external/       # Data ngoài
+├── src/                # Package chính (script entry points)
+│   ├── data/           # Dataset, transforms + build/split/download scripts
+│   ├── models/         # ViT (DINOv3), ConvNeXt, LoRA
+│   ├── training/       # Train loop (train.py, finetune_*.py)
+│   ├── eval/           # Evaluation scripts (eval_*.py, evaluate.py)
+│   ├── experiments/    # Comparison, figures, analysis scripts
+│   └── utils/          # Logger, helpers, shell utilities
+├── experiments/
+│   ├── checkpoints/    # Checkpoint + pretrained weights
+│   ├── results/        # Kết quả đánh giá, report, research
+│   ├── plots/          # Figures
+│   └── runs/           # Run logs/history
+├── notebooks/          # Notebook phân tích
 └── tests/              # Kiểm thử
 ```
 

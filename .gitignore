@@ -10,11 +10,6 @@ __pycache__/
 .venv/
 venv/
 env/
-/outputs/checkpoints/
-/outputs/results/
-/outputs/features/
-/outputs/.plans/
-/outputs/drafts/
 *.mov
 *.avi
 *.wav
@@ -23,23 +18,17 @@ env/
 *.log
 *.csv
 
-# Data & models
-data/raw/*
+# Data (bulk raw data is ignored via media/archive patterns above)
 data/processed/*
-data/splits/*
-models/*
-!data/raw/.gitkeep
 !data/processed/.gitkeep
-!data/splits/.gitkeep
-!models/.gitkeep
 
-# Checkpoints & logs
-outputs/checkpoints/*
-outputs/logs/*
-outputs/results/*
-!outputs/checkpoints/.gitkeep
-!outputs/logs/.gitkeep
-!outputs/results/.gitkeep
+# Experiments: run state + checkpoints/weights are not committed
+experiments/runs/*
+!experiments/runs/.gitkeep
+experiments/checkpoints/*
+!experiments/checkpoints/.gitkeep
+!experiments/checkpoints/weights/
+!experiments/checkpoints/weights/.gitkeep
 *.png
 *.jpg 
 # Model weights
