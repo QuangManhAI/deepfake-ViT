@@ -28,6 +28,7 @@ from tqdm import tqdm
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 from src.models.dinov3_vit import load_dinov3
 from src.models.dinov3_convnext import load_dinov3_convnext
+from src.utils.seeding import set_seed
 
 IMG_SIZE = 256
 MEAN, STD = [0.485, 0.456, 0.406], [0.229, 0.224, 0.225]
@@ -129,8 +130,7 @@ def main():
         device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     print(f"Device: {device}", flush=True)
 
-    torch.manual_seed(args.seed)
-    np.random.seed(args.seed)
+    set_seed(args.seed)
 
     # ---------- Data ----------
     train_ds = ImageDataset(args.train_csv, TRAIN_TF, max_samples=args.max_train)

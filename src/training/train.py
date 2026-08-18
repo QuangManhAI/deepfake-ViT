@@ -36,6 +36,7 @@ from tqdm import tqdm
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 from src.models.dinov3_vit import load_dinov3  # noqa: E402
+from src.utils.seeding import set_seed  # noqa: E402
 
 IMG_SIZE = 256
 MEAN, STD = [0.485, 0.456, 0.406], [0.229, 0.224, 0.225]
@@ -133,8 +134,7 @@ def main():
         device = args.device
     print(f"Device: {device}", flush=True)
 
-    torch.manual_seed(args.seed)
-    np.random.seed(args.seed)
+    set_seed(args.seed)
 
     # ---------- Data ----------
     train_ds = ImageDataset(args.train_csv, TRAIN_TF)
