@@ -35,9 +35,13 @@ deepfake/
 # Kích hoạt môi trường ảo
 source .venv/bin/activate
 
-# Cài dependencies (khi đưa data/model vào)
-pip install torch torchvision timm
-pip install matplotlib tqdm pandas scikit-learn tensorboard
+# 1) Torch + torchvision — cài RIÊNG với CUDA index (KHÔNG nằm trong requirements):
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+#   (DINOv3 cần PyTorch >= 2.7.1; trên Mac: pip install torch torchvision)
+
+# 2) Các thư viện Python còn lại — bản pin (tái lập chính xác):
+pip install -r requirements.lock.txt
+#   (hoặc `pip install -r requirements.txt` để lấy bản mới nhất thỏa floor)
 ```
 
 ## Ghi chú
@@ -48,3 +52,5 @@ pip install matplotlib tqdm pandas scikit-learn tensorboard
 - **DF40_ROOT**: đường dẫn tới data DF40 gốc (mặc định `data/raw/DF40`). Các script
   `src/data/build_*` và `src/data/download_df40.py` đọc nó từ env var `DF40_ROOT`
   (hoặc đối số `--src`) — không hardcode đường dẫn máy.
+- **Reproducibility**: dùng `requirements.lock.txt` (bản pin) để tái lập môi trường;
+  tái tạo lockfile trong môi trường GPU thật bằng `pip freeze > requirements.lock.txt`.
