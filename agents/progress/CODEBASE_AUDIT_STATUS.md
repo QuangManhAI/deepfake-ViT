@@ -40,9 +40,9 @@ Legend: `To Do` → `In Progress` → `Done` (or `Wontfix`). Priority tier in pa
 | DEP-1 | Dependencies | Med | Pin deps / add lockfile; document torch cu124 install | `pip freeze`-based lockfile present; README notes versions | Done |
 | DEP-2 | Dependencies | Med | Standardize Python 3.10+ in setup docs | README/SETUP state 3.10+ | Done |
 | ARCH-2 | Architecture | Med | Fill `OVERVIEW.md`; create or prune phase/status docs | OVERVIEW has no `[Fill in]`; links resolve | Done |
-| PERF-1 | Performance | Low | Set `num_workers>0` + `pin_memory` | grep shows non-zero workers | To Do |
-| PERF-2 | Performance | Low | Add opt-in AMP (`torch.autocast`) | `--amp` flag present | To Do |
-| ARCH-4 | Architecture | Low | Gitignore + untrack `.feynman/` | `git check-ignore .feynman/` succeeds; file untracked | To Do |
+| PERF-1 | Performance | Low | Set `num_workers>0` + `pin_memory` | grep shows non-zero workers | Done |
+| PERF-2 | Performance | Low | Add opt-in AMP (`torch.autocast`) | `--amp` flag present | Done |
+| ARCH-4 | Architecture | Low | Gitignore + untrack `.feynman/` | `git check-ignore .feynman/` succeeds; file untracked | Done |
 
 Positive findings (SEC-3, ARCH-3, PERF-3): **no action** — keep as-is.
 
@@ -56,6 +56,7 @@ Positive findings (SEC-3, ARCH-3, PERF-3): **no action** — keep as-is.
 - 2026-08-18: ARCH-1 deferred by user; P1 started — CQ-1 (hardcoded paths) first.
 - 2026-08-18: CQ-1 done (`cb2dcee`); CQ-2 done (`d08f658`).
 - 2026-08-18: DEP-1 done (`bae8f1a`); DEP-2 done (`47be5fc`); ARCH-2 done (`588c9fc`). P1 complete.
+- 2026-08-18: PERF-1 + PERF-2 done (`d525890`); ARCH-4 done (`d1dc6bf`). P2 complete.
 
 ## Blockers (if any)
 
@@ -73,9 +74,10 @@ Positive findings (SEC-3, ARCH-3, PERF-3): **no action** — keep as-is.
 
 ## Next step
 
-- P1 complete ✅ (CQ-1, CQ-2, DEP-1, DEP-2, ARCH-2).
-- P2 remaining: **PERF-1** (workers), **PERF-2** (AMP), **ARCH-4** (`.feynman/`).
-- ARCH-1 remains on hold (only open P0) — revisit before deadline.
+- P1 ✅ and P2 ✅ complete (all 11 of 12 findings resolved).
+- **Only open item: ARCH-1** (P0, on hold) — revisit before the deadline
+  (implement `LOGGING_CHECKPOINT_RULES` in `train.py` OR rescope the rules).
+- Re-run the audit (codebase_audit) to confirm the tree/verifications hold.
 
 ## Links
 
