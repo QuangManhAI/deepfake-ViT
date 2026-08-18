@@ -1,9 +1,10 @@
 """Deterministic RNG seeding for reproducible runs.
 
+Sets python, numpy, and torch (CPU/CUDA) seeds. DataLoader workers are
+auto-seeded by PyTorch from the main-process RNG, so a single main-process
+seed keeps shuffles reproducible across runs even with ``num_workers > 0``.
 Note: ``PYTHONHASHSEED`` must be set *before* the interpreter starts to take
-effect, so it is not set here. The global torch/numpy/python seeds below are
-sufficient for the DataLoaders used in this repo (``num_workers=0``, global
-shuffle RNG).
+effect, so it is not set here.
 """
 import random
 
