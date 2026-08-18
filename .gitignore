@@ -21,6 +21,7 @@ env/
 # Data (bulk raw data is ignored via media/archive patterns above)
 data/processed/*
 !data/processed/.gitkeep
+data/raw/DF40/
 
 # Experiments: run state + checkpoints/weights are not committed
 experiments/runs/*
@@ -29,6 +30,7 @@ experiments/checkpoints/*
 !experiments/checkpoints/.gitkeep
 !experiments/checkpoints/weights/
 !experiments/checkpoints/weights/.gitkeep
+experiments/results/features/
 *.png
 *.jpg 
 # Model weights
