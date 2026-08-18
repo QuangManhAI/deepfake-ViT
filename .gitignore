@@ -41,6 +41,9 @@ experiments/checkpoints/*
 # Config secrets
 .env
 
+# Tool caches
+.feynman/
+
 # IDE / OS
 .idea/
 .vscode/
