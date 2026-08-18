@@ -129,10 +129,13 @@ def main():
     parser.add_argument("--output-dir", default="experiments/results/finetune")
     parser.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--num-workers", type=int, default=2)
+    parser.add_argument("--amp", action="store_true", help="mixed precision (bfloat16)")
     args = parser.parse_args()
 
     if args.device == "auto":
         device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+    device_type = "cuda" if device == "cuda" else "cpu"
     print(f"Device: {device}", flush=True)
 
     set_seed(args.seed)
@@ -140,8 +143,10 @@ def main():
     # ---------- Data ----------
     train_ds = ImageDataset(args.train_csv, TRAIN_TF, max_samples=args.max_train or None)
     val_ds = ImageDataset(args.val_csv, EVAL_TF, max_samples=4000)
-    train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, num_workers=0)
-    val_loader = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
+    train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True,
+                              num_workers=args.num_workers, pin_memory=True)
+    val_loader = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False,
+                            num_workers=args.num_workers, pin_memory=True)
     print(f"Train: {len(train_ds)} | Val: {len(val_ds)}", flush=True)
 
     n0 = sum(1 for r in train_ds.rows if r[1] == 0)
@@ -183,8 +188,9 @@ def main():
         for x, y in pbar:
             x, y = x.to(device), y.to(device)
             optimizer.zero_grad()
-            out = model(x)
-            loss = criterion(out, y)
+            with torch.autocast(device_type=device_type, dtype=torch.bfloat16, enabled=args.amp):
+                out = model(x)
+                loss = criterion(out, y)
             loss.backward()
             optimizer.step()
             total_loss += loss.item()
