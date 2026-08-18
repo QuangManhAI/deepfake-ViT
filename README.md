@@ -64,6 +64,7 @@ python -m pytest                 # structural smoke tests (torch-gated test tự
 #   hf download ManhQuangAI/DF40_train --repo-type dataset --local-dir data/raw/DF40
 export DF40_ROOT=/path/to/DF40    # mặc định data/raw/DF40
 # LƯU Ý: src/data/download_df40.py (Google Drive/gdown) KHÔNG còn đáng tin —
+hf download ManhQuangAI/DF40_train --repo-type dataset --local-dir data/raw/DF40
 # các link Drive thường không truy cập được (gdown rc=1). Dùng HF Hub làm nguồn chính.
 
 # Build subset cân bằng real/fake
