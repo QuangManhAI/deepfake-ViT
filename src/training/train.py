@@ -89,12 +89,17 @@ class DinoViTClassifier(nn.Module):
 
 
 @torch.no_grad()
-def evaluate(model, loader, device):
+def evaluate(model, loader, device, criterion=None):
     model.eval()
     all_y, all_pred, all_prob = [], [], []
+    total_loss, n_batches = 0.0, 0
     for x, y in loader:
-        x = x.to(device)
+        x, y_dev = x.to(device), y.to(device)
         logits = model(x)
+        if criterion:
+            loss = criterion(logits, y_dev)
+            total_loss += loss.item()
+            n_batches += 1
         probs = torch.softmax(logits, dim=1)
         all_y.extend(y.tolist())
         all_pred.extend(logits.argmax(1).tolist())
@@ -102,11 +107,13 @@ def evaluate(model, loader, device):
     y = np.array(all_y)
     pred = np.array(all_pred)
     prob = np.array(all_prob)
+    val_loss = (total_loss / max(1, n_batches)) if criterion else None
     return {
+        "loss": val_loss,
         "accuracy": float(accuracy_score(y, pred)),
-        "precision": float(precision_score(y, pred)),
-        "recall": float(recall_score(y, pred)),
-        "f1": float(f1_score(y, pred)),
+        "precision": float(precision_score(y, pred, zero_division=0)),
+        "recall": float(recall_score(y, pred, zero_division=0)),
+        "f1": float(f1_score(y, pred, zero_division=0)),
         "roc_auc": float(roc_auc_score(y, prob)),
         "confusion_matrix": confusion_matrix(y, pred, labels=[0, 1]).tolist(),
     }
@@ -192,12 +199,12 @@ def main():
         pbar.close()
         scheduler.step()
 
-        val_metrics = evaluate(model, val_loader, device)
+        val_metrics = evaluate(model, val_loader, device, criterion=criterion)
         train_loss = total_loss / n_batch
         history.append({"epoch": epoch + 1, "train_loss": train_loss, **val_metrics})
         dt = time.time() - t0
         print(f"[Epoch {epoch+1}/{args.epochs}] loss={train_loss:.4f} | "
-              f"val_acc={val_metrics['accuracy']:.4f} val_f1={val_metrics['f1']:.4f} | {dt:.0f}s",
+              f"val_loss={val_metrics['loss']:.4f} val_acc={val_metrics['accuracy']:.4f} val_f1={val_metrics['f1']:.4f} | {dt:.0f}s",
               flush=True)
 
         if val_metrics["accuracy"] > best_val_acc:
@@ -210,9 +217,11 @@ def main():
     print(f"\nLoad checkpoint tốt nhất và đánh giá TEST...")
     ckpt = torch.load(best_path, map_location=device, weights_only=True)
     model.load_state_dict(ckpt["state_dict"])
-    test_metrics = evaluate(model, test_loader, device)
+    test_metrics = evaluate(model, test_loader, device, criterion=criterion)
 
     print("\n================= KẾT QUẢ TEST (sau fine-tune) =================")
+    if test_metrics["loss"] is not None:
+        print(f"  loss     : {test_metrics['loss']:.4f}")
     print(f"  accuracy : {test_metrics['accuracy']:.4f}")
     print(f"  precision: {test_metrics['precision']:.4f}")
     print(f"  recall   : {test_metrics['recall']:.4f}")
