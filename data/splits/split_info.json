@@ -3,30 +3,31 @@
   "seed": 42,
   "identity_disjoint_splits": {
     "train": {
-      "total": 20853,
-      "real": 834,
-      "fake": 20019,
-      "identities": 15565,
-      "ratio": "24.0:1"
+      "total": 21459,
+      "real": 828,
+      "fake": 20631,
+      "identities": 16265,
+      "ratio": "24.9:1"
     },
     "val": {
-      "total": 4440,
-      "real": 173,
-      "fake": 4267,
-      "identities": 3335,
-      "ratio": "24.7:1"
+      "total": 4586,
+      "real": 171,
+      "fake": 4415,
+      "identities": 3485,
+      "ratio": "25.8:1"
     },
     "test": {
-      "total": 4398,
-      "real": 170,
-      "fake": 4228,
-      "identities": 3337,
-      "ratio": "24.9:1"
+      "total": 4646,
+      "real": 178,
+      "fake": 4468,
+      "identities": 3487,
+      "ratio": "25.1:1"
     }
   },
-  "test_full_total": 29691,
-  "total_methods": 39,
+  "test_full_total": 30691,
+  "total_methods": 41,
   "methods_list": [
+    "CelebDFv2",
     "CollabDiff",
     "DiT",
     "MRAA",
@@ -62,6 +63,7 @@
     "simswap",
     "stargan",
     "starganv2",
+    "styleclip",
     "tpsm",
     "uniface",
     "wav2lip",
@@ -179,6 +181,8 @@
     "benchmark_test_stargan_full.csv",
     "benchmark_test_starganv2_balanced.csv",
     "benchmark_test_starganv2_full.csv",
+    "benchmark_test_styleclip_balanced.csv",
+    "benchmark_test_styleclip_full.csv",
     "benchmark_test_tpsm_balanced.csv",
     "benchmark_test_tpsm_full.csv",
     "benchmark_test_uniface_balanced.csv",
@@ -295,6 +299,9 @@
     "test_starganv2_balanced.csv",
     "test_starganv2_detailed.csv",
     "test_starganv2_full.csv",
+    "test_styleclip_balanced.csv",
+    "test_styleclip_detailed.csv",
+    "test_styleclip_full.csv",
     "test_tpsm_balanced.csv",
     "test_tpsm_detailed.csv",
     "test_tpsm_full.csv",

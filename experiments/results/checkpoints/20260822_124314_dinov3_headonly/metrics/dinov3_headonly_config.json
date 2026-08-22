@@ -1,0 +1,35 @@
+{
+  "run_name": "dinov3_headonly",
+  "description": "DINOv3 ViT-S/16 fine-tune, real/fake binary, DF40 splits.",
+  "outputs": [
+    "checkpoints/<run>_best.pt",
+    "checkpoints/<run>_last.pt",
+    "metrics/<run>_history.jsonl",
+    "metrics/<run>_config.json"
+  ],
+  "args": {
+    "train_csv": "data/splits/train_combined_balanced.csv",
+    "val_csv": "data/splits/val_combined_balanced.csv",
+    "test_csv": "data/splits/test_balanced.csv",
+    "model": "experiments/checkpoints/weights/dinov3-vits16plus-pretrain-lvd1689m/model-3.safetensors",
+    "output_dir": "experiments/results/checkpoints",
+    "run_name": "dinov3_headonly",
+    "report": "experiments/results/finetune_report.json",
+    "epochs": 5,
+    "batch_size": 32,
+    "lr_backbone": 1e-05,
+    "lr_head": 0.001,
+    "freeze_backbone": true,
+    "max_train": 0,
+    "class_weight": true,
+    "patience": 2,
+    "seed": 42,
+    "device": "auto",
+    "num_workers": 4,
+    "amp": true,
+    "resume": false,
+    "force_resume": false
+  },
+  "seed": 42,
+  "model_params_M": 28.69
+}

@@ -69,7 +69,7 @@ EVAL_TF = transforms.Compose([
 
 
 class ImageDataset(Dataset):
-    def __init__(self, csv_path, transform=None):
+    def __init__(self, csv_path, transform=None, max_samples=None):
         self.rows = []
         with open(csv_path, newline="") as f:
             reader = csv.reader(f)
@@ -77,6 +77,11 @@ class ImageDataset(Dataset):
             for row in reader:
                 if len(row) >= 2:
                     self.rows.append((row[0], int(row[1])))
+        if max_samples and len(self.rows) > max_samples:
+            real = [r for r in self.rows if r[1] == 0]
+            fake = [r for r in self.rows if r[1] == 1]
+            half = max_samples // 2
+            self.rows = real[:half] + fake[:half]
         self.transform = transform
 
     def __len__(self):
@@ -146,6 +151,14 @@ def main():
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--lr-backbone", type=float, default=1e-5)
     parser.add_argument("--lr-head", type=float, default=1e-3)
+    parser.add_argument("--freeze-backbone", action="store_true",
+                        help="Freeze the backbone entirely; train only the classification head")
+    parser.add_argument("--max-train", type=int, default=0,
+                        help="Cap training samples (0 = use all; balanced if possible)")
+    parser.add_argument("--class-weight", action="store_true",
+                        help="Use inverse-frequency class weights in the loss (helps imbalance)")
+    parser.add_argument("--patience", type=int, default=0,
+                        help="Early-stop after this many epochs without val-acc improvement (0 = off)")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     parser.add_argument("--num-workers", type=int, default=2)
@@ -181,7 +194,7 @@ def main():
     legacy_best_path = os.path.join(args.output_dir, "dinov3_finetuned.pt")
 
     # ---------- Data ----------
-    train_ds = ImageDataset(args.train_csv, TRAIN_TF)
+    train_ds = ImageDataset(args.train_csv, TRAIN_TF, max_samples=args.max_train or None)
     val_ds = ImageDataset(args.val_csv, EVAL_TF)
     test_ds = ImageDataset(args.test_csv, EVAL_TF)
     train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True,
@@ -195,16 +208,34 @@ def main():
     # ---------- Model ----------
     backbone = load_dinov3(args.model, img_size=IMG_SIZE)
     model = DinoViTClassifier(backbone).to(device)
+    if args.freeze_backbone:
+        for p in model.backbone.parameters():
+            p.requires_grad = False
+        logger.info("Backbone FROZEN — training only the classification head")
     n_params = sum(p.numel() for p in model.parameters())
-    logger.info(f"Model: {n_params:,} params ({n_params/1e6:.1f}M)")
+    n_trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    logger.info(f"Model: {n_params:,} params ({n_params/1e6:.1f}M) | "
+                f"trainable: {n_trainable:,} ({n_trainable/1e6:.1f}M)")
 
     # ---------- Optimizer / Scheduler ----------
-    optimizer = torch.optim.AdamW([
-        {"params": model.backbone.parameters(), "lr": args.lr_backbone},
-        {"params": model.head.parameters(), "lr": args.lr_head},
-    ], weight_decay=0.05)
+    opt_groups = []
+    if not args.freeze_backbone:
+        opt_groups.append({"params": model.backbone.parameters(), "lr": args.lr_backbone})
+    opt_groups.append({"params": model.head.parameters(), "lr": args.lr_head})
+    optimizer = torch.optim.AdamW(opt_groups, weight_decay=0.05)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
     criterion = nn.CrossEntropyLoss()
+    if args.class_weight:
+        import collections
+        counts = collections.Counter(r[1] for r in train_ds.rows)
+        n_total = sum(counts.values())
+        weights = torch.tensor(
+            [n_total / max(1, counts[c]) / 2 for c in range(2)],
+            dtype=torch.float32, device=device,
+        )
+        criterion = nn.CrossEntropyLoss(weight=weights)
+        logger.info(f"Class weights: real={weights[0]:.4f} fake={weights[1]:.4f} "
+                    f"(counts={dict(counts)})")
 
     config = {
         "run_name": args.run_name,
@@ -246,6 +277,7 @@ def main():
 
     # ---------- Train ----------
     os.makedirs(args.output_dir, exist_ok=True)
+    patience_counter = 0
     for epoch in range(start_epoch, args.epochs):
         model.train()
         t0 = time.time()
@@ -292,6 +324,16 @@ def main():
             torch.save({"state_dict": model.state_dict(), "epoch": epoch + 1,
                         "val_metrics": val_metrics}, legacy_best_path)
             logger.info(f"Saved best checkpoint (val_acc={best_val_acc:.4f})")
+            patience_counter = 0
+        else:
+            patience_counter += 1
+            if args.patience and patience_counter >= args.patience:
+                logger.info(f"Early stopping: no val-acc improvement for {patience_counter} "
+                            f"epochs (patience={args.patience}). Stopping at epoch {epoch + 1}.")
+                best_metrics["early_stop_triggered"] = True
+                save_full_checkpoint(last_path, model, optimizer, scheduler, epoch + 1,
+                                     global_step, best_metrics, history, config, args.seed)
+                break
 
         append_history_jsonl(metrics_path, epoch_metrics)
 
