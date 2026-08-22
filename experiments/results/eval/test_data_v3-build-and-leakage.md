@@ -42,8 +42,8 @@ DF40 gồm 40 method làm giả, mỗi method có 2 họ:
 
 ## 3. Quy trình xây dựng từng bước
 
-Script: `src/data/build_test_data_v2.py` (scan + copy + manifest) →
-`src/data/restructure_test_data_v3.py` (chia folder theo method bằng hard link).
+Script: `scripts/build_test_data_v2.py` (scan + copy + manifest) →
+`scripts/restructure_test_data_v3.py` (chia folder theo method bằng hard link).
 
 ### Bước 1 — Real pool (1,177 ảnh)
 Với mỗi video real (178 Celeb-DF + 999 FF++), chọn `mid_frame` = frame giữa của video.
@@ -97,7 +97,7 @@ vì real dùng **chung cho mọi method** — nhân bản vào từng method s�
   (`class_weight=balanced`).
 - **Metric:** Acc / Prec / Rec / F1 / AUC, real acc, fake detection, theo domain,
   theo method, **paired-only** (chỉ identity có cả real lẫn fake — test nghiêm ngặt nhất).
-- **Tái lập:** `src/eval/eval_identity_disjoint.py --root test_data_v3 --tag test_data_v3`.
+- **Tái lập:** `scripts/eval_identity_disjoint.py --root test_data_v3 --tag test_data_v3`.
 
 ---
 
@@ -171,10 +171,10 @@ lỏng, và là phát hiện đáng viết trong đồ án.
 
 | File | Vai trò |
 |---|---|
-| `src/data/build_test_data_v2.py` | scan + chọn frame + copy + manifest (nguồn gốc) |
-| `src/data/restructure_test_data_v3.py` | chia v2 → v3 theo method (hard link) |
-| `src/eval/eval_identity_disjoint.py` | protocol identity-disjoint + LR probe |
+| `scripts/build_test_data_v2.py` | scan + chọn frame + copy + manifest (nguồn gốc) |
+| `scripts/restructure_test_data_v3.py` | chia v2 → v3 theo method (hard link) |
+| `scripts/eval_identity_disjoint.py` | protocol identity-disjoint + LR probe |
 | `test_data_v3/manifest.csv` | 30,691 dòng: `method, video, path, identity, domain, label` |
-| `experiments/results/eval/identity_disjoint_v3_{vit,cnn}.json` | kết quả eval |
-| `experiments/results/eval/report_40_methods_v3.md` | bảng kết quả 40 method |
+| `outputs/eval/identity_disjoint_v3_{vit,cnn}.json` | kết quả eval |
+| `outputs/eval/report_40_methods_v3.md` | bảng kết quả 40 method |
 | `test_data_v3.zip` | bản đóng gói để giải nén/reproduce |

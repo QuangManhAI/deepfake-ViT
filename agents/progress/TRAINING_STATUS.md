@@ -10,6 +10,7 @@
 ## Log
 
 - 2026-08-18: Full RNG seeding via `src/utils/seeding.py` (CQ-2).
+- 2026-08-21: Strategic optimization plan EXP-01 created for maximizing accuracy (>97.5%) with LLRD, Balanced Label-Smoothed Loss, TTA, and Ensembling.
 
 ## Blockers (if any)
 
@@ -18,13 +19,15 @@
 
 ## Decisions
 
-- Script-only training; AdamW 2-LR-groups + cosine schedule; seed 42.
+- Script-only training; AdamW with Layer-wise LR Decay (LLRD) + cosine schedule; seed 42.
+- Dedicated optimization strategy: `agents/experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md` (execution notebook planned, not yet created).
 
 ## Next step
 
-- Re-run `train.py` in the GPU env; then resolve ARCH-1 checkpointing.
+- Run EXP-01 advanced fine-tuning pipeline on GPU to push Test Accuracy > 97.5%.
 
 ## Links
 
 - Phase doc: [../phases/TRAINING_INFO.md](../phases/TRAINING_INFO.md)
+- Experiment plan: [../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md)
 - Overview: [../OVERVIEW.md](../OVERVIEW.md)

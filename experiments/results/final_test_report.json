@@ -1,0 +1,22 @@
+{
+  "checkpoint": "/workspace/hoangtuan/deepfake-ViT/experiments/checkpoints/dinov3_vit_max_acc.pt",
+  "eval_dataset": "/workspace/data/test_data_v3/manifest.csv",
+  "metrics": {
+    "loss": 0.05294480446726084,
+    "accuracy": 0.9959375,
+    "precision": 0.996370582617001,
+    "recall": 0.9986597740762014,
+    "f1": 0.9975138649837445,
+    "roc_auc": 0.9995158984889885,
+    "confusion_matrix": [
+      [
+        1158,
+        19
+      ],
+      [
+        7,
+        5216
+      ]
+    ]
+  }
+}

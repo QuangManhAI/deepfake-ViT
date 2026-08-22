@@ -51,6 +51,8 @@ project_root/
 │   └── utils/
 ├── notebooks/             # exploratory & deliverable notebooks (no training)
 ├── configs/
+├── models/                # pretrained backbone weights (gitignored; HF cache)
+├── outputs/               # legacy/local scratch artifacts (docs moved to experiments/results)
 ├── experiments/           # run outputs, checkpoints, plots, results
 └── tests/                 # smoke tests + unit tests
 ```
