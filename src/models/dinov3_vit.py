@@ -1,5 +1,5 @@
 """
-DINOv3 ViT-Small/16 backbone — tái dựng theo đúng tên tensor trong `models/model.safetensors`.
+DINOv3 ViT-Small/16 backbone — tái dựng theo đúng tên tensor trong `experiments/checkpoints/weights/model.safetensors`.
 
 Định dạng tên param (211 tensor):
   embeddings.cls_token            [1, 1, 384]
@@ -165,3 +165,46 @@ def load_dinov3(model_path: str, act: str = "silu", **kwargs) -> DinoViT:
             f"Không khớp state_dict! missing={len(missing)}, unexpected={len(unexpected)}"
         )
     return model
+
+
+# Alias for backward compatibility
+DinoVisionTransformer = DinoViT
+
+
+class DinoViTClassifier(nn.Module):
+    """DINOv3 ViT-Small/16 Classifier with Linear Classification Head (Proven High-Convergence Architecture)."""
+
+    def __init__(
+        self,
+        backbone: nn.Module = None,
+        num_classes: int = 2,
+        img_size: int = 256,
+        **kwargs,
+    ):
+        super().__init__()
+        if backbone is not None:
+            self.backbone = backbone
+        else:
+            self.backbone = DinoViT(img_size=img_size, **kwargs)
+        self.head = nn.Linear(self.backbone.embed_dim, num_classes)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        features = self.backbone(x)  # CLS token output (B, 384)
+        return self.head(features)  # Logits (B, num_classes)
+
+
+def build_dinov3_classifier(
+    weights_path: str = None,
+    num_classes: int = 2,
+    img_size: int = 256,
+    device: str = "cpu",
+) -> DinoViTClassifier:
+    """Build and initialize DinoViTClassifier with pre-trained DINOv3 weights."""
+    if weights_path:
+        backbone = load_dinov3(weights_path, img_size=img_size)
+    else:
+        backbone = DinoViT(img_size=img_size)
+    model = DinoViTClassifier(backbone=backbone, num_classes=num_classes)
+    return model.to(device)
+
+

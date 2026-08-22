@@ -1,0 +1,28 @@
+# Example training config for the DINOv3 deepfake classifier
+
+Reference hyperparameters — see [src/training/train.py](../src/training/train.py)
+for the authoritative CLI defaults.
+
+```yaml
+model:
+  name: DINOv3 ViT-S/16
+  weights: experiments/checkpoints/weights/model.safetensors
+  img_size: 256
+  patch_size: 16
+
+task:
+  num_classes: 2        # binary classification: real / fake
+
+training:
+  epochs: 5
+  batch_size: 32
+  lr_backbone: 1.0e-5
+  lr_head: 1.0e-3
+  weight_decay: 0.05
+  scheduler: CosineAnnealingLR
+
+data:
+  img_size: 256
+  mean: [0.485, 0.456, 0.406]
+  std:  [0.229, 0.224, 0.225]
+```
