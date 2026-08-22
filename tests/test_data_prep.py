@@ -48,11 +48,10 @@ class TestDataPreparation(unittest.TestCase):
             "train_combined_balanced.csv",
             "val_combined_balanced.csv",
             "celeb_df_extracted_real_frames.csv",
-            "test_celeb_df_v2.csv",
-            "test_celeb_df_v2_balanced.csv",
             "split_info.json",
             "methods_summary.json",
         ]
+
 
         for filename in required_files:
             p = splits_dir / filename

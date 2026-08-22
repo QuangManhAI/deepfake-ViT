@@ -389,10 +389,48 @@ def main():
     write_split_csv(splits_dir / "val_detailed.csv", id_splits_data["val"], include_extra=True)
     write_split_csv(splits_dir / "test_detailed.csv", id_splits_data["test"], include_extra=True)
 
-    # 4. Generate Full Benchmark Test Set (Protocol 4 - 100% test_data_v3)
-    write_split_csv(splits_dir / "test_full.csv", test_v3_rows)
-    write_split_csv(splits_dir / "test_full_detailed.csv", test_v3_rows, include_extra=True)
-    print(f"\n🎯 Full Benchmark Test Suite: {splits_dir / 'test_full.csv'} ({len(test_v3_rows):,} rows)")
+    # 4. Generate Unified Master Benchmark Test Set (Protocol 4 - All 4 Datasets Combined)
+    celeb_test_dir = splits_dir.parent / "processed" / "celeb_df_test_extracted"
+    celeb_test_p = splits_dir / "test_celeb_df_v2.csv"
+
+
+    unified_test_rows = list(test_v3_rows)
+    
+    if celeb_test_p.exists():
+        with open(celeb_test_p, newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for r in reader:
+                unified_test_rows.append({
+                    "path": r["path"],
+                    "label": int(r.get("label", "1")),
+                    "method": r.get("method", "CelebDFv2" if int(r.get("label", "1")) == 1 else "real"),
+                    "identity": r.get("identity", ""),
+                    "domain": r.get("domain", "cdc"),
+                    "video": r.get("video", ""),
+                })
+        print(f"  🌟 Merged Celeb-DF-v2 Test Benchmark into Unified Master Test Suite ({len(unified_test_rows):,} total test images).")
+    elif celeb_test_dir.exists():
+        celeb_imgs = list(celeb_test_dir.glob("*.png"))
+        for img_p in celeb_imgs:
+            fname = img_p.name
+            is_fake = 1 if fname.startswith("fake_") else 0
+            # Extract video stem and identity
+            v_name = fname.replace("fake_", "").replace("real_", "").rsplit("_frame", 1)[0]
+            id_name = v_name.split("_")[0] if "_" in v_name else v_name
+            unified_test_rows.append({
+                "path": str(img_p.resolve()),
+                "label": is_fake,
+                "method": "CelebDFv2" if is_fake == 1 else "real",
+                "identity": f"cdc:{id_name}",
+                "domain": "cdc",
+                "video": v_name,
+            })
+        print(f"  🌟 Merged {len(celeb_imgs):,} Celeb-DF-v2 Test Frames into Unified Master Test Suite ({len(unified_test_rows):,} total test images).")
+
+    write_split_csv(splits_dir / "test_full.csv", unified_test_rows)
+    write_split_csv(splits_dir / "test_full_detailed.csv", unified_test_rows, include_extra=True)
+    print(f"\n🎯 Unified Master Benchmark Test Suite (4-in-1): {splits_dir / 'test_full.csv'} ({len(unified_test_rows):,} rows)")
+
 
     # 5. Generate 1:1 Balanced Splits (Protocol 3)
     train_bal = make_balanced_subset(id_splits_data["train"], seed=args.seed)
@@ -403,14 +441,14 @@ def main():
     write_split_csv(splits_dir / "test_balanced.csv", test_bal)
     print(f"⚖️ 1:1 Balanced Splits: train={len(train_bal):,}, val={len(val_bal):,}, test={len(test_bal):,}")
 
-    # 6. Generate Method-Specific Test Sets for ALL 40 Deepfake Methods
+    # 6. Generate Method-Specific Test Sets for ALL 40 Deepfake Methods (Unified 4-in-1)
     print("\n🔬 PROTOCOL 5: Generating Method-Specific Test Sets (All 40 Methods)...")
-    all_methods = sorted(set(r["method"] for r in test_v3_rows if r["label"] == 1))
+    all_methods = sorted(set(r["method"] for r in unified_test_rows if r["label"] == 1))
 
     # Test partition real samples
     test_reals = [r for r in id_splits_data["test"] if r["label"] == 0]
-    # Benchmark full real samples
-    benchmark_all_reals = [r for r in test_v3_rows if r["label"] == 0]
+    # Benchmark full real samples across all 4 datasets
+    benchmark_all_reals = [r for r in unified_test_rows if r["label"] == 0]
 
     methods_summary = {}
     rng = random.Random(args.seed)
@@ -418,6 +456,9 @@ def main():
     for m in all_methods:
         # A. Identity-Disjoint Test split samples for method m
         m_test_fakes = [r for r in id_splits_data["test"] if r["method"] == m and r["label"] == 1]
+        if not m_test_fakes and m == "CelebDFv2":
+            # For CelebDFv2, use its balanced test set directly
+            m_test_fakes = [r for r in unified_test_rows if r["method"] == m and r["label"] == 1][:len(test_reals)]
         n_bal_test = min(len(test_reals), len(m_test_fakes))
         sampled_reals_test = rng.sample(test_reals, n_bal_test) if len(test_reals) > n_bal_test else test_reals[:n_bal_test]
         sampled_fakes_test = rng.sample(m_test_fakes, n_bal_test) if len(m_test_fakes) > n_bal_test else m_test_fakes[:n_bal_test]
@@ -432,8 +473,8 @@ def main():
         write_split_csv(methods_dir / f"test_{m}_full.csv", m_test_full)
         write_split_csv(methods_dir / f"test_{m}_detailed.csv", m_test_full, include_extra=True)
 
-        # B. Benchmark Suite (Across all 100% held-out test_data_v3)
-        m_bench_fakes = [r for r in test_v3_rows if r["method"] == m and r["label"] == 1]
+        # B. Benchmark Suite (Across all 100% held-out unified test suite)
+        m_bench_fakes = [r for r in unified_test_rows if r["method"] == m and r["label"] == 1]
         n_bal_bench = min(len(benchmark_all_reals), len(m_bench_fakes))
         sampled_reals_bench = rng.sample(benchmark_all_reals, n_bal_bench) if len(benchmark_all_reals) > n_bal_bench else benchmark_all_reals[:n_bal_bench]
         sampled_fakes_bench = rng.sample(m_bench_fakes, n_bal_bench) if len(m_bench_fakes) > n_bal_bench else m_bench_fakes[:n_bal_bench]
@@ -453,6 +494,7 @@ def main():
             "benchmark_balanced_total": len(m_bench_balanced),
             "benchmark_full_total": len(m_bench_full),
         }
+
 
     print(f"  ✔ Successfully generated method test splits for all {len(all_methods)} fake methods in {methods_dir}")
 
@@ -514,18 +556,48 @@ def main():
 
         # High-scale 1:1 balanced pool from (FF++ Real + Celeb-DF Real) + DF40 fake
         n_bal_sample = min(len(all_real_training_rows), len(train_pool_fakes))
+        sampled_reals = list(all_real_training_rows[:n_bal_sample])
         sampled_fakes = rng.sample(train_pool_fakes, n_bal_sample)
-        balanced_combined = all_real_training_rows + sampled_fakes
-        rng.shuffle(balanced_combined)
+        rng.shuffle(sampled_reals)
+        rng.shuffle(sampled_fakes)
 
-        n_bal_val = int(len(balanced_combined) * 0.10)
-        bal_train = balanced_combined[n_bal_val:]
-        bal_val = balanced_combined[:n_bal_val]
+        n_val_each = int(n_bal_sample * 0.10)
+        reals_train = sampled_reals[n_val_each:]
+        reals_val = sampled_reals[:n_val_each]
+        fakes_train = sampled_fakes[n_val_each:]
+        fakes_val = sampled_fakes[:n_val_each]
 
+        bal_train = reals_train + fakes_train
+        bal_val = reals_val + fakes_val
+        rng.shuffle(bal_train)
+        rng.shuffle(bal_val)
+
+        # Write unified balanced splits (both canonical and combined alias names)
+        write_split_csv(splits_dir / "train_balanced.csv", bal_train)
+        write_split_csv(splits_dir / "val_balanced.csv", bal_val)
         write_split_csv(splits_dir / "train_combined_balanced.csv", bal_train)
         write_split_csv(splits_dir / "val_combined_balanced.csv", bal_val)
+
+
+        # Write unified full pool splits (both canonical and alias names)
+        write_split_csv(splits_dir / "train.csv", p_train)
+        write_split_csv(splits_dir / "val.csv", p_val)
+        write_split_csv(splits_dir / "test.csv", unified_test_rows)
+        write_split_csv(splits_dir / "train_pool_693k.csv", p_train)
+        write_split_csv(splits_dir / "val_pool.csv", p_val)
+
+        # Write unified balanced test set (4-in-1)
+        test_all_reals = [r for r in unified_test_rows if r["label"] == 0]
+        test_all_fakes = [r for r in unified_test_rows if r["label"] == 1]
+        n_test_bal = min(len(test_all_reals), len(test_all_fakes))
+        test_bal_sampled = rng.sample(test_all_reals, n_test_bal) + rng.sample(test_all_fakes, n_test_bal)
+        rng.shuffle(test_bal_sampled)
+        write_split_csv(splits_dir / "test_balanced.csv", test_bal_sampled)
+
         print(f"  📦 Full-Scale Combined Training Pool: train={len(p_train):,}, val={len(p_val):,}")
         print(f"  ⚖️ High-Scale 1:1 Balanced Pool (FF++ & Celeb-DF Real + DF40 Fake): train={len(bal_train):,}, val={len(bal_val):,}")
+        print(f"  🎯 Unified 1:1 Balanced Test Set: test={len(test_bal_sampled):,}")
+
 
 
     # 9. Export Manifest & Metadata
