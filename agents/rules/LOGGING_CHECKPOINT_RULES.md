@@ -2,9 +2,9 @@
 
 - **Motivation/Background**: Training must survive interruptions and every run must be reproducible. Training inside notebooks with only best-state `.pt` saves loses optimizer/scheduler/RNG state and history; notebooks also cannot be relied on to persist outputs.
 - **Purpose**: Define the authoritative, **project-generic** rules for log files, checkpoints, directory layout, naming, the load/resume procedure, and automatic output persistence. They apply to every feature project in this repository. Project-specific examples live in the optional [Appendix A](#appendix-a-optional--project-specific-example).
-- **Overview Pipeline**: Codified during the refactor that moved all training out of notebooks into script entry points and upgraded `src/training/train_model.py` with full-state checkpointing and `src/utils/run_logger.py` (zero-dependency logging).
+- **Overview Pipeline**: Codified during the refactor that moved all training out of notebooks into script entry points and upgraded `src/training/train.py` with full-state checkpointing and `src/utils/run_logger.py` (zero-dependency logging).
 - **Detailed Plan**: §1 policy (scripts vs notebooks, automatic persistence); §2 directory structure; §3 checkpoint file format; §4 naming rules; §5 resume procedure; §6 metrics storage & compression; §7 log levels & real-time monitoring; §8 acceptance checklist; Appendix A (optional) project-specific example.
-- **References**: `torch.save`/`torch.load (weights_only=True)`, `src/utils/run_logger.py`, `src/training/train_model.py`, `numpy`, `gzip` (stdlib), `src/utils/checkpoint_utils.py`.
+- **References**: `torch.save`/`torch.load (weights_only=True)`, `src/utils/run_logger.py`, `src/training/train.py`, `numpy`, `gzip` (stdlib).
 
 ---
 
@@ -157,10 +157,20 @@ Interruption safety: `_last.pt` is written **after every epoch**, so at most one
 > script entry points, run names, and result directories. Do not copy feature
 > names from other projects into the core rules.
 
-- **Deliverable training script**: `python -m src.training.<feature>_train`
-  (`--epochs`, `--seed`, `--resume`, `--force-resume`, `--tb`, `--smoke`).
-- **Meta-model scripts**: `python -m src.experiments.<experiment>_train` (if any).
-- **Run names**: `<Model>-<variant>` (e.g. `<ModelA>-baseline`, `<ModelA>-finetune`).
+- **Deliverable training script**: `src/training/train.py`
+  (`--epochs`, `--seed`, `--num-workers`, `--amp`, `--resume`,
+  `--force-resume`; run name via `--run-name`, base output dir via
+  `--output-dir`). The run directory is created by `make_run_dir()` in
+  `src/utils/run_logger.py` under `<output-dir>/<ts>_<run_name>/` with
+  `checkpoints/`, `logs/`, `metrics/`.
+- **Secondary training scripts** (`src/training/finetune_lora.py`,
+  `src/training/finetune_compare.py`): still best-state only — treated as
+  non-compliant legacy until migrated.
+- **Run names**: `<run_name>` (e.g. `dinov3_finetuned`,
+  `vit_lora_finetuned`), filesystem-safe `[A-Za-z0-9_-]`.
+- **Legacy eval compatibility**: `train.py` also writes a best-state-only
+  copy at `<output-dir>/dinov3_finetuned.pt` so the old eval scripts
+  (`eval_finetuned.py`, `eval_df40_fake.py`) keep working unchanged.
 - **Consolidated outputs (script-written)**: `results/<experiment>/` — JSON
   metrics, NPZ arrays, state dicts, config; index them in
   `experiments/results/README.md` with 5W1H.

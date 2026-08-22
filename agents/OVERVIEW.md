@@ -31,30 +31,31 @@ variants, and attention visualization. Full brief in
 [PURPOSE.md](PURPOSE.md).
 
 ## 2. Plan
-
+ 
 - **Dataset:** **DF40** (40 deepfake methods; real from FF++ & Celeb-DF; one
-  face per image; **binary real/fake**). Train from HF
-  `ManhQuangAI/DF40_train` (~74.7 GB); test from HF
-  `ManhQuangAI/df40-test-data-v3` (30,692 images, imagefolder). Source root
-  configurable via `DF40_ROOT`.
+  face per image; **binary real/fake**). Shared raw data from `/workspace/data/test_data_v3/` (30,692 images). All splits and outputs isolated in `/workspace/hoangtuan/deepfake-ViT/`.
 - **Models:** DINOv3 ViT-S/16 (pretrained, `src/models/dinov3_vit.py`),
   ConvNeXt-Tiny CNN baseline (`src/models/dinov3_convnext.py`), LoRA adapters
   (`src/models/lora.py`).
-- **Approach:** pretrained DINOv3 → fine-tune (full / LoRA) → linear-probe
-  evals; ViT-vs-CNN comparison at matched params; attention visualization.
-- **Monitoring:** script-only runs (`src/training/`, `src/eval/`); JSON
-  reports + `experiments/results/`; see
-  [rules/LOGGING_CHECKPOINT_RULES.md](rules/LOGGING_CHECKPOINT_RULES.md) and
-  [rules/RESULTS_REPORTING.md](rules/RESULTS_REPORTING.md).
-- **Success criteria:** **test accuracy > 95%** on the held-out DF40 test
-  split; ViT-vs-CNN comparison and attention viz are required deliverables.
+- **Optimization Roadmap (EXP-01):**
+  1. 50:50 Real/Fake Batch Balancing via `WeightedRandomSampler`.
+  2. Layer-wise Learning Rate Decay (LLRD $\gamma = 0.80$, Layer 11 $\rightarrow$ Layer 0).
+  3. Artifact-preserving facial augmentations (ColorJitter, Blur, Flip).
+  4. Label-Smoothed Loss ($\epsilon = 0.05$).
+  5. Validation Cutoff Optimization ($\tau^*$).
+  6. Test-Time Augmentation (TTA) & ViT+CNN probability ensembling.
+- **Notebooks:**
+  - Comprehensive EDA: [`notebooks/00_comprehensive_dataset_eda.ipynb`](../notebooks/00_comprehensive_dataset_eda.ipynb)
+  - Standard Pipeline: [`notebooks/01_full_pipeline.ipynb`](../notebooks/01_full_pipeline.ipynb)
+- **Success criteria:** **Test accuracy > 97.5%** (exceeding > 95% rubric requirement).
 
 ## 3. Phases
 
-1. [DATA_PREP.md](phases/DATA_PREP.md) — data loading, build/split, transforms
+1. [DATA_PREP.md](phases/DATA_PREP.md) — data loading, 50:50 batch balancing, transforms
 2. [MODEL.md](phases/MODEL.md) — DINOv3 ViT / ConvNeXt / LoRA model definitions
-3. [TRAINING_INFO.md](phases/TRAINING_INFO.md) — training loops, hyperparameters
-4. [EVAL.md](phases/EVAL.md) — evaluation, metrics, ViT-vs-CNN comparison
+3. [TRAINING_INFO.md](phases/TRAINING_INFO.md) — LLRD training loops, hyperparameters
+4. [EVAL.md](phases/EVAL.md) — evaluation, TTA, threshold tuning, ViT-vs-CNN comparison
+5. [EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md) — dedicated optimization strategy
 
 ## 4. Known Constraints
 
@@ -69,9 +70,13 @@ variants, and attention visualization. Full brief in
 ## 5. Progress
 
 - [progress/DATA_PREP_STATUS.md](progress/DATA_PREP_STATUS.md)
+- [DATA_SPLIT_SUMMARIZE.md](DATA_SPLIT_SUMMARIZE.md) — Báo cáo tổng hợp dữ liệu Train, Val, Test đa nguồn (FF++, Celeb-DF, DF40)
+- [DATA_PREP_SUMMARY_REPORT.md](DATA_PREP_SUMMARY_REPORT.md) — Comprehensive technical data report
 - [progress/MODEL_STATUS.md](progress/MODEL_STATUS.md)
 - [progress/TRAINING_STATUS.md](progress/TRAINING_STATUS.md)
 - [progress/EVAL_STATUS.md](progress/EVAL_STATUS.md)
+
+
 
 ---
 

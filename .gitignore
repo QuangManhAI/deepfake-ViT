@@ -18,6 +18,11 @@ env/
 *.log
 *.csv
 
+# Result/consolidated JSONs are tracked (results are repo artifacts)
+!experiments/results/**/*.json
+!outputs/eval/*.json
+!data/splits/*.json
+
 # Data (bulk raw data is ignored via media/archive patterns above)
 data/processed/*
 !data/processed/.gitkeep
@@ -28,9 +33,10 @@ experiments/runs/*
 !experiments/runs/.gitkeep
 experiments/checkpoints/*
 !experiments/checkpoints/.gitkeep
-!experiments/checkpoints/weights/
+experiments/checkpoints/weights/*
 !experiments/checkpoints/weights/.gitkeep
 experiments/results/features/
+
 *.png
 *.jpg 
 # Model weights
@@ -39,9 +45,24 @@ experiments/results/features/
 *.ckpt
 *.onnx
 *.safetensors
+models/*
+!models/.gitkeep
+
+# Heavy output artifacts
+outputs/checkpoints/
+outputs/features/
+outputs/finetune/
+outputs/attention/
+outputs/.drafts/
+outputs/.plans/
+
 
 # Config secrets
 .env
+
+# Scratch and temporary scripts
+scratch/
+scratch/*
 
 # Tool caches
 .feynman/
@@ -50,3 +71,4 @@ experiments/results/features/
 .idea/
 .vscode/
 .DS_Store
+

@@ -24,25 +24,29 @@ resumable.
 
 ## How to do it (general plan)
 
-- [src/training/train.py](../src/training/train.py) — full fine-tune.
-- [src/training/finetune_lora.py](../src/training/finetune_lora.py) — LoRA.
-- [src/training/finetune_compare.py](../src/training/finetune_compare.py) — ViT vs CNN.
+## How to do it (general plan)
+
+- [src/training/train.py](../../src/training/train.py) — standard differential LR fine-tuning.
+- [src/training/finetune_lora.py](../../src/training/finetune_lora.py) — LoRA adaptation.
+- [src/training/finetune_compare.py](../../src/training/finetune_compare.py) — ViT vs CNN comparison.
+- **Optimization strategy:** [EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md) — Layer-wise LR Decay (LLRD) + 50:50 Balanced Batches via `WeightedRandomSampler` (planned; execution notebook not yet created).
 
 ## Pipeline
 
 ```
-split CSVs → set_seed → AdamW(2 LR groups) → CosineAnnealingLR → evaluate → save best
+Dataset (25:1 imbalance) → WeightedRandomSampler (50:50 Batches) → LLRD AdamW (gamma=0.80) → Label-Smoothed Loss (eps=0.05) → CosineAnnealingLR → Validation Checkpointing (best AUC)
 ```
 
 ## Detailed plan / gotchas
 
-- Hyperparameters: `img_size=256`, `batch_size=32`, `lr_backbone=1e-5`,
-  `lr_head=1e-3`, `weight_decay=0.05`, `epochs=5`, `seed=42`.
-- **Open item (ARCH-1):** checkpointing currently saves best-state only; full
-  state + resume + `_last.pt` + JSONL history is deferred pending decision on
-  [rules/LOGGING_CHECKPOINT_RULES.md](../rules/LOGGING_CHECKPOINT_RULES.md).
+- **Imbalance Solution:** `WeightedRandomSampler` assigns $w_{real} = 1 / N_{real}$ and $w_{fake} = 1 / N_{fake}$ to ensure every batch contains 50% Real and 50% Fake images.
+- **LLRD Schedule:** $\eta_l = 10^{-5} \cdot (0.80)^{11-l}$ (Layer 11: $10^{-5}$ down to Layer 0: $1.07 \times 10^{-6}$; Head: $10^{-3}$).
+- **Regularization:** Label Smoothing $\epsilon = 0.05$ prevents overconfident logit saturation.
+- **Checkpoints:** Local storage in `experiments/checkpoints/dinov3_vit_max_acc.pt`.
 
 ## Links
 
+- Phase doc: [TRAINING_INFO.md](TRAINING_INFO.md)
+- Experiment plan: [../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md)
 - Progress: [../progress/TRAINING_STATUS.md](../progress/TRAINING_STATUS.md)
 - Overview: [../OVERVIEW.md](../OVERVIEW.md)
