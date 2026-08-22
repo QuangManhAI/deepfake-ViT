@@ -26,10 +26,10 @@ resumable.
 
 ## How to do it (general plan)
 
-- [src/training/train.py](../src/training/train.py) — standard differential LR fine-tuning.
-- [src/training/finetune_lora.py](../src/training/finetune_lora.py) — LoRA adaptation.
-- [src/training/finetune_compare.py](../src/training/finetune_compare.py) — ViT vs CNN comparison.
-- **Advanced Execution Notebook:** [`notebooks/02_advanced_accuracy_finetuning.ipynb`](../../notebooks/02_advanced_accuracy_finetuning.ipynb) — Layer-wise LR Decay (LLRD) + 50:50 Balanced Batches via `WeightedRandomSampler`.
+- [src/training/train.py](../../src/training/train.py) — standard differential LR fine-tuning.
+- [src/training/finetune_lora.py](../../src/training/finetune_lora.py) — LoRA adaptation.
+- [src/training/finetune_compare.py](../../src/training/finetune_compare.py) — ViT vs CNN comparison.
+- **Optimization strategy:** [EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md) — Layer-wise LR Decay (LLRD) + 50:50 Balanced Batches via `WeightedRandomSampler` (planned; execution notebook not yet created).
 
 ## Pipeline
 

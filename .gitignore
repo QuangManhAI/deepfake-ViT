@@ -18,6 +18,11 @@ env/
 *.log
 *.csv
 
+# Result/consolidated JSONs are tracked (results are repo artifacts)
+!experiments/results/**/*.json
+!outputs/eval/*.json
+!data/splits/*.json
+
 # Data (bulk raw data is ignored via media/archive patterns above)
 data/processed/*
 !data/processed/.gitkeep

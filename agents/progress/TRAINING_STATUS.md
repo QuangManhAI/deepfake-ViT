@@ -20,7 +20,7 @@
 ## Decisions
 
 - Script-only training; AdamW with Layer-wise LR Decay (LLRD) + cosine schedule; seed 42.
-- Dedicated optimization notebook: `notebooks/02_advanced_accuracy_finetuning.ipynb`.
+- Dedicated optimization strategy: `agents/experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md` (execution notebook planned, not yet created).
 
 ## Next step
 

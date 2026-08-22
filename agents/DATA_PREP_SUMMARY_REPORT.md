@@ -1,8 +1,8 @@
 # DATA_PREP_SUMMARY_REPORT.md — Báo Cáo Tổng Kết Toàn Diện Phân Tách Dữ Liệu DF40, FaceForensics++ & Celeb-DF
 
 - **Motivation/Background**: Huấn luyện và đánh giá mô hình phân loại Deepfake (Deepfake-ViT) trên benchmark DF40 đòi hỏi quy trình phân tách dữ liệu nghiêm ngặt, đảm bảo không rò rỉ danh tính (Zero Identity Leakage), cân bằng lớp 1:1 (Real:Fake) và cung cấp bộ dữ liệu đánh giá độc lập cho 40 phương pháp sinh giả khác nhau.
-- **Purpose**: Báo cáo tổng hợp quy chuẩn kỹ thuật, cấu trúc phân vùng dữ liệu, cơ chế trích xuất và tích hợp đa nguồn (FaceForensics++, Celeb-DF-v2, DF40 Train, test_data_v3), chứng minh toán học Zero-Leakage và danh mục 195 file split phục vụ huấn luyện và đánh giá.
-- **Overview Pipeline**: `Trích xuất Real Đa Nguồn (22.4k FF++ + 10.3k Celeb-DF)` $\\rightarrow$ `Phân vùng Identity-Disjoint 70/15/15 (22,237 IDs)` $\\rightarrow$ `Tạo tập Cân bằng 1:1 Quy mô Lớn (58.9k images)` $\\rightarrow$ `Sinh 195 file Split cho 40 Phương pháp (/data/splits/methods/)` $\\rightarrow$ `Kiểm định Tự động (7/7 Tests Passed) & Post-Split EDA Dashboard`.
+- **Purpose**: Báo cáo tổng hợp quy chuẩn kỹ thuật, cấu trúc phân vùng dữ liệu, cơ chế trích xuất và tích hợp đa nguồn (FaceForensics++, Celeb-DF-v2, DF40 Train, test_data_v3), chứng minh toán học Zero-Leakage và danh mục 200 file split phục vụ huấn luyện và đánh giá.
+- **Overview Pipeline**: `Trích xuất Real Đa Nguồn (22.4k FF++ + 10.3k Celeb-DF)` $\\rightarrow$ `Phân vùng Identity-Disjoint 70/15/15 (22,237 IDs)` $\\rightarrow$ `Tạo tập Cân bằng 1:1 Quy mô Lớn (58.9k images)` $\\rightarrow$ `Sinh 200 file Split cho 40 Phương pháp (/data/splits/methods/)` $\\rightarrow$ `Kiểm định Tự động (7/7 Tests Passed) & Post-Split EDA Dashboard`.
 - **Detailed Plan**: §1 Tóm tắt Thực thi (Executive Summary); §2 Khảo sát & Trích xuất Dữ liệu Đa Nguồn (FF++ & Celeb-DF); §3 Hai Chế độ Phân tách Dữ liệu (High-Scale Balanced Pool 58.9k vs. Identity-Disjoint Benchmark); §4 Nguyên lý Toán học Đảm bảo Zero Identity Leakage; §5 Danh mục Chi tiết Bộ Đánh giá 40 Phương pháp Deepfake; §6 Tổng hợp File Dữ liệu Đầu ra trong `data/splits/`; §7 Kết quả Kiểm thử Tự động & Visual Dashboard; §8 Hướng dẫn Sử dụng Chi tiết trong Training & Evaluation.
 - **References**: `prepare_df40_splits.py`, `extract_celeb_df_frames.py`, `test_data_prep.py`, `00_comprehensive_dataset_eda.ipynb`, `FaceForensics++`, `Celeb-DF-v2`, `DF40_train_manifest.csv`, `test_data_v3`.
 
@@ -31,7 +31,7 @@ Dự án **Deepfake-ViT** trên bộ dữ liệu **DF40 Deepfake Benchmark** đ�
 2. **Hợp nhất Toàn diện Nguồn Real (FF++ + Celeb-DF)**: Tổng cộng **32,754 ảnh Real độc lập** (22,418 từ FaceForensics++ + 10,336 từ Celeb-DF-v2) sau khi loại trừ 100% video/identity trùng với tập Test và Val.
 3. **Cân bằng 1:1 Quy mô Lớn (58,958 images)**: Xây dựng tập [train_combined_balanced.csv](../data/splits/train_combined_balanced.csv) gồm **29,479 Real faces (FF++ & Celeb-DF)** và **29,479 Fake faces (DF40)**, đạt tỷ lệ cân bằng hoàn hảo 1:1.
 4. **Không Rò rỉ Danh tính (Zero Identity Leakage)**: 22,237 unique subject identities được phân chia nghiêm ngặt: $\\text{Train} \\cap \\text{Val} = \\emptyset$, $\\text{Train} \\cap \\text{Test} = \\emptyset$, $\\text{Val} \\cap \\text{Test} = \\emptyset$.
-5. **Bộ Đánh giá Độc lập cho 40 Phương pháp**: Tự động sinh **195 file CSV** trong thư mục [data/splits/methods/](../data/splits/methods/) cho từng phương pháp sinh giả.
+5. **Bộ Đánh giá Độc lập cho 40 Phương pháp**: Tự động sinh **200 file CSV** trong thư mục [data/splits/methods/](../data/splits/methods/) cho từng phương pháp sinh giả.
 6. **Kiểm thử Tự động & Visual Analytics Hoàn tất**: Vượt qua 100% (7/7) ca kiểm thử tự động trong [tests/test_data_prep.py](../tests/test_data_prep.py) và xuất bản 12 biểu đồ độ phân giải cao trong [notebooks/00_comprehensive_dataset_eda.ipynb](../notebooks/00_comprehensive_dataset_eda.ipynb).
 
 ---
@@ -76,7 +76,7 @@ Toàn bộ dữ liệu thô và dữ liệu trích xuất mới:
                                                                   │
                                                                   ▼
                                                 ┌───────────────────────────────────┐
-                                                │   40-METHOD TEST SUITE (195 CSVs) │
+                                                │   40-METHOD TEST SUITE (200 CSVs) │
                                                 │      (/data/splits/methods/)      │
                                                 │   • test_<method>_balanced.csv    │
                                                 │   • benchmark_test_<m>_bal.csv    │
@@ -136,7 +136,7 @@ Toàn bộ dữ liệu thô và dữ liệu trích xuất mới:
 
 ## 5. Danh mục Bộ Đánh giá Độc lập 40 Phương pháp Deepfake
 
-Tất cả các tập test chuyên biệt được lưu trữ trong thư mục [data/splits/methods/](../data/splits/methods/) (195 files CSV). Bảng thống kê chi tiết quy mô cho từng phương pháp:
+Tất cả các tập test chuyên biệt được lưu trữ trong thư mục [data/splits/methods/](../data/splits/methods/) (200 files CSV). Bảng thống kê chi tiết quy mô cho từng phương pháp:
 
 | # | Phương Pháp Sinh Giả | Họ Thao Túng | Loại Hình | Test 1:1 Bal (`test_<m>_bal`) | Benchmark 1:1 Bal (`bench_<m>_bal`) | Benchmark Full (`bench_<m>_full`) |
 | :---: | :--- | :--- | :--- | :---: | :---: | :---: |
@@ -208,7 +208,7 @@ data/splits/
 ├── test_detailed.csv              # Full metadata Test
 ├── split_info.json                # Master manifest JSON ghi nhận tham số chia tách & thống kê
 ├── methods_summary.json           # Thống kê chi tiết từng method
-└── methods/                       # 195 File CSV đánh giá riêng cho 40 phương pháp
+└── methods/                       # 200 File CSV đánh giá riêng cho 40 phương pháp
     ├── test_<method>_balanced.csv
     ├── test_<method>_full.csv
     ├── test_<method>_detailed.csv
@@ -226,7 +226,7 @@ data/splits/
 | Ca Kiểm Thử | Mục Đích Kiểm Định | Kết Quả | Đảm Bảo Kỹ Thuật |
 | :--- | :--- | :---: | :--- |
 | `test_split_files_exist` | Kiểm tra tồn tại 21 file split gốc | **PASSED** | Toàn bộ file CSV và JSON metadata tồn tại, dung lượng hợp lệ. |
-| `test_method_specific_splits_exist` | Kiểm tra 195 file split per-method | **PASSED** | $\\ge 39$ methods có đủ 5 file CSV tương ứng trong `methods/`. |
+| `test_method_specific_splits_exist` | Kiểm tra 200 file split per-method | **PASSED** | $\\ge 39$ methods có đủ 5 file CSV tương ứng trong `methods/`. |
 | `test_identity_disjoint_leakage` | Kiểm tra rò rỉ danh tính 3 tập | **PASSED** | **0% rò rỉ danh tính** ($\\text{Train} \\cap \\text{Val} \\cap \\text{Test} = \\emptyset$). |
 | `test_balanced_splits_exact_ratio` | Kiểm tra tỷ lệ 1:1 master splits | **PASSED** | Đúng tỷ lệ 1:1 (Real = Fake) ở `train_balanced`, `val_balanced`, `test_balanced`. |
 | `test_method_balanced_exact_ratio` | Kiểm tra tỷ lệ 1:1 method splits | **PASSED** | Đúng tỷ lệ 1:1 ở tất cả file `test_<method>_balanced.csv`. |

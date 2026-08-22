@@ -1,8 +1,8 @@
 # DATA_SPLIT_SUMMARIZE.md — Báo Cáo Thống Nhất Dữ Liệu Train, Val, Test Hợp Nhất (Deepfake-ViT)
 
 - **Motivation/Background**: Xây dựng mô hình phát hiện Deepfake (Deepfake-ViT) đạt độ chính xác cao và khả năng tổng quát hóa vượt trội đòi hỏi dữ liệu huấn luyện và kiểm thử phải tích hợp toàn bộ 4 nguồn dữ liệu gốc (FaceForensics++, Celeb-DF v1 & v2, DF40 Training Pool, DF40 Test Benchmark) vào một hệ thống thống nhất, đạt tỷ lệ cân bằng tuyệt đối 1:1 (Real:Fake) và đảm bảo 0% rò rỉ danh tính/video (Zero Leakage).
-- **Purpose**: Tài liệu tóm tắt toàn bộ hạ tầng phân tách dữ liệu hợp nhất, tổng hợp quy mô các tập Train/Val/Test, chứng minh toán học Zero-Leakage và cung cấp danh mục 195 file split phục vụ huấn luyện và đánh giá.
-- **Overview Pipeline**: Kiểm kê 4 Nguồn Dữ liệu → Trích xuất Real Đa Nguồn (22.4k FF++ + 10.3k Celeb-DF) → Phân vùng Identity-Disjoint (22,237 IDs, Zero-Leakage) → Sinh Tập Cân bằng 1:1 (58,958 imgs) → Sinh Tập Test Hợp nhất 4-in-1 (32,281 imgs) → Tạo 195 CSV Đánh giá Chi tiết Từng Phương Pháp → Kiểm định Tự động (7/7 Tests Passed) & Notebook 00 EDA.
+- **Purpose**: Tài liệu tóm tắt toàn bộ hạ tầng phân tách dữ liệu hợp nhất, tổng hợp quy mô các tập Train/Val/Test, chứng minh toán học Zero-Leakage và cung cấp danh mục 200 file split phục vụ huấn luyện và đánh giá.
+- **Overview Pipeline**: Kiểm kê 4 Nguồn Dữ liệu → Trích xuất Real Đa Nguồn (22.4k FF++ + 10.3k Celeb-DF) → Phân vùng Identity-Disjoint (22,237 IDs, Zero-Leakage) → Sinh Tập Cân bằng 1:1 (58,958 imgs) → Sinh Tập Test Hợp nhất 4-in-1 (32,281 imgs) → Tạo 200 CSV Đánh giá Chi tiết Từng Phương Pháp → Kiểm định Tự động (7/7 Tests Passed) & Notebook 00 EDA.
 - **Detailed Plan**: §1 Tổng quan Thực thi; §2 Bảng Tổng hợp Toàn bộ Tập Dữ liệu Sau Khi Split; §3 Chứng minh Toán học Zero Leakage; §4 Danh mục 40 Phương pháp Đánh giá; §5 Tích hợp Trực quan trong Notebook 00 EDA; §6 Hai Lệnh Thực Thi Duy Nhất.
 - **References**: `prepare_df40_splits.py`, `extract_all_celeb_datasets.py`, `test_data_prep.py`, `00_comprehensive_dataset_eda.ipynb`, `DATA_PREP_SUMMARY_REPORT.md`.
 
@@ -46,7 +46,7 @@ Dự án **Deepfake-ViT** hợp nhất toàn bộ dữ liệu (FaceForensics++, 
              │   - Real: 29,479 (FF++ & Celeb-DF)      │                       │   - DF40 Fake (40 methods): 28,514 images    │
              │   - Fake: 29,479 (DF40 Fake Pool)       │                       │   - Celeb-DF Fake (Synthesis): 1,700 imgs    │
              │   - Tỷ lệ: ĐÚNG 1.000 : 1.000 CÂN BẰNG  │                       │   - Canonical Real (FF++ & Celeb): 2,067     │
-             │ • val_balanced.csv (6,550 images, 1:1)  │                       │ • data/splits/methods/ (195 CSVs chi tiết)   │
+             │ • val_balanced.csv (6,550 images, 1:1)  │                       │ • data/splits/methods/ (200 CSVs chi tiết)   │
              │ • train.csv (652,421 imgs Full Pool)    │                       │ • test_balanced.csv (7,534 images, 1:1 Bal)  │
              └─────────────────────────────────────────┘                       └──────────────────────────────────────────────┘
 ```
@@ -72,7 +72,7 @@ Dự án **Deepfake-ViT** hợp nhất toàn bộ dữ liệu (FaceForensics++, 
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- | :--- |
 | **Unified Master Test** | [`test_full.csv`](../data/splits/test_full.csv) | **32,281** | **3,767** | **28,514** | 7.6 : 1 | **Toàn bộ 40 phương pháp DF40 + Celeb-DF-v2 Test Suite** | **Đánh Giá Toàn Diện Toàn Bộ Hệ Thống (Master Benchmark)** |
 | **Unified Balanced Test (1:1)** | [`test_balanced.csv`](../data/splits/test_balanced.csv) | **7,534** | **3,767** | **3,767** | **1.00 : 1** | Tập test tổng hợp đạt tỷ lệ cân bằng chuẩn 1:1 | Đánh giá tổng hợp cân bằng 1:1 |
-| **Per-Method Test Suites** | [`data/splits/methods/`](../data/splits/methods/) | *195 files* | *1:1 / Full* | *1:1 / Full* | **1.00 : 1** | Phân rã từng method riêng biệt (DiT, SadTalker, SimSwap, CelebDFv2...) | Đánh giá độc lập từng thuật toán thao túng |
+| **Per-Method Test Suites** | [`data/splits/methods/`](../data/splits/methods/) | *200 files* | *1:1 / Full* | *1:1 / Full* | **1.00 : 1** | Phân rã từng method riêng biệt (DiT, SadTalker, SimSwap, CelebDFv2...) | Đánh giá độc lập từng thuật toán thao túng |
 
 ---
 

@@ -45,8 +45,8 @@ variants, and attention visualization. Full brief in
   5. Validation Cutoff Optimization ($\tau^*$).
   6. Test-Time Augmentation (TTA) & ViT+CNN probability ensembling.
 - **Notebooks:**
-  - Standard Pipeline: [`notebooks/full_pipeline.ipynb`](../notebooks/full_pipeline.ipynb)
-  - Advanced Max-Accuracy: [`notebooks/02_advanced_accuracy_finetuning.ipynb`](../notebooks/02_advanced_accuracy_finetuning.ipynb)
+  - Comprehensive EDA: [`notebooks/00_comprehensive_dataset_eda.ipynb`](../notebooks/00_comprehensive_dataset_eda.ipynb)
+  - Standard Pipeline: [`notebooks/01_full_pipeline.ipynb`](../notebooks/01_full_pipeline.ipynb)
 - **Success criteria:** **Test accuracy > 97.5%** (exceeding > 95% rubric requirement).
 
 ## 3. Phases

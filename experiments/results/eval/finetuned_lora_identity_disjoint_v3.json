@@ -1,0 +1,383 @@
+{
+  "protocol": "identity_disjoint",
+  "root": "test_data_v3",
+  "seed": 42,
+  "train_ratio": 0.7,
+  "ckpt": "outputs/finetune/vit_lora_finetuned.pt",
+  "epoch": 1,
+  "n_test": 9232,
+  "n_real_test": 349,
+  "bad": 0,
+  "accuracy": 0.9529896013864818,
+  "roc_auc": 0.5033488518521744,
+  "real_acc": 0.1318051575931232,
+  "fake_det": 0.985252729933581,
+  "per_method_domain": {
+    "CollabDiff/efs": {
+      "n": 196,
+      "detection_rate": 1.0
+    },
+    "DiT/cdc": {
+      "n": 47,
+      "detection_rate": 1.0
+    },
+    "DiT/ffc": {
+      "n": 39,
+      "detection_rate": 1.0
+    },
+    "DiT/oth": {
+      "n": 223,
+      "detection_rate": 1.0
+    },
+    "MRAA/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "MRAA/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "MRAA/oth": {
+      "n": 136,
+      "detection_rate": 1.0
+    },
+    "MidJourney/efs": {
+      "n": 188,
+      "detection_rate": 0.30851063829787234
+    },
+    "RDDM/cdc": {
+      "n": 23,
+      "detection_rate": 1.0
+    },
+    "RDDM/ffc": {
+      "n": 39,
+      "detection_rate": 1.0
+    },
+    "RDDM/oth": {
+      "n": 93,
+      "detection_rate": 1.0
+    },
+    "SiT/cdc": {
+      "n": 47,
+      "detection_rate": 1.0
+    },
+    "SiT/ffc": {
+      "n": 39,
+      "detection_rate": 1.0
+    },
+    "SiT/oth": {
+      "n": 220,
+      "detection_rate": 1.0
+    },
+    "StyleGAN2/efs": {
+      "n": 179,
+      "detection_rate": 1.0
+    },
+    "StyleGAN3/efs": {
+      "n": 309,
+      "detection_rate": 1.0
+    },
+    "StyleGANXL/efs": {
+      "n": 305,
+      "detection_rate": 1.0
+    },
+    "VQGAN/efs": {
+      "n": 195,
+      "detection_rate": 1.0
+    },
+    "blendface/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "blendface/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "blendface/oth": {
+      "n": 150,
+      "detection_rate": 1.0
+    },
+    "danet/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "danet/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "danet/oth": {
+      "n": 141,
+      "detection_rate": 1.0
+    },
+    "ddim/efs": {
+      "n": 183,
+      "detection_rate": 1.0
+    },
+    "deepfacelab/efs": {
+      "n": 7,
+      "detection_rate": 1.0
+    },
+    "e4e/ffc": {
+      "n": 302,
+      "detection_rate": 1.0
+    },
+    "e4s/cdc": {
+      "n": 10,
+      "detection_rate": 1.0
+    },
+    "e4s/ffc": {
+      "n": 32,
+      "detection_rate": 1.0
+    },
+    "e4s/oth": {
+      "n": 73,
+      "detection_rate": 1.0
+    },
+    "facedancer/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "facedancer/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "facedancer/oth": {
+      "n": 133,
+      "detection_rate": 1.0
+    },
+    "faceswap/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "faceswap/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "faceswap/oth": {
+      "n": 139,
+      "detection_rate": 1.0
+    },
+    "facevid2vid/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "facevid2vid/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "facevid2vid/oth": {
+      "n": 159,
+      "detection_rate": 1.0
+    },
+    "fomm/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "fomm/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "fomm/oth": {
+      "n": 141,
+      "detection_rate": 1.0
+    },
+    "fsgan/cdc": {
+      "n": 18,
+      "detection_rate": 1.0
+    },
+    "fsgan/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "fsgan/oth": {
+      "n": 146,
+      "detection_rate": 1.0
+    },
+    "heygen/efs": {
+      "n": 7,
+      "detection_rate": 1.0
+    },
+    "hyperreenact/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "hyperreenact/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "hyperreenact/oth": {
+      "n": 137,
+      "detection_rate": 1.0
+    },
+    "inswap/cdc": {
+      "n": 14,
+      "detection_rate": 1.0
+    },
+    "inswap/ffc": {
+      "n": 38,
+      "detection_rate": 1.0
+    },
+    "inswap/oth": {
+      "n": 85,
+      "detection_rate": 1.0
+    },
+    "lia/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "lia/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "lia/oth": {
+      "n": 140,
+      "detection_rate": 1.0
+    },
+    "mcnet/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "mcnet/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "mcnet/oth": {
+      "n": 156,
+      "detection_rate": 1.0
+    },
+    "mobileswap/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "mobileswap/ffc": {
+      "n": 259,
+      "detection_rate": 0.9961389961389961
+    },
+    "mobileswap/oth": {
+      "n": 148,
+      "detection_rate": 1.0
+    },
+    "one_shot_free/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "one_shot_free/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "one_shot_free/oth": {
+      "n": 152,
+      "detection_rate": 1.0
+    },
+    "pirender/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "pirender/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "pirender/oth": {
+      "n": 149,
+      "detection_rate": 1.0
+    },
+    "pixart/cdc": {
+      "n": 26,
+      "detection_rate": 1.0
+    },
+    "pixart/ffc": {
+      "n": 39,
+      "detection_rate": 1.0
+    },
+    "pixart/oth": {
+      "n": 209,
+      "detection_rate": 1.0
+    },
+    "sadtalker/oth": {
+      "n": 201,
+      "detection_rate": 1.0
+    },
+    "sd2.1/cdc": {
+      "n": 26,
+      "detection_rate": 1.0
+    },
+    "sd2.1/ffc": {
+      "n": 249,
+      "detection_rate": 1.0
+    },
+    "sd2.1/oth": {
+      "n": 212,
+      "detection_rate": 1.0
+    },
+    "simswap/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "simswap/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "simswap/oth": {
+      "n": 137,
+      "detection_rate": 1.0
+    },
+    "stargan/fe": {
+      "n": 280,
+      "detection_rate": 1.0
+    },
+    "starganv2/fe": {
+      "n": 313,
+      "detection_rate": 1.0
+    },
+    "styleclip/fe": {
+      "n": 301,
+      "detection_rate": 1.0
+    },
+    "tpsm/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "tpsm/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "tpsm/oth": {
+      "n": 153,
+      "detection_rate": 1.0
+    },
+    "uniface/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "uniface/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "uniface/oth": {
+      "n": 138,
+      "detection_rate": 1.0
+    },
+    "wav2lip/cdc": {
+      "n": 21,
+      "detection_rate": 1.0
+    },
+    "wav2lip/oth": {
+      "n": 162,
+      "detection_rate": 1.0
+    },
+    "whichfaceisreal/efs": {
+      "n": 227,
+      "detection_rate": 1.0
+    },
+    "real": {
+      "cdc": {
+        "n": 47,
+        "acc_real": 0.9574468085106383
+      },
+      "ffc": {
+        "n": 302,
+        "acc_real": 0.0033112582781456954
+      }
+    }
+  }
+}

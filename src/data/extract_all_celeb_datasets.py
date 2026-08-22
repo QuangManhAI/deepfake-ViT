@@ -157,9 +157,13 @@ def extract_all(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--shared-data-root", type=str, default="/workspace/data")
-    parser.add_argument("--output-dir", type=str, default="/workspace/hoangtuan/deepfake-ViT/data/processed/celeb_df_extracted")
-    parser.add_argument("--splits-dir", type=str, default="/workspace/hoangtuan/deepfake-ViT/data/splits")
+    parser.add_argument("--shared-data-root", type=str,
+                        default=os.environ.get("DF40_ROOT", "data/raw"),
+                        help="Shared read-only data root (env DF40_ROOT)")
+    parser.add_argument("--output-dir", type=str,
+                        default="data/processed/celeb_df_extracted")
+    parser.add_argument("--splits-dir", type=str,
+                        default="data/splits")
     parser.add_argument("--real-fps", type=int, default=15)
     parser.add_argument("--fake-fps", type=int, default=4)
     args = parser.parse_args()

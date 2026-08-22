@@ -6,7 +6,7 @@
 - **Description:** Tracks resolution of every finding in
   [CODEBASE_AUDIT.md](../CODEBASE_AUDIT.md); this file is the living process
   that turns the audit's P0/P1/P2 plan into tracked, verified work items.
-- **Status:** In Progress
+- **Status:** Complete (all findings resolved as of 2026-08-22)
 - **Source audit:** [../CODEBASE_AUDIT.md](../CODEBASE_AUDIT.md)
 
 ---
@@ -53,15 +53,17 @@ genuinely resolved. New findings from the DF40 data-prep expansion:
 
 | ID | Area | Sev | Action | Verification | Status |
 |---|---|---|---|---|---|
-| SEC-4 | Security | Med | Notebook `01_full_pipeline.ipynb`: fix `torch.load(weights_only=False)` + remove training loop | grep shows `weights_only=True` in notebook; no `optimizer.step`/`loss.backward` | To Do |
-| TST-2 | Tests | Med | Tests need gitignored `data/splits/*`; fresh clone fails `pytest`; `pytest` not in requirements/.venv | fresh `git clone` + `pytest` passes | To Do |
-| DEP-1r | Dependencies | Med | Lockfile missing `pandas>=2.0`; global `*.json` ignore hides result JSONs (regression of DEP-1) | `pip freeze`-lock includes pandas; `git ls-files` shows result JSONs | To Do |
-| CQ-1r | Quality | Med | `/workspace/...` absolute paths in `extract_celeb_df_*.py` (regression of CQ-1) | grep shows no `/workspace/hoangtuan` in `src/` | To Do |
-| ARCH-3 | Architecture | Low | `outputs/`/`models/` undocumented; `outputs/` duplicates `experiments/results/` | FOLDER_STRUCTURE documents them; single canonical results tree | To Do |
-| DOC-1 | Docs | Low | Fix `OVERVIEW.md` dead notebook links; update `EVAL_STATUS.md`; reconcile `methods_summary.json` | links resolve; EVAL_STATUS last-updated current | To Do |
+| SEC-4 | Security | Med | Notebook `01_full_pipeline.ipynb`: fix `torch.load(weights_only=False)` + remove training loop | grep shows `weights_only=True` in notebook; no `optimizer.step`/`loss.backward` | Done |
+| TST-2 | Tests | Med | Tests need gitignored `data/splits/*`; fresh clone fails `pytest`; `pytest` not in requirements/.venv | fresh `git clone` + `pytest` passes | Done |
+| DEP-1r | Dependencies | Med | Lockfile missing `pandas>=2.0`; global `*.json` ignore hides result JSONs (regression of DEP-1) | `pip freeze`-lock includes pandas; `git ls-files` shows result JSONs | Done |
+| CQ-1r | Quality | Med | `/workspace/...` absolute paths in `extract_celeb_df_*.py` (regression of CQ-1) | grep shows no `/workspace/hoangtuan` in `src/` | Done |
+| ARCH-3 | Architecture | Low | `outputs/`/`models/` undocumented; `outputs/` duplicates `experiments/results/` | FOLDER_STRUCTURE documents them; single canonical results tree | Done |
+| DOC-1 | Docs | Low | Fix `OVERVIEW.md` dead notebook links; update `EVAL_STATUS.md`; reconcile `methods_summary.json` | links resolve; EVAL_STATUS last-updated current | Done |
 
-ARCH-1 remains **On Hold** (user decision) — now also reproduced in
-`notebooks/01_full_pipeline.ipynb` (see SEC-4).
+ARCH-1 resolved 2026-08-22: implemented full-state checkpointing + resume +
+`_last.pt` + JSONL history + config in `src/training/train.py` via
+`src/utils/run_logger.py`, and updated `LOGGING_CHECKPOINT_RULES.md` to match
+reality (removed references to nonexistent `train_model.py`/`checkpoint_utils.py`).
 
 ---
 
@@ -75,6 +77,20 @@ ARCH-1 remains **On Hold** (user decision) — now also reproduced in
 - 2026-08-18: DEP-1 done (`bae8f1a`); DEP-2 done (`47be5fc`); ARCH-2 done (`588c9fc`). P1 complete.
 - 2026-08-18: PERF-1 + PERF-2 done (`d525890`); ARCH-4 done (`d1dc6bf`). P2 complete.
 - 2026-08-22: Re-audit `881f8cf` → `08d20d7`. All 11 closable findings verified resolved; added 6 new findings (SEC-4, TST-2, DEP-1r, CQ-1r, ARCH-3, DOC-1) to the tracker as `To Do`.
+- 2026-08-22: ARCH-1 fixed — `train.py` upgraded to full-state checkpoints +
+  resume + `_last.pt` + JSONL history + config via new `src/utils/run_logger.py`;
+  `LOGGING_CHECKPOINT_RULES.md` aligned (dropped `train_model.py`/`checkpoint_utils.py` refs).
+- 2026-08-22: SEC-4 fixed — notebook `01_full_pipeline.ipynb` training loop
+  replaced with a loader stub; `weights_only=True`.
+- 2026-08-22: TST-2 fixed — `pytest` added to requirements; data-prep tests skip
+  when splits missing; result JSONs allowlisted in `.gitignore`; `pytest` passes (13/13).
+- 2026-08-22: DEP-1r fixed — `requirements.lock.txt` regenerated (pandas, pytest).
+- 2026-08-22: CQ-1r fixed — `/workspace/...` defaults replaced with repo-relative
+  paths + `DF40_ROOT`/`CELEB_DF_ROOT` env.
+- 2026-08-22: ARCH-3 fixed — `outputs/` docs moved to `experiments/results/`;
+  `models/` + `outputs/` documented in `FOLDER_STRUCTURE.md`.
+- 2026-08-22: DOC-1 fixed — `OVERVIEW.md` notebook links corrected;
+  `EVAL_STATUS.md` updated; `methods_summary.json` reconciled (40 methods incl. CelebDFv2).
 
 ## Blockers (if any)
 
@@ -92,13 +108,11 @@ ARCH-1 remains **On Hold** (user decision) — now also reproduced in
 
 ## Next step
 
-- P1 ✅ and P2 ✅ complete (all 11 of 12 findings resolved) as of the
-  2026-08-22 re-audit.
-- **Open: ARCH-1** (P0, on hold) — revisit before the deadline (implement
-  `LOGGING_CHECKPOINT_RULES` in `train.py` OR rescope the rules).
-- **New: 6 findings from the re-audit** (SEC-4, TST-2, DEP-1r, CQ-1r, ARCH-3,
-  DOC-1) — work P0 items (SEC-4, TST-2) first, then P1 (DEP-1r, CQ-1r,
-  ARCH-3), then P2 (DOC-1).
+- All findings resolved as of the 2026-08-22 re-audit + remediation pass:
+  original 11/12 (P0-P2) verified resolved, ARCH-1 implemented, and all 6 new
+  re-audit findings (SEC-4, TST-2, DEP-1r, CQ-1r, ARCH-3, DOC-1) fixed.
+- Re-run the audit (codebase_audit) on the next session to confirm the tree,
+  `pytest` (13/13), and the new checkpoint/resume flow hold.
 
 ## Links
 

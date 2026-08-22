@@ -66,7 +66,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Prepare DF40 train/val/test splits")
     parser.add_argument(
         "--df40-root",
-        default=os.environ.get("DF40_ROOT", "/workspace/data"),
+        default=os.environ.get("DF40_ROOT", "data/raw"),
         help="Root directory containing test_data_v3, DF40_train, and FF++ (READ ONLY)",
     )
     parser.add_argument(

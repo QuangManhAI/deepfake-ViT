@@ -150,9 +150,13 @@ def extract_celeb_df_test_suite(
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--celeb-root", type=str, default="/workspace/data/Celeb-DF-v2")
-    parser.add_argument("--output-dir", type=str, default="/workspace/hoangtuan/deepfake-ViT/data/processed/celeb_df_test_extracted")
-    parser.add_argument("--splits-dir", type=str, default="/workspace/hoangtuan/deepfake-ViT/data/splits")
+    parser.add_argument("--celeb-root", type=str,
+                        default=os.environ.get("CELEB_DF_ROOT", "data/raw/Celeb-DF-v2"),
+                        help="Celeb-DF-v2 source root (env CELEB_DF_ROOT)")
+    parser.add_argument("--output-dir", type=str,
+                        default="data/processed/celeb_df_test_extracted")
+    parser.add_argument("--splits-dir", type=str,
+                        default="data/splits")
     parser.add_argument("--frames-per-video", type=int, default=5)
     args = parser.parse_args()
 

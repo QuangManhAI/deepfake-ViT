@@ -6,7 +6,7 @@
 - **Description:** Complete architectural, algorithmic, and data optimization roadmap to push binary classification accuracy above 97.5% on the held-out DF40 test split.
 - **Status:** In Progress
 - **Experiment ID:** EXP-01
-- **Target Deliverable:** [notebooks/02_advanced_accuracy_finetuning.ipynb](../../notebooks/02_advanced_accuracy_finetuning.ipynb)
+- **Target Deliverable:** training executed via [`src/training/train.py`](../../src/training/train.py) with EXP-01 hyperparameters; dedicated execution notebook planned (not yet created).
 
 ---
 
@@ -115,8 +115,8 @@
 
 ## 4. Execution Steps
 
-1. Launch [`notebooks/02_advanced_accuracy_finetuning.ipynb`](../../notebooks/02_advanced_accuracy_finetuning.ipynb).
-2. Train DINOv3 ViT with LLRD and Weighted Cross-Entropy Loss for 5-8 epochs.
+1. Train DINOv3 ViT with LLRD and Weighted Cross-Entropy Loss for 5-8 epochs using
+   `src/training/train.py` with the EXP-01 hyperparameters below.
 3. Compute optimal decision threshold $\tau^*$ on Validation split.
 4. Execute TTA + Ensembling inference on the held-out Test set.
 5. Export full metrics and diagnostic charts to `experiments/`.
