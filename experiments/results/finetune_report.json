@@ -1,0 +1,46 @@
+{
+  "experiment_name": "dinov3_vit_domain_balanced_finetuning",
+  "timestamp": "20260822_133522",
+  "model_architecture": "DINOv3 ViT-Small/16 (22.0M parameters)",
+  "training_protocol": {
+    "epochs": 5,
+    "batch_size": 32,
+    "base_lr": 1e-05,
+    "head_lr": 0.001,
+    "llrd_decay_rate": 0.8,
+    "label_smoothing": 0.05,
+    "domain_balanced_dataset": true,
+    "train_samples": 50000,
+    "val_samples": 5000,
+    "test_samples": 4134
+  },
+  "best_validation_metrics": {
+    "best_val_auc": 0.9943550400000001
+  },
+  "held_out_test_metrics": {
+    "default_threshold_0.5": {
+      "accuracy": 0.9392839864537977,
+      "precision": 0.938647342995169,
+      "recall": 0.9400096758587324,
+      "specificity": 0.9385582970488631,
+      "f1_score": 0.9393280154701474,
+      "roc_auc": 0.9833367622479543,
+      "pr_auc": 0.9866312968412465,
+      "brier_score": 0.04715856093630345
+    },
+    "optimal_threshold": {
+      "threshold_tau": 0.58984375,
+      "accuracy": 0.9429124334784712,
+      "precision": 0.9507631708517972,
+      "recall": 0.9342041606192549,
+      "specificity": 0.9516207063376875,
+      "f1_score": 0.9424109321620303
+    }
+  },
+  "artifacts": {
+    "best_checkpoint": "/workspace/hoangtuan/deepfake-ViT/experiments/checkpoints/dinov3_vit_balanced_best.pt",
+    "last_checkpoint": "/workspace/hoangtuan/deepfake-ViT/experiments/checkpoints/dinov3_vit_balanced_last.pt",
+    "test_predictions_csv": "/workspace/hoangtuan/deepfake-ViT/experiments/results/test_balanced_predictions.csv",
+    "plots_directory": "/workspace/hoangtuan/deepfake-ViT/experiments/plots"
+  }
+}

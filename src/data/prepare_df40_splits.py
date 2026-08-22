@@ -413,9 +413,9 @@ def main():
         celeb_imgs = list(celeb_test_dir.glob("*.png"))
         for img_p in celeb_imgs:
             fname = img_p.name
-            is_fake = 1 if fname.startswith("fake_") else 0
+            is_fake = 1 if ("fake" in fname.lower() and "real" not in fname.lower()) or fname.startswith("fake_") or "test_fake" in fname.lower() else 0
             # Extract video stem and identity
-            v_name = fname.replace("fake_", "").replace("real_", "").rsplit("_frame", 1)[0]
+            v_name = fname.replace("celeb_test_fake_", "").replace("celeb_test_real_", "").replace("fake_", "").replace("real_", "").rsplit("_frame", 1)[0]
             id_name = v_name.split("_")[0] if "_" in v_name else v_name
             unified_test_rows.append({
                 "path": str(img_p.resolve()),

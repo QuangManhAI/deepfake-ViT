@@ -76,6 +76,23 @@ Dự án **Deepfake-ViT** hợp nhất toàn bộ dữ liệu (FaceForensics++, 
 
 ---
 
+
+---
+
+## 2.3 Tập Huấn Luyện Cân Bằng Đa Miền (Cross-Domain Balanced Sets - Cập Nhật Mới)
+
+Để triệt tiêu hoàn toàn hiện tượng **Domain Shortcut Learning (Thiên kiến miền dữ liệu)**, hệ thống bổ sung tập split cân bằng chéo đa nguồn:
+
+| Tên Tập Dữ Liệu | File Path | Tổng Ảnh | Real | Fake | Tỷ Lệ F:R | Phân Bổ Nguồn Gốc Đa Miền | Mục Đích Sử Dụng |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- | :--- |
+| **Train Domain Balanced (1:1)** | [`train_domain_balanced.csv`](../data/splits/train_domain_balanced.csv) | **50,000** | **25,000** | **25,000** | **1.00 : 1** | **Celeb-DF (9k Real + 9k Fake) + FF++ (16k Real) + DF40 (16k Fake)** | **Triệt tiêu hoàn toàn Domain Bias giữa Celeb-DF, FF++, DF40** |
+| **Val Domain Balanced (1:1)** | [`val_domain_balanced.csv`](../data/splits/val_domain_balanced.csv) | **5,000** | **2,500** | **2,500** | **1.00 : 1** | Celeb-DF (280 Real + 1k Fake) + FF++ (2.2k Real) + DF40 (1.5k Fake) | Validation đa miền độc lập |
+| **Test Balanced (Ground-Truth Fixed)** | [`test_balanced.csv`](../data/splits/test_balanced.csv) | **4,134** | **2,067** | **2,067** | **1.00 : 1** | Chuẩn hóa nhãn 1:1 sau khi fix lỗi Celeb-DF test fake | Benchmark chuẩn xác 100% |
+
+> 📌 Chi tiết lỗi gán nhãn và bản vá xem tại: [`agents/bugs/BUG_01_CELEBDF_TEST_LABEL_FIX.md`](bugs/BUG_01_CELEBDF_TEST_LABEL_FIX.md)
+> 📌 Đặc tả kỹ thuật huấn luyện cân bằng đa miền xem tại: [`agents/phases/CROSS_DOMAIN_BALANCED_PROTOCOL.md`](phases/CROSS_DOMAIN_BALANCED_PROTOCOL.md)
+> 📌 Đặc tả kỹ thuật tăng cường dữ liệu xem tại: [`agents/phases/DOMAIN_AGNOSTIC_AUGMENTATION_SPEC.md`](phases/DOMAIN_AGNOSTIC_AUGMENTATION_SPEC.md)
+
 ## 3. Chứng Minh Toán Học Tuyệt Đối Không Rò Rỉ Danh Tính (Zero Leakage)
 
 1. **Phân vùng Không gian Danh tính (Identity-Disjoint)**:
