@@ -1,0 +1,46 @@
+{
+  "experiment_id": "EXP-02-BALANCED-TRAINING",
+  "timestamp": "2026-08-22 12:38:12",
+  "model": "DINOv3 ViT-Small/16 (28.7M parameters)",
+  "dataset": {
+    "train_samples": 50000,
+    "val_samples": 5000,
+    "test_samples": 4134,
+    "balance_ratio": "1.00 : 1 (Real:Fake)"
+  },
+  "training_hyperparameters": {
+    "epochs": 5,
+    "batch_size": 32,
+    "base_lr": 1e-05,
+    "head_lr": 0.001,
+    "llrd_decay_rate": 0.8,
+    "label_smoothing": 0.05,
+    "mixed_precision": "torch.bfloat16"
+  },
+  "validation_metrics": {
+    "best_val_roc_auc": 0.99314072
+  },
+  "test_metrics": {
+    "accuracy": 0.9254958877600387,
+    "precision": 0.923039923039923,
+    "recall_fake": 0.9283986453797775,
+    "specificity_real": 0.9225931301403,
+    "f1_score": 0.9257115291847564,
+    "roc_auc": 0.9727166061749954,
+    "pr_auc": 0.9759741515113338,
+    "brier_score": 0.057399628453093425,
+    "optimal_threshold": 0.69140625,
+    "accuracy_optimal_tau": 0.9298500241896468
+  },
+  "artifacts": {
+    "best_checkpoint": "/workspace/hoangtuan/deepfake-ViT/experiments/checkpoints/dinov3_vit_balanced_best.pt",
+    "run_dir": "/workspace/hoangtuan/deepfake-ViT/experiments/runs/20260822_115416_dinov3_balanced",
+    "plots": [
+      "/workspace/hoangtuan/deepfake-ViT/experiments/plots/balanced_splits_distribution.png",
+      "/workspace/hoangtuan/deepfake-ViT/experiments/plots/balanced_training_trajectory.png",
+      "/workspace/hoangtuan/deepfake-ViT/experiments/plots/diagnostic_evaluation_balanced.png",
+      "/workspace/hoangtuan/deepfake-ViT/experiments/plots/per_method_accuracy_balanced.png",
+      "/workspace/hoangtuan/deepfake-ViT/experiments/plots/attention/vit_cls_attention_analysis.png"
+    ]
+  }
+}

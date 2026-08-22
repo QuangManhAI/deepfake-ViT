@@ -10,11 +10,6 @@ __pycache__/
 .venv/
 venv/
 env/
-/outputs/checkpoints/
-/outputs/results/
-/outputs/features/
-/outputs/.plans/
-/outputs/drafts/
 *.mov
 *.avi
 *.wav
@@ -23,23 +18,25 @@ env/
 *.log
 *.csv
 
-# Data & models
-data/raw/*
-data/processed/*
-data/splits/*
-models/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/splits/.gitkeep
-!models/.gitkeep
+# Result/consolidated JSONs are tracked (results are repo artifacts)
+!experiments/results/**/*.json
+!outputs/eval/*.json
+!data/splits/*.json
 
-# Checkpoints & logs
-outputs/checkpoints/*
-outputs/logs/*
-outputs/results/*
-!outputs/checkpoints/.gitkeep
-!outputs/logs/.gitkeep
-!outputs/results/.gitkeep
+# Data (bulk raw data is ignored via media/archive patterns above)
+data/processed/*
+!data/processed/.gitkeep
+data/raw/DF40/
+
+# Experiments: run state + checkpoints/weights are not committed
+experiments/runs/*
+!experiments/runs/.gitkeep
+experiments/checkpoints/*
+!experiments/checkpoints/.gitkeep
+experiments/checkpoints/weights/*
+!experiments/checkpoints/weights/.gitkeep
+experiments/results/features/
+
 *.png
 *.jpg 
 # Model weights
@@ -48,11 +45,30 @@ outputs/results/*
 *.ckpt
 *.onnx
 *.safetensors
+models/*
+!models/.gitkeep
+
+# Heavy output artifacts
+outputs/checkpoints/
+outputs/features/
+outputs/finetune/
+outputs/attention/
+outputs/.drafts/
+outputs/.plans/
+
 
 # Config secrets
 .env
+
+# Scratch and temporary scripts
+scratch/
+scratch/*
+
+# Tool caches
+.feynman/
 
 # IDE / OS
 .idea/
 .vscode/
 .DS_Store
+
