@@ -108,6 +108,7 @@ def extract_features_stream(model, items, device, batch_size, cache, feat_dim):
         feats = np.zeros((n, feat_dim), dtype=np.float32)
     labels = np.zeros(n, dtype=np.int64)
     methods = np.empty(n, dtype="U64")
+    skipped = []
     pos = 0
     for i in tqdm(range(0, n, batch_size), desc="  Extract", unit="batch", ncols=90):
         batch = items[i:i + batch_size]
@@ -116,7 +117,8 @@ def extract_features_stream(model, items, device, batch_size, cache, feat_dim):
             try:
                 imgs.append(tf(Image.open(p).convert("RGB")))
                 ok_idx.append(j)
-            except Exception:
+            except Exception as e:
+                skipped.append((p, type(e).__name__, str(e)))
                 continue
         if not imgs:
             continue
@@ -129,6 +131,13 @@ def extract_features_stream(model, items, device, batch_size, cache, feat_dim):
             pos += 1
         if device == "mps" and (i // batch_size) % 20 == 0:
             torch.mps.empty_cache()
+    if skipped:
+        print(f"  ⚠️  Skipped {len(skipped):,}/{n:,} undecodable images:", flush=True)
+        from collections import Counter
+        for (exc, cnt) in Counter(e for _, e, _ in skipped).most_common():
+            print(f"      - {exc}: {cnt}", flush=True)
+        for p, e, msg in skipped[:10]:
+            print(f"      e.g. {e} — {p}", flush=True)
     labels = labels[:pos]; methods = methods[:pos]
     if cache:
         feats.flush()
@@ -199,8 +208,13 @@ def main():
         torch.mps.empty_cache()
 
     # alignment: label cache == label items
-    assert len(y_tr) == len(train), f"train cache lệch {len(y_tr)} vs {len(train)}"
-    assert len(y_te) == len(test), f"test cache lệch {len(y_te)} vs {len(test)}"
+    if len(y_tr) != len(train) or len(y_te) != len(test):
+        raise RuntimeError(
+            f"Feature count mismatch after extraction: train {len(y_tr)}/{len(train)}, "
+            f"test {len(y_te)}/{len(test)}. Some images failed to decode. "
+            "Clear the cache and re-run; if it persists, the log above lists the "
+            f"skipped images (e.g. unreadable or corrupt files). Cache: {cache_tr!r}"
+        )
     print(f"Alignment OK — extract {dt:.0f}s")
 
     metrics, yp = fit_eval(X_tr, y_tr, X_te, y_te)
