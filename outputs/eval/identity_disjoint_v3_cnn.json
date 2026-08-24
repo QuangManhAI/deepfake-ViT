@@ -1,0 +1,583 @@
+{
+  "model": "cnn",
+  "tag": "test_data_v3",
+  "protocol": "identity-disjoint",
+  "n_identity_keys": 23237,
+  "n_train": 21459,
+  "n_test": 9232,
+  "metrics": {
+    "accuracy": 0.9441074523396881,
+    "precision": 0.9906180368242055,
+    "recall": 0.9509174828323764,
+    "f1": 0.9703618609994256,
+    "roc_auc": 0.9530970428367246
+  },
+  "real_acc": 0.7707736389684814,
+  "fake_detection": 0.9509174828323764,
+  "per_domain": {
+    "cdc": {
+      "n": 583,
+      "acc": 0.9794,
+      "real_acc": 0.9787,
+      "fake_det": 0.9795
+    },
+    "efs": {
+      "n": 1796,
+      "acc": 0.9905
+    },
+    "fe": {
+      "n": 894,
+      "acc": 0.981
+    },
+    "ffc": {
+      "n": 2026,
+      "acc": 0.7932,
+      "real_acc": 0.7384,
+      "fake_det": 0.8028
+    },
+    "oth": {
+      "n": 3933,
+      "acc": 0.987
+    }
+  },
+  "per_method": {
+    "CollabDiff": {
+      "n": 196,
+      "detection_rate": 0.9949
+    },
+    "DiT": {
+      "n": 309,
+      "detection_rate": 0.9288
+    },
+    "MRAA": {
+      "n": 198,
+      "detection_rate": 0.9848
+    },
+    "MidJourney": {
+      "n": 188,
+      "detection_rate": 0.9947
+    },
+    "RDDM": {
+      "n": 155,
+      "detection_rate": 1.0
+    },
+    "SiT": {
+      "n": 306,
+      "detection_rate": 0.9216
+    },
+    "StyleGAN2": {
+      "n": 179,
+      "detection_rate": 1.0
+    },
+    "StyleGAN3": {
+      "n": 309,
+      "detection_rate": 0.9903
+    },
+    "StyleGANXL": {
+      "n": 305,
+      "detection_rate": 0.9869
+    },
+    "VQGAN": {
+      "n": 195,
+      "detection_rate": 0.9949
+    },
+    "blendface": {
+      "n": 212,
+      "detection_rate": 0.8774
+    },
+    "danet": {
+      "n": 203,
+      "detection_rate": 0.9557
+    },
+    "ddim": {
+      "n": 183,
+      "detection_rate": 1.0
+    },
+    "deepfacelab": {
+      "n": 7,
+      "detection_rate": 0.7143
+    },
+    "e4e": {
+      "n": 302,
+      "detection_rate": 0.9934
+    },
+    "e4s": {
+      "n": 115,
+      "detection_rate": 0.8696
+    },
+    "facedancer": {
+      "n": 195,
+      "detection_rate": 0.8564
+    },
+    "faceswap": {
+      "n": 201,
+      "detection_rate": 0.8756
+    },
+    "facevid2vid": {
+      "n": 221,
+      "detection_rate": 1.0
+    },
+    "fomm": {
+      "n": 203,
+      "detection_rate": 1.0
+    },
+    "fsgan": {
+      "n": 207,
+      "detection_rate": 0.8937
+    },
+    "heygen": {
+      "n": 7,
+      "detection_rate": 0.7143
+    },
+    "hyperreenact": {
+      "n": 199,
+      "detection_rate": 0.995
+    },
+    "inswap": {
+      "n": 137,
+      "detection_rate": 0.8686
+    },
+    "lia": {
+      "n": 202,
+      "detection_rate": 0.9356
+    },
+    "mcnet": {
+      "n": 218,
+      "detection_rate": 0.9679
+    },
+    "mobileswap": {
+      "n": 426,
+      "detection_rate": 0.77
+    },
+    "one_shot_free": {
+      "n": 214,
+      "detection_rate": 0.9907
+    },
+    "pirender": {
+      "n": 211,
+      "detection_rate": 0.9858
+    },
+    "pixart": {
+      "n": 274,
+      "detection_rate": 0.9562
+    },
+    "real/ffc": {
+      "n": 349,
+      "acc_real": 0.7708
+    },
+    "sadtalker": {
+      "n": 201,
+      "detection_rate": 1.0
+    },
+    "sd2.1": {
+      "n": 487,
+      "detection_rate": 0.9836
+    },
+    "simswap": {
+      "n": 199,
+      "detection_rate": 0.8342
+    },
+    "stargan": {
+      "n": 280,
+      "detection_rate": 0.9536
+    },
+    "starganv2": {
+      "n": 313,
+      "detection_rate": 1.0
+    },
+    "styleclip": {
+      "n": 301,
+      "detection_rate": 0.9867
+    },
+    "tpsm": {
+      "n": 215,
+      "detection_rate": 0.9721
+    },
+    "uniface": {
+      "n": 200,
+      "detection_rate": 0.895
+    },
+    "wav2lip": {
+      "n": 183,
+      "detection_rate": 0.9781
+    },
+    "whichfaceisreal": {
+      "n": 227,
+      "detection_rate": 0.9868
+    }
+  },
+  "per_method_domain": {
+    "CollabDiff/efs": {
+      "n": 196,
+      "rate": 0.9949
+    },
+    "DiT/cdc": {
+      "n": 47,
+      "rate": 0.9574
+    },
+    "DiT/ffc": {
+      "n": 39,
+      "rate": 0.6667
+    },
+    "DiT/oth": {
+      "n": 223,
+      "rate": 0.9686
+    },
+    "MRAA/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "MRAA/ffc": {
+      "n": 43,
+      "rate": 0.9302
+    },
+    "MRAA/oth": {
+      "n": 136,
+      "rate": 1.0
+    },
+    "MidJourney/efs": {
+      "n": 188,
+      "rate": 0.9947
+    },
+    "RDDM/cdc": {
+      "n": 23,
+      "rate": 1.0
+    },
+    "RDDM/ffc": {
+      "n": 39,
+      "rate": 1.0
+    },
+    "RDDM/oth": {
+      "n": 93,
+      "rate": 1.0
+    },
+    "SiT/cdc": {
+      "n": 47,
+      "rate": 0.9574
+    },
+    "SiT/ffc": {
+      "n": 39,
+      "rate": 0.6667
+    },
+    "SiT/oth": {
+      "n": 220,
+      "rate": 0.9591
+    },
+    "StyleGAN2/efs": {
+      "n": 179,
+      "rate": 1.0
+    },
+    "StyleGAN3/efs": {
+      "n": 309,
+      "rate": 0.9903
+    },
+    "StyleGANXL/efs": {
+      "n": 305,
+      "rate": 0.9869
+    },
+    "VQGAN/efs": {
+      "n": 195,
+      "rate": 0.9949
+    },
+    "blendface/cdc": {
+      "n": 19,
+      "rate": 0.9474
+    },
+    "blendface/ffc": {
+      "n": 43,
+      "rate": 0.4884
+    },
+    "blendface/oth": {
+      "n": 150,
+      "rate": 0.98
+    },
+    "danet/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "danet/ffc": {
+      "n": 43,
+      "rate": 0.814
+    },
+    "danet/oth": {
+      "n": 141,
+      "rate": 0.9929
+    },
+    "ddim/efs": {
+      "n": 183,
+      "rate": 1.0
+    },
+    "deepfacelab/efs": {
+      "n": 7,
+      "rate": 0.7143
+    },
+    "e4e/ffc": {
+      "n": 302,
+      "rate": 0.9934
+    },
+    "e4s/cdc": {
+      "n": 10,
+      "rate": 1.0
+    },
+    "e4s/ffc": {
+      "n": 32,
+      "rate": 0.5938
+    },
+    "e4s/oth": {
+      "n": 73,
+      "rate": 0.9726
+    },
+    "facedancer/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "facedancer/ffc": {
+      "n": 43,
+      "rate": 0.3721
+    },
+    "facedancer/oth": {
+      "n": 133,
+      "rate": 0.9925
+    },
+    "faceswap/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "faceswap/ffc": {
+      "n": 43,
+      "rate": 0.4186
+    },
+    "faceswap/oth": {
+      "n": 139,
+      "rate": 1.0
+    },
+    "facevid2vid/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "facevid2vid/ffc": {
+      "n": 43,
+      "rate": 1.0
+    },
+    "facevid2vid/oth": {
+      "n": 159,
+      "rate": 1.0
+    },
+    "fomm/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "fomm/ffc": {
+      "n": 43,
+      "rate": 1.0
+    },
+    "fomm/oth": {
+      "n": 141,
+      "rate": 1.0
+    },
+    "fsgan/cdc": {
+      "n": 18,
+      "rate": 1.0
+    },
+    "fsgan/ffc": {
+      "n": 43,
+      "rate": 0.5116
+    },
+    "fsgan/oth": {
+      "n": 146,
+      "rate": 0.9932
+    },
+    "heygen/efs": {
+      "n": 7,
+      "rate": 0.7143
+    },
+    "hyperreenact/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "hyperreenact/ffc": {
+      "n": 43,
+      "rate": 0.9767
+    },
+    "hyperreenact/oth": {
+      "n": 137,
+      "rate": 1.0
+    },
+    "inswap/cdc": {
+      "n": 14,
+      "rate": 1.0
+    },
+    "inswap/ffc": {
+      "n": 38,
+      "rate": 0.5263
+    },
+    "inswap/oth": {
+      "n": 85,
+      "rate": 1.0
+    },
+    "lia/cdc": {
+      "n": 19,
+      "rate": 0.9474
+    },
+    "lia/ffc": {
+      "n": 43,
+      "rate": 0.814
+    },
+    "lia/oth": {
+      "n": 140,
+      "rate": 0.9714
+    },
+    "mcnet/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "mcnet/ffc": {
+      "n": 43,
+      "rate": 0.8605
+    },
+    "mcnet/oth": {
+      "n": 156,
+      "rate": 0.9936
+    },
+    "mobileswap/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "mobileswap/ffc": {
+      "n": 259,
+      "rate": 0.6216
+    },
+    "mobileswap/oth": {
+      "n": 148,
+      "rate": 1.0
+    },
+    "one_shot_free/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "one_shot_free/ffc": {
+      "n": 43,
+      "rate": 0.9535
+    },
+    "one_shot_free/oth": {
+      "n": 152,
+      "rate": 1.0
+    },
+    "pirender/cdc": {
+      "n": 19,
+      "rate": 0.9474
+    },
+    "pirender/ffc": {
+      "n": 43,
+      "rate": 0.9767
+    },
+    "pirender/oth": {
+      "n": 149,
+      "rate": 0.9933
+    },
+    "pixart/cdc": {
+      "n": 26,
+      "rate": 1.0
+    },
+    "pixart/ffc": {
+      "n": 39,
+      "rate": 0.8718
+    },
+    "pixart/oth": {
+      "n": 209,
+      "rate": 0.9665
+    },
+    "real/cdc": {
+      "n": 47,
+      "rate": 0.9787
+    },
+    "real/ffc": {
+      "n": 302,
+      "rate": 0.7384
+    },
+    "sadtalker/oth": {
+      "n": 201,
+      "rate": 1.0
+    },
+    "sd2.1/cdc": {
+      "n": 26,
+      "rate": 1.0
+    },
+    "sd2.1/ffc": {
+      "n": 249,
+      "rate": 0.9759
+    },
+    "sd2.1/oth": {
+      "n": 212,
+      "rate": 0.9906
+    },
+    "simswap/cdc": {
+      "n": 19,
+      "rate": 0.9474
+    },
+    "simswap/ffc": {
+      "n": 43,
+      "rate": 0.4186
+    },
+    "simswap/oth": {
+      "n": 137,
+      "rate": 0.9489
+    },
+    "stargan/fe": {
+      "n": 280,
+      "rate": 0.9536
+    },
+    "starganv2/fe": {
+      "n": 313,
+      "rate": 1.0
+    },
+    "styleclip/fe": {
+      "n": 301,
+      "rate": 0.9867
+    },
+    "tpsm/cdc": {
+      "n": 19,
+      "rate": 1.0
+    },
+    "tpsm/ffc": {
+      "n": 43,
+      "rate": 0.8837
+    },
+    "tpsm/oth": {
+      "n": 153,
+      "rate": 0.9935
+    },
+    "uniface/cdc": {
+      "n": 19,
+      "rate": 0.9474
+    },
+    "uniface/ffc": {
+      "n": 43,
+      "rate": 0.5814
+    },
+    "uniface/oth": {
+      "n": 138,
+      "rate": 0.9855
+    },
+    "wav2lip/cdc": {
+      "n": 21,
+      "rate": 0.9048
+    },
+    "wav2lip/oth": {
+      "n": 162,
+      "rate": 0.9877
+    },
+    "whichfaceisreal/efs": {
+      "n": 227,
+      "rate": 0.9868
+    }
+  },
+  "paired_only": {
+    "n": 2609,
+    "n_real": 349,
+    "n_fake": 2260,
+    "accuracy": 0.8348,
+    "real_acc": 0.7708,
+    "fake_det": 0.8447
+  }
+}

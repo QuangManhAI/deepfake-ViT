@@ -1,0 +1,383 @@
+{
+  "protocol": "identity_disjoint",
+  "root": "test_data_v3",
+  "seed": 42,
+  "train_ratio": 0.7,
+  "ckpt": "outputs/finetune/vit_lora_finetuned.pt",
+  "epoch": 3,
+  "n_test": 9232,
+  "n_real_test": 349,
+  "bad": 0,
+  "accuracy": 0.936525129982669,
+  "roc_auc": 0.9854669119437759,
+  "real_acc": 0.9598853868194842,
+  "fake_det": 0.935607339862659,
+  "per_method_domain": {
+    "CollabDiff/efs": {
+      "n": 196,
+      "detection_rate": 0.7908163265306123
+    },
+    "DiT/cdc": {
+      "n": 47,
+      "detection_rate": 1.0
+    },
+    "DiT/ffc": {
+      "n": 39,
+      "detection_rate": 0.9487179487179487
+    },
+    "DiT/oth": {
+      "n": 223,
+      "detection_rate": 1.0
+    },
+    "MRAA/cdc": {
+      "n": 19,
+      "detection_rate": 0.9473684210526315
+    },
+    "MRAA/ffc": {
+      "n": 43,
+      "detection_rate": 0.813953488372093
+    },
+    "MRAA/oth": {
+      "n": 136,
+      "detection_rate": 0.9191176470588235
+    },
+    "MidJourney/efs": {
+      "n": 188,
+      "detection_rate": 0.3829787234042553
+    },
+    "RDDM/cdc": {
+      "n": 23,
+      "detection_rate": 1.0
+    },
+    "RDDM/ffc": {
+      "n": 39,
+      "detection_rate": 1.0
+    },
+    "RDDM/oth": {
+      "n": 93,
+      "detection_rate": 1.0
+    },
+    "SiT/cdc": {
+      "n": 47,
+      "detection_rate": 1.0
+    },
+    "SiT/ffc": {
+      "n": 39,
+      "detection_rate": 1.0
+    },
+    "SiT/oth": {
+      "n": 220,
+      "detection_rate": 0.990909090909091
+    },
+    "StyleGAN2/efs": {
+      "n": 179,
+      "detection_rate": 1.0
+    },
+    "StyleGAN3/efs": {
+      "n": 309,
+      "detection_rate": 1.0
+    },
+    "StyleGANXL/efs": {
+      "n": 305,
+      "detection_rate": 1.0
+    },
+    "VQGAN/efs": {
+      "n": 195,
+      "detection_rate": 0.9948717948717949
+    },
+    "blendface/cdc": {
+      "n": 19,
+      "detection_rate": 0.9473684210526315
+    },
+    "blendface/ffc": {
+      "n": 43,
+      "detection_rate": 0.9069767441860465
+    },
+    "blendface/oth": {
+      "n": 150,
+      "detection_rate": 0.98
+    },
+    "danet/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "danet/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "danet/oth": {
+      "n": 141,
+      "detection_rate": 1.0
+    },
+    "ddim/efs": {
+      "n": 183,
+      "detection_rate": 1.0
+    },
+    "deepfacelab/efs": {
+      "n": 7,
+      "detection_rate": 1.0
+    },
+    "e4e/ffc": {
+      "n": 302,
+      "detection_rate": 0.9900662251655629
+    },
+    "e4s/cdc": {
+      "n": 10,
+      "detection_rate": 0.9
+    },
+    "e4s/ffc": {
+      "n": 32,
+      "detection_rate": 0.8125
+    },
+    "e4s/oth": {
+      "n": 73,
+      "detection_rate": 1.0
+    },
+    "facedancer/cdc": {
+      "n": 19,
+      "detection_rate": 0.7894736842105263
+    },
+    "facedancer/ffc": {
+      "n": 43,
+      "detection_rate": 0.37209302325581395
+    },
+    "facedancer/oth": {
+      "n": 133,
+      "detection_rate": 0.924812030075188
+    },
+    "faceswap/cdc": {
+      "n": 19,
+      "detection_rate": 0.8947368421052632
+    },
+    "faceswap/ffc": {
+      "n": 43,
+      "detection_rate": 0.37209302325581395
+    },
+    "faceswap/oth": {
+      "n": 139,
+      "detection_rate": 0.9640287769784173
+    },
+    "facevid2vid/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "facevid2vid/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "facevid2vid/oth": {
+      "n": 159,
+      "detection_rate": 1.0
+    },
+    "fomm/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "fomm/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "fomm/oth": {
+      "n": 141,
+      "detection_rate": 0.9858156028368794
+    },
+    "fsgan/cdc": {
+      "n": 18,
+      "detection_rate": 1.0
+    },
+    "fsgan/ffc": {
+      "n": 43,
+      "detection_rate": 0.6744186046511628
+    },
+    "fsgan/oth": {
+      "n": 146,
+      "detection_rate": 0.9315068493150684
+    },
+    "heygen/efs": {
+      "n": 7,
+      "detection_rate": 0.8571428571428571
+    },
+    "hyperreenact/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "hyperreenact/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "hyperreenact/oth": {
+      "n": 137,
+      "detection_rate": 0.9854014598540146
+    },
+    "inswap/cdc": {
+      "n": 14,
+      "detection_rate": 0.8571428571428571
+    },
+    "inswap/ffc": {
+      "n": 38,
+      "detection_rate": 0.7631578947368421
+    },
+    "inswap/oth": {
+      "n": 85,
+      "detection_rate": 0.8941176470588236
+    },
+    "lia/cdc": {
+      "n": 19,
+      "detection_rate": 0.9473684210526315
+    },
+    "lia/ffc": {
+      "n": 43,
+      "detection_rate": 0.8837209302325582
+    },
+    "lia/oth": {
+      "n": 140,
+      "detection_rate": 0.9214285714285714
+    },
+    "mcnet/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "mcnet/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "mcnet/oth": {
+      "n": 156,
+      "detection_rate": 1.0
+    },
+    "mobileswap/cdc": {
+      "n": 19,
+      "detection_rate": 0.8947368421052632
+    },
+    "mobileswap/ffc": {
+      "n": 259,
+      "detection_rate": 0.9073359073359073
+    },
+    "mobileswap/oth": {
+      "n": 148,
+      "detection_rate": 0.9324324324324325
+    },
+    "one_shot_free/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "one_shot_free/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "one_shot_free/oth": {
+      "n": 152,
+      "detection_rate": 0.993421052631579
+    },
+    "pirender/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "pirender/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "pirender/oth": {
+      "n": 149,
+      "detection_rate": 0.9731543624161074
+    },
+    "pixart/cdc": {
+      "n": 26,
+      "detection_rate": 1.0
+    },
+    "pixart/ffc": {
+      "n": 39,
+      "detection_rate": 0.8974358974358975
+    },
+    "pixart/oth": {
+      "n": 209,
+      "detection_rate": 0.9904306220095693
+    },
+    "sadtalker/oth": {
+      "n": 201,
+      "detection_rate": 0.8955223880597015
+    },
+    "sd2.1/cdc": {
+      "n": 26,
+      "detection_rate": 1.0
+    },
+    "sd2.1/ffc": {
+      "n": 249,
+      "detection_rate": 0.9959839357429718
+    },
+    "sd2.1/oth": {
+      "n": 212,
+      "detection_rate": 1.0
+    },
+    "simswap/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "simswap/ffc": {
+      "n": 43,
+      "detection_rate": 0.9302325581395349
+    },
+    "simswap/oth": {
+      "n": 137,
+      "detection_rate": 0.9781021897810219
+    },
+    "stargan/fe": {
+      "n": 280,
+      "detection_rate": 1.0
+    },
+    "starganv2/fe": {
+      "n": 313,
+      "detection_rate": 1.0
+    },
+    "styleclip/fe": {
+      "n": 301,
+      "detection_rate": 0.8272425249169435
+    },
+    "tpsm/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "tpsm/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "tpsm/oth": {
+      "n": 153,
+      "detection_rate": 1.0
+    },
+    "uniface/cdc": {
+      "n": 19,
+      "detection_rate": 1.0
+    },
+    "uniface/ffc": {
+      "n": 43,
+      "detection_rate": 1.0
+    },
+    "uniface/oth": {
+      "n": 138,
+      "detection_rate": 1.0
+    },
+    "wav2lip/cdc": {
+      "n": 21,
+      "detection_rate": 1.0
+    },
+    "wav2lip/oth": {
+      "n": 162,
+      "detection_rate": 0.9259259259259259
+    },
+    "whichfaceisreal/efs": {
+      "n": 227,
+      "detection_rate": 0.5947136563876652
+    },
+    "real": {
+      "cdc": {
+        "n": 47,
+        "acc_real": 1.0
+      },
+      "ffc": {
+        "n": 302,
+        "acc_real": 0.9536423841059603
+      }
+    }
+  }
+}
