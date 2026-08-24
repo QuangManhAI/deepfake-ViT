@@ -1,0 +1,14 @@
+{
+  "model": "dinov3-vits16plus-pretrain-lvd1689m + LoRA (r=16, alpha=32, q/v)",
+  "ckpt": "/workspace/quangmanh/deepfake/outputs/finetune/vit_lora_finetuned.pt",
+  "n_test": 2354,
+  "TN": 1125,
+  "FP": 52,
+  "FN": 75,
+  "TP": 1102,
+  "accuracy": 0.9460492778249787,
+  "precision": 0.9549393414211439,
+  "recall": 0.9362786745964317,
+  "f1": 0.9455169455169455,
+  "roc_auc": 0.985871226257445
+}
