@@ -1,0 +1,328 @@
+{
+  "per_ckpt": {
+    "baseline": {
+      "ckpt": "/workspace/quangmanh/deepfake/outputs/finetune/convnext_baseline.pt",
+      "accuracy": 0.994052676295667,
+      "precision": 1.0,
+      "recall": 0.9881053525913339,
+      "f1": 0.994017094017094,
+      "roc_auc": 0.9998238685539681,
+      "TN": 1177,
+      "FP": 0,
+      "FN": 14,
+      "TP": 1163,
+      "real_acc": 1.0,
+      "fake_recall": 0.9881053525913339
+    },
+    "v2": {
+      "ckpt": "/workspace/quangmanh/deepfake/outputs/finetune/convnext_weakfix_v2.pt",
+      "accuracy": 0.9966015293118097,
+      "precision": 1.0,
+      "recall": 0.9932030586236194,
+      "f1": 0.9965899403239556,
+      "roc_auc": 0.9998830602694379,
+      "TN": 1177,
+      "FP": 0,
+      "FN": 8,
+      "TP": 1169,
+      "real_acc": 1.0,
+      "fake_recall": 0.9932030586236194
+    },
+    "v3": {
+      "ckpt": "/workspace/quangmanh/deepfake/outputs/finetune/convnext_weakfix_v3.pt",
+      "accuracy": 0.9970263381478335,
+      "precision": 0.9991467576791809,
+      "recall": 0.9949022939677146,
+      "f1": 0.9970200085142614,
+      "roc_auc": 0.9999130170522671,
+      "TN": 1176,
+      "FP": 1,
+      "FN": 6,
+      "TP": 1171,
+      "real_acc": 0.9991503823279524,
+      "fake_recall": 0.9949022939677146
+    }
+  },
+  "rows": [
+    {
+      "method": "mcnet",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 0.9629629629629629,
+      "delta_det": -0.03703703703703709
+    },
+    {
+      "method": "fsgan",
+      "n": 26,
+      "det_baseline": 0.9615384615384616,
+      "det_v3": 0.9615384615384616,
+      "delta_det": 0.0
+    },
+    {
+      "method": "facedancer",
+      "n": 27,
+      "det_baseline": 0.9629629629629629,
+      "det_v3": 0.9629629629629629,
+      "delta_det": 0.0
+    },
+    {
+      "method": "lia",
+      "n": 27,
+      "det_baseline": 0.9629629629629629,
+      "det_v3": 0.9629629629629629,
+      "delta_det": 0.0
+    },
+    {
+      "method": "DiT",
+      "n": 41,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "MRAA",
+      "n": 29,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "MidJourney",
+      "n": 26,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "RDDM",
+      "n": 22,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "StyleGAN2",
+      "n": 25,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "StyleGAN3",
+      "n": 40,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "StyleGANXL",
+      "n": 40,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "VQGAN",
+      "n": 24,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "blendface",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "danet",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "ddim",
+      "n": 24,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "deepfacelab",
+      "n": 1,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "e4e",
+      "n": 40,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "e4s",
+      "n": 15,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "facevid2vid",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "fomm",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "hyperreenact",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "inswap",
+      "n": 19,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "one_shot_free",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "pirender",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "pixart",
+      "n": 37,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "simswap",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "stargan",
+      "n": 40,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "starganv2",
+      "n": 40,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "styleclip",
+      "n": 40,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "tpsm",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "uniface",
+      "n": 27,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "wav2lip",
+      "n": 22,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "whichfaceisreal",
+      "n": 30,
+      "det_baseline": 1.0,
+      "det_v3": 1.0,
+      "delta_det": 0.0
+    },
+    {
+      "method": "sd2.1",
+      "n": 64,
+      "det_baseline": 0.984375,
+      "det_v3": 1.0,
+      "delta_det": 0.015625
+    },
+    {
+      "method": "mobileswap",
+      "n": 56,
+      "det_baseline": 0.9821428571428571,
+      "det_v3": 1.0,
+      "delta_det": 0.017857142857142905
+    },
+    {
+      "method": "SiT",
+      "n": 40,
+      "det_baseline": 0.975,
+      "det_v3": 1.0,
+      "delta_det": 0.025000000000000022
+    },
+    {
+      "method": "CollabDiff",
+      "n": 31,
+      "det_baseline": 0.967741935483871,
+      "det_v3": 1.0,
+      "delta_det": 0.032258064516129004
+    },
+    {
+      "method": "sadtalker",
+      "n": 26,
+      "det_baseline": 0.8846153846153846,
+      "det_v3": 0.9230769230769231,
+      "delta_det": 0.03846153846153855
+    },
+    {
+      "method": "faceswap",
+      "n": 27,
+      "det_baseline": 0.8888888888888888,
+      "det_v3": 1.0,
+      "delta_det": 0.11111111111111116
+    },
+    {
+      "method": "heygen",
+      "n": 1,
+      "det_baseline": 0.0,
+      "det_v3": 1.0,
+      "delta_det": 1.0
+    }
+  ]
+}

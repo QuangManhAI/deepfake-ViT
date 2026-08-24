@@ -1,0 +1,646 @@
+{
+  "timestamp": "2026-08-23T20:01:51.672951",
+  "total": 121884,
+  "real": 31006,
+  "fake": 90878,
+  "added_by_source": {
+    "train_extracted/faceswap": 4000,
+    "train_extracted/sadtalker": 4000,
+    "train_extracted/facedancer": 4000,
+    "train_extracted/fsgan": 3000,
+    "train_extracted/simswap": 3000,
+    "train_extracted/blendface": 3000,
+    "train_extracted/wav2lip": 2500,
+    "train_extracted/e4s": 2500,
+    "train_extracted/inswap": 2500,
+    "train_extracted/lia": 2000,
+    "train_extracted/mobileswap": 1500,
+    "train_extracted/one_shot_free": 1200,
+    "train_extracted/uniface": 1200,
+    "train_extracted/pirender": 1200,
+    "train_extracted/ddim": 1000,
+    "train_extracted/SiT": 1000,
+    "train_extracted/pixart": 1000,
+    "train_extracted/styleclip": 0,
+    "train_extracted/stargan": 0,
+    "train_extracted/tpsm": 1000,
+    "train_extracted/MRAA": 1000,
+    "train_extracted/mcnet": 1000,
+    "train_extracted/danet": 1000,
+    "train_extracted/hyperreenact": 1000,
+    "train_extracted/fomm": 1000,
+    "train_extracted/facevid2vid": 1000,
+    "train_extracted/VQGAN": 1000,
+    "train_extracted/StyleGAN2": 1000,
+    "train_extracted/StyleGAN3": 1000,
+    "train_extracted/StyleGANXL": 1000,
+    "train_extracted/sd2.1": 1000,
+    "train_extracted/RDDM": 1000,
+    "test_full/starganv2": 1748,
+    "test_full/whichfaceisreal": 660,
+    "test_full/CollabDiff": 1000,
+    "test_full/heygen_new": 800
+  },
+  "identity_dropped": {
+    "train_extracted/faceswap": 187,
+    "train_extracted/sadtalker": 0,
+    "train_extracted/facedancer": 304,
+    "train_extracted/fsgan": 373,
+    "train_extracted/simswap": 622,
+    "train_extracted/blendface": 184,
+    "train_extracted/wav2lip": 0,
+    "train_extracted/e4s": 182,
+    "train_extracted/inswap": 784,
+    "train_extracted/lia": 63,
+    "train_extracted/mobileswap": 3719,
+    "train_extracted/one_shot_free": 0,
+    "train_extracted/uniface": 90,
+    "train_extracted/pirender": 0,
+    "train_extracted/ddim": 0,
+    "train_extracted/SiT": 0,
+    "train_extracted/pixart": 0,
+    "train_extracted/styleclip": 0,
+    "train_extracted/stargan": 0,
+    "train_extracted/tpsm": 0,
+    "train_extracted/MRAA": 381,
+    "train_extracted/mcnet": 0,
+    "train_extracted/danet": 0,
+    "train_extracted/hyperreenact": 0,
+    "train_extracted/fomm": 0,
+    "train_extracted/facevid2vid": 122,
+    "train_extracted/VQGAN": 0,
+    "train_extracted/StyleGAN2": 0,
+    "train_extracted/StyleGAN3": 0,
+    "train_extracted/StyleGANXL": 0,
+    "train_extracted/sd2.1": 879,
+    "train_extracted/RDDM": 0,
+    "test_full/starganv2": 0,
+    "test_full/whichfaceisreal": 0,
+    "test_full/CollabDiff": 0,
+    "test_full/heygen_new": 0
+  },
+  "test_identity_tokens": {
+    "faceswap": [
+      "000",
+      "003",
+      "044",
+      "155",
+      "172",
+      "176",
+      "202",
+      "462",
+      "701",
+      "812"
+    ],
+    "facedancer": [
+      "012",
+      "170",
+      "183",
+      "186",
+      "220",
+      "242",
+      "259",
+      "334",
+      "367",
+      "370",
+      "371",
+      "401",
+      "731",
+      "862"
+    ],
+    "fsgan": [
+      "015",
+      "156",
+      "178",
+      "214",
+      "225",
+      "237",
+      "292",
+      "321",
+      "420",
+      "435",
+      "445",
+      "475",
+      "521",
+      "865"
+    ],
+    "simswap": [
+      "154",
+      "163",
+      "173",
+      "214",
+      "234",
+      "237",
+      "306",
+      "380",
+      "634",
+      "974"
+    ],
+    "blendface": [
+      "029",
+      "158",
+      "214",
+      "228",
+      "263",
+      "266",
+      "278",
+      "334",
+      "367",
+      "488",
+      "633",
+      "691"
+    ],
+    "e4s": [
+      "000",
+      "230",
+      "264",
+      "280",
+      "312",
+      "661",
+      "842",
+      "851"
+    ],
+    "inswap": [
+      "156",
+      "159",
+      "217",
+      "251",
+      "279",
+      "288",
+      "301",
+      "462",
+      "499",
+      "630",
+      "669",
+      "695",
+      "707",
+      "739"
+    ],
+    "lia": [
+      "000",
+      "035",
+      "154",
+      "275",
+      "306",
+      "347",
+      "919"
+    ],
+    "mobileswap": [
+      "008",
+      "020",
+      "027",
+      "041",
+      "061",
+      "076",
+      "122",
+      "131",
+      "141",
+      "151",
+      "154",
+      "157",
+      "158",
+      "161",
+      "169",
+      "172",
+      "173",
+      "179",
+      "183",
+      "195",
+      "198",
+      "199",
+      "200",
+      "201",
+      "203",
+      "214",
+      "234",
+      "235",
+      "240",
+      "241",
+      "242",
+      "251",
+      "253",
+      "258",
+      "264",
+      "266",
+      "268",
+      "269",
+      "272",
+      "274",
+      "275",
+      "281",
+      "283",
+      "285",
+      "293",
+      "306",
+      "328",
+      "331",
+      "339",
+      "340",
+      "343",
+      "344",
+      "347",
+      "386",
+      "387",
+      "413",
+      "433",
+      "436",
+      "448",
+      "478",
+      "479",
+      "503",
+      "506",
+      "519",
+      "537",
+      "561",
+      "562",
+      "568",
+      "645",
+      "657",
+      "677",
+      "679",
+      "722",
+      "740",
+      "758",
+      "788",
+      "908",
+      "943"
+    ],
+    "one_shot_free": [
+      "000",
+      "012",
+      "190",
+      "219",
+      "625",
+      "741",
+      "973",
+      "995"
+    ],
+    "uniface": [
+      "003",
+      "138",
+      "142",
+      "155",
+      "156",
+      "162",
+      "211",
+      "217",
+      "404",
+      "411",
+      "422",
+      "496",
+      "521",
+      "630"
+    ],
+    "pirender": [
+      "000",
+      "003",
+      "128",
+      "176",
+      "186",
+      "521",
+      "608",
+      "919",
+      "995"
+    ],
+    "SiT": [
+      "003",
+      "026",
+      "2987",
+      "633",
+      "660",
+      "821",
+      "924"
+    ],
+    "pixart": [
+      "029",
+      "220",
+      "233",
+      "955"
+    ],
+    "tpsm": [
+      "000",
+      "724",
+      "896",
+      "970"
+    ],
+    "MRAA": [
+      "000",
+      "036",
+      "168",
+      "169",
+      "173",
+      "235",
+      "237",
+      "297",
+      "334",
+      "381",
+      "384",
+      "429",
+      "706",
+      "801"
+    ],
+    "mcnet": [
+      "000",
+      "249",
+      "319",
+      "367",
+      "371",
+      "404",
+      "418",
+      "607",
+      "868"
+    ],
+    "danet": [
+      "000",
+      "485",
+      "695",
+      "759",
+      "917",
+      "973"
+    ],
+    "hyperreenact": [
+      "000",
+      "026",
+      "821",
+      "880",
+      "924"
+    ],
+    "fomm": [
+      "000",
+      "015",
+      "078",
+      "479",
+      "812",
+      "896",
+      "974"
+    ],
+    "facevid2vid": [
+      "000",
+      "015",
+      "073",
+      "225",
+      "278",
+      "306",
+      "362",
+      "375",
+      "480",
+      "552",
+      "691",
+      "759"
+    ],
+    "sd2.1": [
+      "004",
+      "012",
+      "021",
+      "028",
+      "081",
+      "089",
+      "095",
+      "104",
+      "138",
+      "181",
+      "186",
+      "234",
+      "243",
+      "289",
+      "303",
+      "393",
+      "452",
+      "454",
+      "477",
+      "481",
+      "505",
+      "521",
+      "610",
+      "648",
+      "663",
+      "674",
+      "690",
+      "695",
+      "701",
+      "757",
+      "861",
+      "915",
+      "934",
+      "939",
+      "947",
+      "963"
+    ],
+    "RDDM": [
+      "158",
+      "358",
+      "423",
+      "731",
+      "812",
+      "862"
+    ]
+  },
+  "replay_v5": 54000,
+  "method_counts": {
+    "Celeb-DF Real": {
+      "count": 5944,
+      "sum": 0
+    },
+    "CollabDiff": {
+      "count": 1519,
+      "sum": 1519
+    },
+    "CollabDiff Real": {
+      "count": 726,
+      "sum": 0
+    },
+    "DF40 Real": {
+      "count": 481,
+      "sum": 0
+    },
+    "DiT": {
+      "count": 594,
+      "sum": 594
+    },
+    "FaceForensics++ Real": {
+      "count": 13165,
+      "sum": 0
+    },
+    "MRAA": {
+      "count": 1583,
+      "sum": 1583
+    },
+    "MidJourney": {
+      "count": 443,
+      "sum": 443
+    },
+    "MidJourney Real": {
+      "count": 704,
+      "sum": 0
+    },
+    "RDDM": {
+      "count": 1582,
+      "sum": 1582
+    },
+    "SiT": {
+      "count": 1586,
+      "sum": 1586
+    },
+    "StyleGAN2": {
+      "count": 1595,
+      "sum": 1595
+    },
+    "StyleGAN3": {
+      "count": 1577,
+      "sum": 1577
+    },
+    "StyleGANXL": {
+      "count": 1587,
+      "sum": 1587
+    },
+    "VQGAN": {
+      "count": 1605,
+      "sum": 1605
+    },
+    "blendface": {
+      "count": 3581,
+      "sum": 3581
+    },
+    "celebvhq_real": {
+      "count": 4000,
+      "sum": 0
+    },
+    "danet": {
+      "count": 1579,
+      "sum": 1579
+    },
+    "ddim": {
+      "count": 1577,
+      "sum": 1577
+    },
+    "deepfake_faceswap": {
+      "count": 8076,
+      "sum": 8076
+    },
+    "e4e": {
+      "count": 551,
+      "sum": 551
+    },
+    "e4s": {
+      "count": 3092,
+      "sum": 3092
+    },
+    "facedancer": {
+      "count": 4584,
+      "sum": 4584
+    },
+    "faceswap": {
+      "count": 4600,
+      "sum": 4600
+    },
+    "facevid2vid": {
+      "count": 1586,
+      "sum": 1586
+    },
+    "ffhq_real": {
+      "count": 4900,
+      "sum": 0
+    },
+    "fomm": {
+      "count": 1574,
+      "sum": 1574
+    },
+    "fsgan": {
+      "count": 3575,
+      "sum": 3575
+    },
+    "heygen_new": {
+      "count": 800,
+      "sum": 800
+    },
+    "hyperreenact": {
+      "count": 1586,
+      "sum": 1586
+    },
+    "inswap": {
+      "count": 3086,
+      "sum": 3086
+    },
+    "lia": {
+      "count": 2590,
+      "sum": 2590
+    },
+    "mcnet": {
+      "count": 1594,
+      "sum": 1594
+    },
+    "mobileswap": {
+      "count": 2081,
+      "sum": 2081
+    },
+    "one_shot_free": {
+      "count": 1781,
+      "sum": 1781
+    },
+    "pirender": {
+      "count": 1799,
+      "sum": 1799
+    },
+    "pixart": {
+      "count": 1596,
+      "sum": 1596
+    },
+    "sadtalker": {
+      "count": 4600,
+      "sum": 4600
+    },
+    "sd2.1": {
+      "count": 1582,
+      "sum": 1582
+    },
+    "sfhq_studio": {
+      "count": 4375,
+      "sum": 4375
+    },
+    "simswap": {
+      "count": 3579,
+      "sum": 3579
+    },
+    "stable_diffusion": {
+      "count": 918,
+      "sum": 918
+    },
+    "stargan": {
+      "count": 545,
+      "sum": 545
+    },
+    "starganv2": {
+      "count": 2075,
+      "sum": 2075
+    },
+    "starganv2 Real": {
+      "count": 367,
+      "sum": 0
+    },
+    "styleclip": {
+      "count": 549,
+      "sum": 549
+    },
+    "tpsm": {
+      "count": 1605,
+      "sum": 1605
+    },
+    "uniface": {
+      "count": 1790,
+      "sum": 1790
+    },
+    "wav2lip": {
+      "count": 3087,
+      "sum": 3087
+    },
+    "whichfaceisreal": {
+      "count": 1214,
+      "sum": 1214
+    },
+    "whichfaceisreal Real": {
+      "count": 719,
+      "sum": 0
+    }
+  },
+  "out_csv": "/workspace/hoangtuan/deepfake-ViT/data/splits/train_v5_weakfix.csv"
+}
