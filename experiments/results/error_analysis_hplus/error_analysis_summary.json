@@ -1,0 +1,14 @@
+{
+  "model": "dinov3-vith16plus-pretrain-lvd1689m",
+  "method": "linear-probe (frozen backbone, LogisticRegression)",
+  "n_test": 2354,
+  "TN": 1097,
+  "FP": 80,
+  "FN": 254,
+  "TP": 923,
+  "accuracy": 0.8581138487680544,
+  "precision": 0.9202392821535393,
+  "recall": 0.784197111299915,
+  "f1": 0.846788990825688,
+  "roc_auc": 0.9234319067889288
+}

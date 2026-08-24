@@ -1,0 +1,339 @@
+{
+  "weak_methods": [
+    {
+      "method": "MidJourney",
+      "current_used": 5,
+      "df40testfull_clean": 5,
+      "df40testfull_total": 635,
+      "df40train_extracted": null,
+      "max_available": 5,
+      "headroom": 0
+    },
+    {
+      "method": "whichfaceisreal",
+      "current_used": 251,
+      "df40testfull_clean": 251,
+      "df40testfull_total": 1001,
+      "df40train_extracted": null,
+      "max_available": 251,
+      "headroom": 0
+    },
+    {
+      "method": "faceswap",
+      "current_used": 800,
+      "df40testfull_clean": 3097,
+      "df40testfull_total": 24634,
+      "df40train_extracted": 22852,
+      "max_available": 22852,
+      "headroom": 22052
+    },
+    {
+      "method": "styleclip",
+      "current_used": 1200,
+      "df40testfull_clean": 1824,
+      "df40testfull_total": 2824,
+      "df40train_extracted": null,
+      "max_available": 1824,
+      "headroom": 624
+    },
+    {
+      "method": "CollabDiff",
+      "current_used": 250,
+      "df40testfull_clean": 250,
+      "df40testfull_total": 1000,
+      "df40train_extracted": null,
+      "max_available": 250,
+      "headroom": 0
+    },
+    {
+      "method": "sadtalker",
+      "current_used": 600,
+      "df40testfull_clean": 4416,
+      "df40testfull_total": 25402,
+      "df40train_extracted": 22797,
+      "max_available": 22797,
+      "headroom": 22197
+    },
+    {
+      "method": "wav2lip",
+      "current_used": 600,
+      "df40testfull_clean": 7654,
+      "df40testfull_total": 25193,
+      "df40train_extracted": 22682,
+      "max_available": 22682,
+      "headroom": 22082
+    },
+    {
+      "method": "heygen",
+      "current_used": 838,
+      "df40testfull_clean": 838,
+      "df40testfull_total": 1605,
+      "df40train_extracted": null,
+      "max_available": 838,
+      "headroom": 0
+    },
+    {
+      "method": "stargan",
+      "current_used": 984,
+      "df40testfull_clean": 984,
+      "df40testfull_total": 1984,
+      "df40train_extracted": null,
+      "max_available": 984,
+      "headroom": 0
+    },
+    {
+      "method": "starganv2",
+      "current_used": 1000,
+      "df40testfull_clean": 1001,
+      "df40testfull_total": 2000,
+      "df40train_extracted": null,
+      "max_available": 1001,
+      "headroom": 1
+    },
+    {
+      "method": "deepfacelab",
+      "current_used": 1200,
+      "df40testfull_clean": 2342,
+      "df40testfull_total": 3122,
+      "df40train_extracted": null,
+      "max_available": 2342,
+      "headroom": 1142
+    },
+    {
+      "method": "MRAA",
+      "current_used": 400,
+      "df40testfull_clean": 3048,
+      "df40testfull_total": 24729,
+      "df40train_extracted": 22811,
+      "max_available": 22811,
+      "headroom": 22411
+    }
+  ],
+  "total_current": 8128,
+  "total_max": 98637,
+  "df40_train_extracted_methods": {
+    "DiT": 21589,
+    "MRAA": 22811,
+    "RDDM": 21589,
+    "SiT": 21589,
+    "StyleGAN2": 21589,
+    "StyleGAN3": 21589,
+    "StyleGANXL": 21589,
+    "VQGAN": 21589,
+    "blendface": 22513,
+    "danet": 22646,
+    "ddim": 21589,
+    "e4s": 22779,
+    "facedancer": 22747,
+    "faceswap": 22852,
+    "facevid2vid": 22815,
+    "fomm": 22811,
+    "fsgan": 21815,
+    "hyperreenact": 18783,
+    "inswap": 27988,
+    "lia": 22811,
+    "mcnet": 22613,
+    "mobileswap": 22824,
+    "one_shot_free": 22959,
+    "pirender": 22914,
+    "pixart": 21589,
+    "sadtalker": 22797,
+    "sd2.1": 21589,
+    "simswap": 31350,
+    "tpsm": 22964,
+    "uniface": 11794,
+    "wav2lip": 22682
+  },
+  "df40_testfull": {
+    "CollabDiff": {
+      "total": 1000,
+      "test": 750,
+      "clean": 250
+    },
+    "DiT": {
+      "total": 31885,
+      "test": 28174,
+      "clean": 3711
+    },
+    "MRAA": {
+      "total": 24729,
+      "test": 21681,
+      "clean": 3048
+    },
+    "MidJourney": {
+      "total": 635,
+      "test": 630,
+      "clean": 5
+    },
+    "RDDM": {
+      "total": 17738,
+      "test": 14027,
+      "clean": 3711
+    },
+    "SiT": {
+      "total": 31885,
+      "test": 28174,
+      "clean": 3711
+    },
+    "StyleGAN2": {
+      "total": 31885,
+      "test": 19586,
+      "clean": 12299
+    },
+    "StyleGAN3": {
+      "total": 31885,
+      "test": 0,
+      "clean": 31885
+    },
+    "StyleGANXL": {
+      "total": 31885,
+      "test": 0,
+      "clean": 31885
+    },
+    "VQGAN": {
+      "total": 31885,
+      "test": 19159,
+      "clean": 12726
+    },
+    "blendface": {
+      "total": 24790,
+      "test": 21694,
+      "clean": 3096
+    },
+    "danet": {
+      "total": 23696,
+      "test": 20756,
+      "clean": 2940
+    },
+    "ddim": {
+      "total": 31885,
+      "test": 19281,
+      "clean": 12604
+    },
+    "deepfacelab": {
+      "total": 3122,
+      "test": 780,
+      "clean": 2342
+    },
+    "e4s": {
+      "total": 12861,
+      "test": 11680,
+      "clean": 1181
+    },
+    "facedancer": {
+      "total": 24710,
+      "test": 21609,
+      "clean": 3101
+    },
+    "faceswap": {
+      "total": 24634,
+      "test": 21537,
+      "clean": 3097
+    },
+    "facevid2vid": {
+      "total": 24358,
+      "test": 21284,
+      "clean": 3074
+    },
+    "fomm": {
+      "total": 24733,
+      "test": 21671,
+      "clean": 3062
+    },
+    "fsgan": {
+      "total": 24056,
+      "test": 21105,
+      "clean": 2951
+    },
+    "heygen": {
+      "total": 1605,
+      "test": 767,
+      "clean": 838
+    },
+    "hyperreenact": {
+      "total": 24983,
+      "test": 21879,
+      "clean": 3104
+    },
+    "inswap": {
+      "total": 17195,
+      "test": 14928,
+      "clean": 2267
+    },
+    "lia": {
+      "total": 24254,
+      "test": 21264,
+      "clean": 2990
+    },
+    "mcnet": {
+      "total": 23602,
+      "test": 20707,
+      "clean": 2895
+    },
+    "mobileswap": {
+      "total": 0,
+      "test": 0,
+      "clean": 0
+    },
+    "one_shot_free": {
+      "total": 25096,
+      "test": 21932,
+      "clean": 3164
+    },
+    "pirender": {
+      "total": 24664,
+      "test": 21635,
+      "clean": 3029
+    },
+    "sadtalker": {
+      "total": 25402,
+      "test": 20986,
+      "clean": 4416
+    },
+    "sd2.1": {
+      "total": 53474,
+      "test": 25914,
+      "clean": 27560
+    },
+    "simswap": {
+      "total": 24790,
+      "test": 21694,
+      "clean": 3096
+    },
+    "stargan": {
+      "total": 1984,
+      "test": 1000,
+      "clean": 984
+    },
+    "starganv2": {
+      "total": 2000,
+      "test": 999,
+      "clean": 1001
+    },
+    "styleclip": {
+      "total": 2824,
+      "test": 1000,
+      "clean": 1824
+    },
+    "tpsm": {
+      "total": 25030,
+      "test": 21966,
+      "clean": 3064
+    },
+    "uniface": {
+      "total": 24346,
+      "test": 21316,
+      "clean": 3030
+    },
+    "wav2lip": {
+      "total": 25193,
+      "test": 17539,
+      "clean": 7654
+    },
+    "whichfaceisreal": {
+      "total": 1001,
+      "test": 750,
+      "clean": 251
+    }
+  }
+}

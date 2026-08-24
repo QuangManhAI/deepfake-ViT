@@ -1,0 +1,12 @@
+{
+  "ckpt": "/workspace/quangmanh/deepfake/outputs/finetune/exp02_weak_max_v2.pt",
+  "accuracy": 0.923534409515718,
+  "precision": 0.9752144899904671,
+  "recall": 0.8691588785046729,
+  "f1": 0.9191374663072777,
+  "roc_auc": 0.9837280530473266,
+  "TN": 1151,
+  "FP": 26,
+  "FN": 154,
+  "TP": 1023
+}
