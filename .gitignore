@@ -67,6 +67,7 @@ scratch/*
 # Tool caches
 .feynman/
 
+*.npy
 # IDE / OS
 .idea/
 .vscode/
