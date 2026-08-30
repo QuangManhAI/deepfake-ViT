@@ -1,0 +1,898 @@
+{
+  "sample_size": 1000,
+  "groups": {
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Youtube-real_00288__seed23625.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id3_id8_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id13_0015__seed22443.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id37_0007_BwIGcvBGSRk_50007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/RDDM/fake/RDDM__RDDM_id47_0005__sample-16696.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__358__275.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id16_0006__Celeb-real_id19_0001_075.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__358__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id26_0006__seed21442.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_619__619.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id8_0005__seed19061.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id28_0009__seed2188.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id16_id1_0004__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_00218__seed27132.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_02003__02003.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__680__154.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__id29_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id6_id0_0005__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_00194__011542.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id6_id0_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id0_id1_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__326__10447.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Youtube-real_00241__seed18985.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id0_id1_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__507__241.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id0_bJ8Kq1wucsk_50001_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__facedancer_id6_id28_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id0_8olL43PKJKw_50009_0005__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id7_id10_0004__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id8_0007__seed20528.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id55_id57_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00252__seed19509.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id25_0008__seed20867.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__id57_0003__21762.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id23_id6_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__one_shot_free_id37_id21_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_301__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_01336__01336.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__one_shot_free_id23_id4_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id36_0004__seed7953.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id30_0002__seed19632.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id23_id6_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4s/fake/e4s__id0_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__sd2.1_id32_0002__Celeb-real_id23_0009_213.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00080__seed19396.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__facedancer_id22_id21_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id23_id6_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/stargan/fake/stargan__stargan_620__620.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__id29_0009__22099.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id13_0009__010452.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id4_0006__seed23039.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id21_id0_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id24_id26_0004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_913__913.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id21_4jUdCy6Vghw_50007_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id16_0001_b6rAgHcuYtE_50004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1335__1335.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__id57_0007__227.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id32_0006__seed25750.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id21_0002_bGBamfWasNQ_50009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__634__20281.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id37_0008_56WGgJNBRxQ_50025__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_00675__00675.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_00193__Celeb-real_id3_0000_398.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1922__1922.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__SiT_id22_0005__19782.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_00101__23343.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id3_id16_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id21_0002_4jUdCy6Vghw_50007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id29_9YR8jNtV4BE_50008_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/stargan/fake/stargan__stargan_1057__1057.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id17_0002__Celeb-real_id56_0004_158.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_00172__20614.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id16_0011__YouTube-real_00246_175.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id10_0006__seed20610.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_765__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__418__164.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id3_0000__001714.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Youtube-real_00294__seed27189.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id17_id31_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__695__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id6_id9_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id23_0003__021065.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id51_0006__Celeb-real_id19_0000_273.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_01571__01571.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id46_0005__seed23699.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id17_id16_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id13_0001__seed25430.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id4_0008__Celeb-real_id40_0000_010.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id12_id10_0004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id24_0006__25316.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__401__253.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id16_id3_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id10_id7_0004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id4_0005__24502.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id56_id54_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Youtube-real_00046__seed23821.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id19_id27_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__918__29379.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_00070__015292.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_672__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id53_id58_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__596__19078.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id25_0010__seed4854.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/whichfaceisreal/fake/whichfaceisreal__whichfaceisreal_416.png__416.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id3_id8_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id4_id21_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id35_id31_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id21_0009__Celeb-real_id38_0001_125.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_514__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id45_id48_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/RDDM/fake/RDDM__724__sample-18726.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id16_id26_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id38_0005__seed22362.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id41_0005__YouTube-real_00239_142.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id33_0000__Celeb-real_id49_0009_295.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__one_shot_free_id19_id20_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__211__06768.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__296__172.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id34_id38_0003__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__384__237.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id11_0009__seed21983.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__932__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__384__237.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__384__237.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id21_id0_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id9_id0_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__173__371.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1631__1631.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id35_0006__2570.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/RDDM/fake/RDDM__128__sample-17789.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__500__150.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__652__234.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_607__607.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__555__294.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id9_id0_0000__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/RDDM/fake/RDDM__RDDM_id16_0002__sample-22274.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__425__13613.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_ff_429__seed15972.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id17_0009__seed23200.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__769__402_258.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__479__251.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__227__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id21_id30_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id2_id26_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id3_0009_aEjUlH7bNDo_50005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4s/fake/e4s__e4s_id4_id1_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id33_0004__seed26598.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id11_id7_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id30_0002_7hFy02TSH4U_50010__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id35_id37_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id7_id10_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__SiT_id0_0009__27601.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__135__168.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id29_0006__Celeb-real_id37_0000_000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__one_shot_free_id30_id23_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__666__21317.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_255__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id31_0001__seed23637.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__135__168.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_284__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id20_0009_9EglK8Mk18o_50037__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_02612__02612.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id50_0006__seed8656.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4s/fake/e4s__e4s_id57_id55_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id3_id1_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id31_0008__seed21412.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id25_id21_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__044__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id13_id10_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id38_0007__seed20680.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id35_id34_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id3_id1_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id3_id16_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id4_id21_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_00224__seed14526.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id0_0009__27601.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id21_id4_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_528__528.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id6_id16_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_00140__seed19464.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id53_0005__seed23627.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_00077__024003.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00127__seed20135.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__id1_0001__133.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__855__324.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/ddim/fake/ddim__ddim_id21_0002__YouTube-real_00141_415.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__865__27683.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id11_0000__seed22264.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id11_0005__seed2126.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/stargan/fake/stargan__stargan_1318__1318.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id30_id23_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id34_id32_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_381__381.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id43_0002__seed2122.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__496__241.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__SiT_00026__23152.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id38_0005__seed23520.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__186__171.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__651__20837.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__186__171.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__186__171.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id0_id6_0007__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id6_id0_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id0_id3_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id6_id0_0007__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id4_bSiGZPtWXzE_50070_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id37_id4_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id4_59SRn1SkWAA_50002_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id52_0001__seed6639.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__425__574_195.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id6_id16_0005__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_00127__seed13435.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id4_id6_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id6_id4_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id28_id16_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id38_0005__011283.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id35_id28_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id2_id21_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id30_0004__seed22328.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id31_id35_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id32_0009__27097.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id40_0009__seed18560.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__facedancer_id6_id28_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id4_id6_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id35_id31_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id6_id23_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id16_0005_4ZgwzSm7sRs_50018__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id16_id0_0004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00185__seed22434.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__SiT_id53_0009__21931.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id6_id8_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__932__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id2_id1_0004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id17_id26_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id1_8woKcr7uSYQ_50004_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id1_id0_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__id16_0010__25742.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id26_0006_796LfXwzIUk_50016__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id38_0008_0ygtX2nyexo_50014__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id0_id1_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id3_id26_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id30_id26_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id24_id19_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id0_id1_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__id32_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__facedancer_id9_id3_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__SiT_id48_0002__23023.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id3_id28_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id9_id3_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id9_id1_0000__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_00502__00502.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1994__1994.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/whichfaceisreal/fake/whichfaceisreal__whichfaceisreal_314.png__314.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_00165__24201.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id48_id45_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id38_id34_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__147__04720.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id28_AU66C6HePfg_50008_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id28_id20_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id28_id22_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id28_Br1AIvMrvAE_50004_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_87__87.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id1_0009__YouTube-real_00020_249.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id7_id11_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__079__218.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__227__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id4_id0_0000__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id4_id0_0000__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__facedancer_id9_id21_0008__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id20_id9_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id21_id9_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id9_da1vvigy5tQ_50011_0008__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__795__283.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__795__283.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id3_0009__Celeb-real_id37_0000_404.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id16_id21_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id53_0006__seed19965.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id1_0001__seed22391.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__id6_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id52_0009__Celeb-real_id5_0009_000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id35_id23_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id57_id53_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/RDDM/fake/RDDM__RDDM_id44_0000__sample-21887.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id23_id16_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id2_id21_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id16_aqhzFd4NUPI_50025_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__id57_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id16_id23_0003__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id53_0003__seed16338.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id2_0000__22985.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_01817__01817.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_02406__02406.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id30_0005__seed22637.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id27_0009__seed24517.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__634__173.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__634__173.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__888__28419.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__977__335.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00226__seed18303.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_982__982.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_470__470.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id27_id24_0007__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__id17_0002__Celeb-real_id17_0002_085.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id23_bfAzi6D5FpM_50004_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_894__000000_x_0.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id11_0007_b4sMMWJYUOs_50012__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id11_b4sMMWJYUOs_50012_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_02168__02168.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id28_id4_0000__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id30_id28_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id44_id39_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id37_id35_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id31_id20_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id30_id35_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id56_id54_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id6_BMdMSmtTgD0_50015_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_00214__027019.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id28_id37_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id30_id35_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__362__234.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id40_id42_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id33_id32_0004__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id49_b6rAgHcuYtE_50018_0003__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id34_0001__seed22474.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__724__309.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__724__309.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id55_0007__21346.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00121__seed24770.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id13_id10_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__724__309.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_79__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__724__309.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_621__000000_x_0.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__id32_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__id29_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_00122__23759.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__785__25124.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id30_id26_0004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__id29_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_01059__01059.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__id29_0009__244.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__id29_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1008__1008.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_839__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__id29_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__425__172.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__425__172.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__425__172.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/ddim/fake/ddim__ddim_id12_0001__YouTube-real_00190_044.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__id1_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id3_id17_0007__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id3_id17_0007__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__id43_0006__Celeb-real_id43_0006_061.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__id0_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id30_id23_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id23_id30_0002__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id30_id3_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/stargan/fake/stargan__stargan_1588__1588.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00115__seed23136.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_22__000000_x_0.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__642__295.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__932__249.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id9_id0_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__932__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id38_id33_0001__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id38_0001_dcwuBo4PvE0_50001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_530__000000_x_0.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__588__445_000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id39_id45_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id20_id4_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id19_id20_0000__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_00201__24240.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_338__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__SiT_id25_0001__25783.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id21_id6_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id21_BGcJXAXSSd0_50004_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__id21_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__id21_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__id21_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__id21_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id1_id20_0001__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__one_shot_free_id0_id9_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__044__172.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_ff_445__seed2982.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_02048__02048.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_ff_670__seed1958.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id17_0005__seed24969.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_ff_138__seed16355.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id17_2Kk9R2rhwlQ_50001_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__504__163.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__504__163.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id24_0009__seed19115.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id43_0003__seed24280.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__id29_0009__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__id29_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__id29_0009__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__id29_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id30_0006_3NzgEwye6Uk_50014__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id28_id30_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id7_0004__20812.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id41_0000__seed22732.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1970__1970.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__id0_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__158__228.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__158__228.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__158__228.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id1_id20_0001__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id31_id20_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_ff_862__seed20261.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_ff_552__seed20136.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_00270__YouTube-real_00086_434.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1192__1192.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id48_id41_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id30_id21_0005__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id19_id21_0005__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id9_id0_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id0_id9_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__facedancer_id0_id9_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id0_id20_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id35_id23_0009__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id35_id30_0009__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__id6_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__id6_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__id1_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__865__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Youtube-real_00014__seed19792.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__679__21733.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__519__501_184.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__205__157.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id38_0001__seed3517.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__044__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__651__195.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__977__31267.jpg",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id60_0006__seed20458.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1406__1406.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_522__000000_x_0.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id49_id52_0007__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__294__530_484.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__429__235.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_ff_036__seed3166.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id55_0003__022976.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__429__235.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__429__235.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__267__157.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__sd2.1_00015__Celeb-real_id16_0006_115.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__135__168.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__700__171.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__700__171.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__275__08815.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__275__218.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__id57_0007__227.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id2_id0_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id20_id4_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id27_id22_0001__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__one_shot_free_id25_id22_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4s/fake/e4s__e4s_id22_id27_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id55_0004__seed24867.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/whichfaceisreal/fake/whichfaceisreal__whichfaceisreal_426.png__426.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id44_id41_0005__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id44_id41_0005__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/whichfaceisreal/fake/whichfaceisreal__whichfaceisreal_590.png__590.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__128__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id8_0006__24129.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id45_0008__027462.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id44_id39_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__DiT_id57_0001__23124.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id39_id44_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id37_id4_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id2_id16_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id1_id0_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id2_id16_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id57_0005__001277.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id35_id16_0004__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id35_id16_0004__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__429__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__429__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__696__208.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__696__208.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id4_id1_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id1_id20_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id1_id20_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id26_id1_0002__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id35_id31_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id35_id31_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id20_id35_0007__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id7_0002__seed23197.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id19_id25_0002__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/SiT/fake/SiT__SiT_id7_0008__21133.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id10_id7_0008__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_ff_494__seed15597.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/RDDM/fake/RDDM__384__sample-2381.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id4_id37_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id37_id3_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id37_id3_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__507__241.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__507__241.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__507__241.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id3_id26_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facevid2vid/fake/facevid2vid__facevid2vid_id1_id3_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id46_id41_0000__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id17_id26_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id3_0006__005794.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id23_2R1lZSN4SSo_50011_0007__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__wav2lip_id23_0007_bnvnBwP9sTo_50006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__189__263.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__189__06064.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_690__000000_x_0.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id0_id16_0004__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN3/fake/StyleGAN3__StyleGAN3_Fake_from_Celeb-real_id39_0002__seed22050.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__fsgan_id10_id13_0005__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id13_id10_0005__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id17_id16_0000__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__facedancer_id17_id2_0000__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Youtube-real_00236__seed23239.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/stargan/fake/stargan__stargan_671__671.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/styleclip/fake/styleclip__styleclip_01592__01592.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__uniface_id19_id20_0002__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fomm/fake/fomm__fomm_id28_id0_0009__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4s/fake/e4s__855__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id1_id3_0007__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id3_5pIGDw18mIQ_50004_0007__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_713__000000_x_0.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_00062__YouTube-real_00035_457.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__one_shot_free_id21_id2_0000__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id45_id47_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_00263__Celeb-real_id5_0008_206.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_id27_0000__seed9068.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/stargan/fake/stargan__stargan_537__537.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sd2.1/fake/sd2.1__983__447_272.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__251__178.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__673__305.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGAN2/fake/StyleGAN2__StyleGAN2_00124__seed10212.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/RDDM/fake/RDDM__RDDM_id11_0000__sample-23012.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__tpsm_id45_id39_0008__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__MRAA_id39_id47_0004__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_150__000000_x_0.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__danet_id58_id54_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id9_id6_0006__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__936__152.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__634__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__596__286.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/MRAA/fake/MRAA__634__173.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__id32_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id33_id34_0002__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/wav2lip/fake/wav2lip__id6_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__id6_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/CollabDiff/fake/CollabDiff__CollabDiff_935__000000_x_0.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/DiT/fake/DiT__479__18798.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id6_id8_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id19_id25_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id6_25onkAGt3Gs_50007_0002__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__418__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__507__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__297__200.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__296__09487.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id2_id0_0008__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/sadtalker/fake/sadtalker__sadtalker_id2_289ZxBZdKvY_50005_0008__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__id1_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__id1_0001__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__faceswap_id0_id4_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__id0_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__id0_0001__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/faceswap/fake/faceswap__id1_0001__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__255__242.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__255__242.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/ddim/fake/ddim__ddim_id17_0007__Celeb-real_id17_0003_238.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/whichfaceisreal/fake/whichfaceisreal__whichfaceisreal_181.png__181.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mcnet/fake/mcnet__mcnet_id49_id52_0007__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__714__288.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__714__288.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_00033__Celeb-real_id7_0005_149.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pixart/fake/pixart__pixart_id46_0008__YouTube-real_00221_187.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id17_id26_0006__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id17_id26_0006__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id19_id25_0002__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id20_id6_0007__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id53_id57_0005__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id53_id58_0005__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/lia/fake/lia__lia_id57_id53_0005__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_442__442.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_1978__1978.jpg"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__812__222.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/uniface/fake/uniface__812__222.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__812__222.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id38_0004__006682.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__pirender_id12_id10_0002__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__id57_0007__227.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_id34_0004__005676.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/VQGAN/fake/VQGAN__VQGAN_00156__003285.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__mobileswap_id1_id17_0007__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id1_id2_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/inswap/fake/inswap__inswap_id1_id4_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/blendface/fake/blendface__blendface_id1_id9_0007__000.png",
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4s/fake/e4s__e4s_id1_id3_0007__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/hyperreenact/fake/hyperreenact__hyperreenact_id3_id9_0001__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__163__156.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/tpsm/fake/tpsm__812__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/danet/fake/danet__812__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__688__294.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__688__294.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/e4e/fake/e4e__212__06800.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__212__213.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/stargan/fake/stargan__stargan_914__914.jpg": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/StyleGANXL/fake/StyleGANXL__StyleGANXL_Fake_from_Celeb-real_id45_0000__seed2248.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/fsgan/fake/fsgan__706__168.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/facedancer/fake/facedancer__706__168.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/mobileswap/fake/mobileswap__913__326.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/real/real__913__326.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/one_shot_free/fake/one_shot_free__714__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/pirender/fake/pirender__714__000.png"
+    ],
+    "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/simswap/fake/simswap__simswap_id41_id48_0001__000.png": [
+      "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/test_data_v3/starganv2/fake/starganv2__starganv2_63__63.jpg"
+    ]
+  },
+  "stats": {
+    "total_duplicate_groups": 136,
+    "total_duplicate_files": 613,
+    "average_group_size": 4.507352941176471,
+    "max_group_size": 92,
+    "group_size_distribution": [
+      13,
+      2,
+      2,
+      11,
+      92,
+      16,
+      7,
+      51,
+      4,
+      4,
+      4,
+      3,
+      2,
+      20,
+      20,
+      7,
+      4,
+      3,
+      2,
+      2,
+      4,
+      2,
+      16,
+      2,
+      2,
+      2,
+      2,
+      4,
+      2,
+      4,
+      11,
+      2,
+      2,
+      9,
+      8,
+      5,
+      3,
+      2,
+      2,
+      2,
+      2,
+      3,
+      2,
+      3,
+      2,
+      5,
+      3,
+      6,
+      3,
+      4,
+      2,
+      2,
+      2,
+      4,
+      2,
+      2,
+      2,
+      3,
+      2,
+      2,
+      3,
+      2,
+      4,
+      2,
+      3,
+      2,
+      2,
+      3,
+      3,
+      2,
+      2,
+      5,
+      3,
+      2,
+      5,
+      3,
+      2,
+      2,
+      2,
+      6,
+      4,
+      2,
+      2,
+      2,
+      4,
+      2,
+      3,
+      2,
+      2,
+      3,
+      3,
+      5,
+      2,
+      2,
+      3,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      4,
+      2,
+      2,
+      2,
+      2,
+      4,
+      3,
+      2,
+      7,
+      2,
+      2,
+      3,
+      5,
+      2,
+      3,
+      2,
+      2,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      2,
+      5,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  }
+}

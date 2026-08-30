@@ -1,0 +1,11 @@
+{
+  "total_images": 29988,
+  "real": 1177,
+  "fake": 28811,
+  "weak_samples": 5127,
+  "bad_quality_outliers": 5127,
+  "hard_sample_outliers": 0,
+  "face_detection_available": false,
+  "output_dir": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/experiments/results/data_quality",
+  "runtime_seconds": 133.1140034198761
+}
