@@ -1,0 +1,7 @@
+{
+  "total_images": 30691,
+  "duplicate_groups": 438,
+  "extra_images": 703,
+  "cross_split_groups": 247,
+  "table_path": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/experiments/results/eda_real_data/exact_duplicates_table.csv"
+}
