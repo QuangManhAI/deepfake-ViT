@@ -11,8 +11,9 @@ Thiết kế:
   - Giữ một bản best-state legacy `dinov3_finetuned.pt` cho các eval script cũ.
 
 Cách chạy:
-  .venv/bin/python src/training/train.py --train-csv data/splits/train_insight.csv \
-      --val-csv data/splits/val_insight.csv --test-csv data/splits/test_insight.csv
+  # CSV được lấy tự động từ data/protocol/protocol_config.json
+  .venv/bin/python src/training/train.py
+  .venv/bin/python src/training/train.py --class-weight
   .venv/bin/python src/training/train.py ... --resume            # tiếp tục từ _last.pt
   .venv/bin/python src/training/train.py ... --force-resume      # từ _best.pt
 """
@@ -140,9 +141,12 @@ def evaluate(model, loader, device, criterion=None):
 
 def main():
     parser = argparse.ArgumentParser(description="Fine-tune DINOv3")
-    parser.add_argument("--train-csv", required=True)
-    parser.add_argument("--val-csv", required=True)
-    parser.add_argument("--test-csv", required=True)
+    parser.add_argument("--train-csv", default=None,
+                        help="Training CSV; defaults to the selected protocol if not provided")
+    parser.add_argument("--val-csv", default=None,
+                        help="Validation CSV; defaults to the selected protocol if not provided")
+    parser.add_argument("--test-csv", default=None,
+                        help="Test CSV; defaults to the selected protocol if not provided")
     parser.add_argument("--model", default="experiments/checkpoints/weights/model.safetensors")
     parser.add_argument("--output-dir", default="experiments/results/checkpoints")
     parser.add_argument("--run-name", default="dinov3_finetuned")
@@ -168,6 +172,19 @@ def main():
     parser.add_argument("--force-resume", action="store_true",
                         help="resume from _best.pt with a fresh early-stopping budget")
     args = parser.parse_args()
+
+    # Fallback to the selected protocol CSVs if none are supplied
+    protocol_cfg_path = "data/protocol/protocol_config.json"
+    if not any([args.train_csv, args.val_csv, args.test_csv]):
+        if os.path.exists(protocol_cfg_path):
+            with open(protocol_cfg_path) as f:
+                cfg = json.load(f)
+            args.train_csv = cfg.get("train_csv")
+            args.val_csv = cfg.get("val_csv")
+            args.test_csv = cfg.get("test_csv")
+            print(f"Using protocol: {cfg.get('DATA_PROTOCOL')}")
+        else:
+            parser.error("--train-csv, --val-csv, --test-csv are required when data/protocol/protocol_config.json is missing")
 
     if args.device == "auto":
         device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"

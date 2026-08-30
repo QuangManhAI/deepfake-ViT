@@ -1,0 +1,35 @@
+{
+  "run_name": "baseline_a_standard",
+  "description": "DINOv3 ViT-S/16 fine-tune, real/fake binary, DF40 splits.",
+  "outputs": [
+    "checkpoints/<run>_best.pt",
+    "checkpoints/<run>_last.pt",
+    "metrics/<run>_history.jsonl",
+    "metrics/<run>_config.json"
+  ],
+  "args": {
+    "train_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/train.csv",
+    "val_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/val.csv",
+    "test_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/test.csv",
+    "model": "experiments/checkpoints/weights/model.safetensors",
+    "output_dir": "experiments/results/baseline",
+    "run_name": "baseline_a_standard",
+    "report": "experiments/results/baseline/metrics_baseline_a.json",
+    "epochs": 1,
+    "batch_size": 32,
+    "lr_backbone": 1e-05,
+    "lr_head": 0.001,
+    "freeze_backbone": false,
+    "max_train": 0,
+    "class_weight": false,
+    "patience": 0,
+    "seed": 42,
+    "device": "auto",
+    "num_workers": 2,
+    "amp": false,
+    "resume": false,
+    "force_resume": false
+  },
+  "seed": 42,
+  "model_params_M": 21.6
+}
