@@ -1,46 +1,67 @@
 {
-  "experiment_name": "dinov3_vit_domain_balanced_finetuning",
-  "timestamp": "20260822_133522",
-  "model_architecture": "DINOv3 ViT-Small/16 (22.0M parameters)",
-  "training_protocol": {
-    "epochs": 5,
-    "batch_size": 32,
-    "base_lr": 1e-05,
-    "head_lr": 0.001,
-    "llrd_decay_rate": 0.8,
-    "label_smoothing": 0.05,
-    "domain_balanced_dataset": true,
-    "train_samples": 50000,
-    "val_samples": 5000,
-    "test_samples": 4134
+  "best_val_acc": 0.8670520231213873,
+  "test": {
+    "loss": 0.5374280517631107,
+    "accuracy": 0.8657479439875528,
+    "precision": 0.9676042189854345,
+    "recall": 0.8902495378927912,
+    "f1": 0.9273164861612515,
+    "roc_auc": 0.707413172487596,
+    "confusion_matrix": [
+      [
+        42,
+        129
+      ],
+      [
+        475,
+        3853
+      ]
+    ]
   },
-  "best_validation_metrics": {
-    "best_val_auc": 0.9943550400000001
-  },
-  "held_out_test_metrics": {
-    "default_threshold_0.5": {
-      "accuracy": 0.9392839864537977,
-      "precision": 0.938647342995169,
-      "recall": 0.9400096758587324,
-      "specificity": 0.9385582970488631,
-      "f1_score": 0.9393280154701474,
-      "roc_auc": 0.9833367622479543,
-      "pr_auc": 0.9866312968412465,
-      "brier_score": 0.04715856093630345
-    },
-    "optimal_threshold": {
-      "threshold_tau": 0.58984375,
-      "accuracy": 0.9429124334784712,
-      "precision": 0.9507631708517972,
-      "recall": 0.9342041606192549,
-      "specificity": 0.9516207063376875,
-      "f1_score": 0.9424109321620303
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.7455789645512899,
+      "loss": 0.5407139083279504,
+      "accuracy": 0.8670520231213873,
+      "precision": 0.9636091724825523,
+      "recall": 0.8953219082908754,
+      "f1": 0.9282112845138055,
+      "roc_auc": 0.694631002007102,
+      "confusion_matrix": [
+        [
+          34,
+          146
+        ],
+        [
+          452,
+          3866
+        ]
+      ]
     }
+  ],
+  "args": {
+    "train_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/train.csv",
+    "val_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/val.csv",
+    "test_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/test.csv",
+    "model": "experiments/checkpoints/weights/model.safetensors",
+    "output_dir": "experiments/results/checkpoints",
+    "run_name": "dinov3_finetuned",
+    "report": "experiments/results/finetune_report.json",
+    "epochs": 1,
+    "batch_size": 4,
+    "lr_backbone": 1e-05,
+    "lr_head": 0.001,
+    "freeze_backbone": false,
+    "max_train": 10,
+    "class_weight": false,
+    "patience": 0,
+    "seed": 42,
+    "device": "auto",
+    "num_workers": 2,
+    "amp": false,
+    "resume": false,
+    "force_resume": false
   },
-  "artifacts": {
-    "best_checkpoint": "/workspace/hoangtuan/deepfake-ViT/experiments/checkpoints/dinov3_vit_balanced_best.pt",
-    "last_checkpoint": "/workspace/hoangtuan/deepfake-ViT/experiments/checkpoints/dinov3_vit_balanced_last.pt",
-    "test_predictions_csv": "/workspace/hoangtuan/deepfake-ViT/experiments/results/test_balanced_predictions.csv",
-    "plots_directory": "/workspace/hoangtuan/deepfake-ViT/experiments/plots"
-  }
+  "run_dir": "experiments/results/checkpoints/20260830_154541_dinov3_finetuned"
 }
