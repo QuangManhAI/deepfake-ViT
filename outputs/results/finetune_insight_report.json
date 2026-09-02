@@ -1,0 +1,131 @@
+{
+  "best_val_acc": 0.9648976180526536,
+  "test": {
+    "accuracy": 0.963003355704698,
+    "precision": 0.963392107472712,
+    "recall": 0.9625838926174497,
+    "f1": 0.9629878304657994,
+    "roc_auc": 0.9942176591144544,
+    "confusion_matrix": [
+      [
+        5742,
+        218
+      ],
+      [
+        223,
+        5737
+      ]
+    ]
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.34618444614668553,
+      "accuracy": 0.8848725449226912,
+      "precision": 0.9559405940594059,
+      "recall": 0.8069368992895947,
+      "f1": 0.8751416270111035,
+      "roc_auc": 0.9743965239190989,
+      "confusion_matrix": [
+        [
+          2304,
+          89
+        ],
+        [
+          462,
+          1931
+        ]
+      ]
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.16842874069680946,
+      "accuracy": 0.9389887170915169,
+      "precision": 0.9196963643627647,
+      "recall": 0.9619724195570414,
+      "f1": 0.940359477124183,
+      "roc_auc": 0.9874409079693193,
+      "confusion_matrix": [
+        [
+          2192,
+          201
+        ],
+        [
+          91,
+          2302
+        ]
+      ]
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.10741855046372512,
+      "accuracy": 0.9523610530714585,
+      "precision": 0.944558521560575,
+      "recall": 0.9611366485582951,
+      "f1": 0.9527754763877382,
+      "roc_auc": 0.9914213852249447,
+      "confusion_matrix": [
+        [
+          2258,
+          135
+        ],
+        [
+          93,
+          2300
+        ]
+      ]
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.0667519645678693,
+      "accuracy": 0.958629335562056,
+      "precision": 0.9492427343430209,
+      "recall": 0.9690764730463853,
+      "f1": 0.9590570719602978,
+      "roc_auc": 0.9937734536708527,
+      "confusion_matrix": [
+        [
+          2269,
+          124
+        ],
+        [
+          74,
+          2319
+        ]
+      ]
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.045651617620077675,
+      "accuracy": 0.9648976180526536,
+      "precision": 0.9641218189403421,
+      "recall": 0.9657333890513999,
+      "f1": 0.9649269311064718,
+      "roc_auc": 0.9945687109061829,
+      "confusion_matrix": [
+        [
+          2307,
+          86
+        ],
+        [
+          82,
+          2311
+        ]
+      ]
+    }
+  ],
+  "args": {
+    "train_csv": "data/splits/train_insight.csv",
+    "val_csv": "data/splits/val_insight.csv",
+    "test_csv": "data/splits/test_insight.csv",
+    "model": "models/model.safetensors",
+    "output_dir": "outputs/checkpoints",
+    "report": "outputs/results/finetune_insight_report.json",
+    "epochs": 5,
+    "batch_size": 32,
+    "lr_backbone": 1e-05,
+    "lr_head": 0.001,
+    "seed": 42,
+    "device": "auto"
+  }
+}

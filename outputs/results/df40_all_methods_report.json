@@ -1,0 +1,122 @@
+{
+  "config": {
+    "root": "data/df40_subset",
+    "manifest": "data/df40_subset/manifest.csv",
+    "train_ratio": 0.7,
+    "batch_size": 16,
+    "device": "auto",
+    "no_cache": false,
+    "lr_max_train": 20000,
+    "output": "outputs/results/df40_all_methods_report.json"
+  },
+  "split": {
+    "train": 8500,
+    "test": 3270
+  },
+  "models": {
+    "vit": {
+      "name": "DINOv3 ViT-S/16 Plus",
+      "params_M": null,
+      "extract_time_s": 154.9,
+      "metrics": {
+        "accuracy": 0.8530762167125804,
+        "precision": 0.8311688311688312,
+        "recall": 0.8789013732833958,
+        "f1": 0.8543689320388349,
+        "roc_auc": 0.9262322247340972
+      },
+      "mean_detection_rate": 0.8689,
+      "real_acc": 0.8282,
+      "per_method": {
+        "CollabDiff": {
+          "n": 222,
+          "detection_rate": 0.9324324324324325
+        },
+        "MidJourney": {
+          "n": 195,
+          "detection_rate": 0.9794871794871794
+        },
+        "deepfacelab": {
+          "n": 109,
+          "detection_rate": 0.6788990825688074
+        },
+        "heygen": {
+          "n": 192,
+          "detection_rate": 0.9270833333333334
+        },
+        "real": {
+          "n": 1665,
+          "acc_real": 0.8282282282282283
+        },
+        "stargan": {
+          "n": 223,
+          "detection_rate": 0.8161434977578476
+        },
+        "starganv2": {
+          "n": 224,
+          "detection_rate": 0.71875
+        },
+        "styleclip": {
+          "n": 223,
+          "detection_rate": 0.9730941704035875
+        },
+        "whichfaceisreal": {
+          "n": 214,
+          "detection_rate": 0.9252336448598131
+        }
+      }
+    },
+    "cnn": {
+      "name": "DINOv3 ConvNeXt-Tiny",
+      "params_M": null,
+      "extract_time_s": 139.9,
+      "metrics": {
+        "accuracy": 0.8803183348637894,
+        "precision": 0.8497978047371462,
+        "recall": 0.918227215980025,
+        "f1": 0.8826882688268827,
+        "roc_auc": 0.9429328204609104
+      },
+      "mean_detection_rate": 0.9177,
+      "real_acc": 0.8438,
+      "per_method": {
+        "CollabDiff": {
+          "n": 222,
+          "detection_rate": 0.954954954954955
+        },
+        "MidJourney": {
+          "n": 195,
+          "detection_rate": 0.9897435897435898
+        },
+        "deepfacelab": {
+          "n": 109,
+          "detection_rate": 0.8807339449541285
+        },
+        "heygen": {
+          "n": 192,
+          "detection_rate": 0.96875
+        },
+        "real": {
+          "n": 1665,
+          "acc_real": 0.8438438438438438
+        },
+        "stargan": {
+          "n": 223,
+          "detection_rate": 0.8565022421524664
+        },
+        "starganv2": {
+          "n": 224,
+          "detection_rate": 0.8392857142857143
+        },
+        "styleclip": {
+          "n": 223,
+          "detection_rate": 0.9730941704035875
+        },
+        "whichfaceisreal": {
+          "n": 214,
+          "detection_rate": 0.8785046728971962
+        }
+      }
+    }
+  }
+}

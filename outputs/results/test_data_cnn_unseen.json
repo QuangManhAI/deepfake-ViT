@@ -1,0 +1,73 @@
+{
+  "model": "cnn",
+  "tag": "test_data",
+  "protocol": "unseen-identity",
+  "n_keys": 6352,
+  "n_train": 16413,
+  "n_test": 7586,
+  "paired_keys": 108,
+  "paired_images": 7115,
+  "metrics": {
+    "accuracy": 0.9633535460058001,
+    "precision": 0.9458077709611452,
+    "recall": 0.9824747742963357,
+    "f1": 0.963792654337067,
+    "roc_auc": 0.9905134949520787
+  },
+  "real_acc": 0.9445026178010472,
+  "fake_detection": 0.9824747742963357,
+  "per_method": {
+    "StyleGAN2": {
+      "n": 287,
+      "detection_rate": 1.0
+    },
+    "VQGAN": {
+      "n": 296,
+      "detection_rate": 0.9966216216216216
+    },
+    "blendface": {
+      "n": 351,
+      "detection_rate": 0.9829059829059829
+    },
+    "ddim": {
+      "n": 320,
+      "detection_rate": 0.978125
+    },
+    "faceswap": {
+      "n": 326,
+      "detection_rate": 0.9969325153374233
+    },
+    "fomm": {
+      "n": 328,
+      "detection_rate": 1.0
+    },
+    "real": {
+      "n": 3820,
+      "acc_real": 0.9445026178010472
+    },
+    "sadtalker": {
+      "n": 257,
+      "detection_rate": 1.0
+    },
+    "simswap": {
+      "n": 320,
+      "detection_rate": 0.971875
+    },
+    "stargan": {
+      "n": 313,
+      "detection_rate": 0.9233226837060703
+    },
+    "starganv2": {
+      "n": 309,
+      "detection_rate": 0.9741100323624595
+    },
+    "styleclip": {
+      "n": 307,
+      "detection_rate": 0.9771986970684039
+    },
+    "wav2lip": {
+      "n": 352,
+      "detection_rate": 0.9914772727272727
+    }
+  }
+}
