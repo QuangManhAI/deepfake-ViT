@@ -1,0 +1,70 @@
+{
+  "config": {
+    "img_size": 256,
+    "batch_size": 64,
+    "seed": 42,
+    "device": "mps"
+  },
+  "data": {
+    "train_csv": "data/splits/train_insight.csv",
+    "test_csv": "data/splits/test_insight.csv",
+    "train_samples": 43294,
+    "test_samples": 11920
+  },
+  "models": {
+    "vit": {
+      "name": "DINOv3 ViT-S/16",
+      "params_M": 21.6,
+      "feature_dim": 384,
+      "extract_time_s": 492.7,
+      "metrics": {
+        "accuracy": 0.6735738255033556,
+        "precision": 0.6766262591770531,
+        "recall": 0.6649328859060403,
+        "f1": 0.6707286113226707,
+        "roc_auc": 0.7377618125309671,
+        "confusion_matrix": [
+          [
+            4066,
+            1894
+          ],
+          [
+            1997,
+            3963
+          ]
+        ],
+        "tn": 4066,
+        "fp": 1894,
+        "fn": 1997,
+        "tp": 3963
+      }
+    },
+    "cnn": {
+      "name": "DINOv3 ConvNeXt-Tiny",
+      "params_M": 27.8,
+      "feature_dim": 768,
+      "extract_time_s": 526.5,
+      "metrics": {
+        "accuracy": 0.7447147651006711,
+        "precision": 0.7396090027928371,
+        "recall": 0.7553691275167785,
+        "f1": 0.7474059931933261,
+        "roc_auc": 0.8201971194991217,
+        "confusion_matrix": [
+          [
+            4375,
+            1585
+          ],
+          [
+            1458,
+            4502
+          ]
+        ],
+        "tn": 4375,
+        "fp": 1585,
+        "fn": 1458,
+        "tp": 4502
+      }
+    }
+  }
+}

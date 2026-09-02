@@ -1,0 +1,96 @@
+{
+  "config": {
+    "train_ratio": 0.7,
+    "cap_train_real": 3000,
+    "cap_train_fake": 1500,
+    "cap_test_real": 1500,
+    "cap_test_fake": 750,
+    "device": "auto"
+  },
+  "split": {
+    "train": {
+      "real": 3000,
+      "fake": 3000
+    },
+    "test": {
+      "real": 1500,
+      "fake": 1500
+    }
+  },
+  "models": {
+    "vit": {
+      "name": "DINOv3 ViT-S/16 Plus",
+      "params_M": 28.7,
+      "extract_time_s": 98.2,
+      "metrics": {
+        "accuracy": 0.8836666666666667,
+        "precision": 0.8829008649367931,
+        "recall": 0.8846666666666667,
+        "f1": 0.8837828837828838,
+        "roc_auc": 0.9549942222222222,
+        "detection_rate_fake": 0.8846666666666667,
+        "cm": [
+          [
+            1324,
+            176
+          ],
+          [
+            173,
+            1327
+          ]
+        ]
+      },
+      "per_source": {
+        "blendface": {
+          "n": 750,
+          "detection_rate": 0.7746666666666666
+        },
+        "ddim": {
+          "n": 750,
+          "detection_rate": 0.9946666666666667
+        },
+        "real": {
+          "n": 1500,
+          "acc": 0.8826666666666667
+        }
+      }
+    },
+    "cnn": {
+      "name": "DINOv3 ConvNeXt-Tiny",
+      "params_M": 27.8,
+      "extract_time_s": 85.8,
+      "metrics": {
+        "accuracy": 0.7836666666666666,
+        "precision": 0.7812293456708526,
+        "recall": 0.788,
+        "f1": 0.7846000663790242,
+        "roc_auc": 0.8639342222222223,
+        "detection_rate_fake": 0.788,
+        "cm": [
+          [
+            1169,
+            331
+          ],
+          [
+            318,
+            1182
+          ]
+        ]
+      },
+      "per_source": {
+        "blendface": {
+          "n": 750,
+          "detection_rate": 0.592
+        },
+        "ddim": {
+          "n": 750,
+          "detection_rate": 0.984
+        },
+        "real": {
+          "n": 1500,
+          "acc": 0.7793333333333333
+        }
+      }
+    }
+  }
+}

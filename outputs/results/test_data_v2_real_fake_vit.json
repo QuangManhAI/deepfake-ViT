@@ -1,0 +1,177 @@
+{
+  "model": "vit",
+  "tag": "test_data_v2",
+  "protocol": "identity-disjoint",
+  "real": {
+    "n": 362,
+    "real_acc": 0.8646,
+    "fpr": 0.1354,
+    "per_domain": {
+      "cdc": {
+        "n": 44,
+        "real_acc": 0.9773
+      },
+      "ffc": {
+        "n": 318,
+        "real_acc": 0.8491
+      }
+    },
+    "by_id_type": {
+      "Celeb-real (idN_M)": {
+        "n": 26,
+        "real_acc": 0.9615
+      },
+      "YouTube-real (5-số)": {
+        "n": 18,
+        "real_acc": 1.0
+      }
+    }
+  },
+  "fake": {
+    "n": 1539,
+    "detection_rate": 0.9142,
+    "per_domain": {
+      "cdc": {
+        "n": 81,
+        "detection_rate": 0.963
+      },
+      "efs": {
+        "n": 567,
+        "detection_rate": 0.9894
+      },
+      "ffc": {
+        "n": 188,
+        "detection_rate": 0.4628
+      },
+      "oth": {
+        "n": 703,
+        "detection_rate": 0.9687
+      }
+    },
+    "per_method": {
+      "StyleGAN2": {
+        "n": 198,
+        "domain": "efs",
+        "detection_rate": 0.9949
+      },
+      "VQGAN": {
+        "n": 182,
+        "domain": "efs",
+        "detection_rate": 0.9835
+      },
+      "blendface": {
+        "n": 170,
+        "domain": "oth",
+        "detection_rate": 0.8
+      },
+      "ddim": {
+        "n": 187,
+        "domain": "efs",
+        "detection_rate": 0.9893
+      },
+      "faceswap": {
+        "n": 190,
+        "domain": "oth",
+        "detection_rate": 0.8158
+      },
+      "fomm": {
+        "n": 169,
+        "domain": "oth",
+        "detection_rate": 0.9586
+      },
+      "sadtalker": {
+        "n": 146,
+        "domain": "oth",
+        "detection_rate": 0.9795
+      },
+      "simswap": {
+        "n": 177,
+        "domain": "ffc",
+        "detection_rate": 0.7966
+      },
+      "wav2lip": {
+        "n": 120,
+        "domain": "cdc",
+        "detection_rate": 0.9083
+      }
+    },
+    "per_method_domain": {
+      "StyleGAN2/efs": {
+        "n": 198,
+        "detection_rate": 0.9949
+      },
+      "VQGAN/efs": {
+        "n": 182,
+        "detection_rate": 0.9835
+      },
+      "blendface/cdc": {
+        "n": 14,
+        "detection_rate": 1.0
+      },
+      "blendface/ffc": {
+        "n": 47,
+        "detection_rate": 0.3617
+      },
+      "blendface/oth": {
+        "n": 109,
+        "detection_rate": 0.9633
+      },
+      "ddim/efs": {
+        "n": 187,
+        "detection_rate": 0.9893
+      },
+      "faceswap/cdc": {
+        "n": 18,
+        "detection_rate": 0.9444
+      },
+      "faceswap/ffc": {
+        "n": 47,
+        "detection_rate": 0.2766
+      },
+      "faceswap/oth": {
+        "n": 125,
+        "detection_rate": 1.0
+      },
+      "fomm/cdc": {
+        "n": 16,
+        "detection_rate": 1.0
+      },
+      "fomm/ffc": {
+        "n": 47,
+        "detection_rate": 0.8511
+      },
+      "fomm/oth": {
+        "n": 106,
+        "detection_rate": 1.0
+      },
+      "sadtalker/oth": {
+        "n": 146,
+        "detection_rate": 0.9795
+      },
+      "simswap/cdc": {
+        "n": 17,
+        "detection_rate": 1.0
+      },
+      "simswap/ffc": {
+        "n": 47,
+        "detection_rate": 0.3617
+      },
+      "simswap/oth": {
+        "n": 113,
+        "detection_rate": 0.9469
+      },
+      "wav2lip/cdc": {
+        "n": 16,
+        "detection_rate": 0.875
+      },
+      "wav2lip/oth": {
+        "n": 104,
+        "detection_rate": 0.9135
+      }
+    },
+    "paired_detection": {
+      "n": 269,
+      "detection_rate": 0.6134
+    }
+  }
+}

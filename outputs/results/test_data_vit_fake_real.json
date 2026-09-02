@@ -1,0 +1,67 @@
+{
+  "model": "vit",
+  "tag": "test_data",
+  "fake": {
+    "n": 3505,
+    "accuracy": 0.9669044222539229,
+    "precision": 1.0,
+    "recall": 0.9669044222539229,
+    "f1": 0.9831737742964897,
+    "per_method": {
+      "StyleGAN2": {
+        "n": 228,
+        "detection_rate": 1.0
+      },
+      "VQGAN": {
+        "n": 312,
+        "detection_rate": 0.9903846153846154
+      },
+      "blendface": {
+        "n": 285,
+        "detection_rate": 0.9964912280701754
+      },
+      "ddim": {
+        "n": 315,
+        "detection_rate": 0.9746031746031746
+      },
+      "faceswap": {
+        "n": 295,
+        "detection_rate": 0.9830508474576272
+      },
+      "fomm": {
+        "n": 277,
+        "detection_rate": 0.9963898916967509
+      },
+      "sadtalker": {
+        "n": 312,
+        "detection_rate": 1.0
+      },
+      "simswap": {
+        "n": 295,
+        "detection_rate": 0.9932203389830508
+      },
+      "stargan": {
+        "n": 315,
+        "detection_rate": 0.8476190476190476
+      },
+      "starganv2": {
+        "n": 276,
+        "detection_rate": 0.8514492753623188
+      },
+      "styleclip": {
+        "n": 315,
+        "detection_rate": 0.9904761904761905
+      },
+      "wav2lip": {
+        "n": 280,
+        "detection_rate": 0.9857142857142858
+      }
+    }
+  },
+  "real": {
+    "n": 3489,
+    "real_accuracy": 0.9481226712525079,
+    "fpr": 0.05187732874749212
+  },
+  "overall_auc": 0.9935906981346306
+}

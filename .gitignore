@@ -17,7 +17,7 @@ env/
 *.zip
 *.log
 *.csv
-
+/data
 # Result/consolidated JSONs are tracked (results are repo artifacts)
 !experiments/results/**/*.json
 !outputs/eval/*.json
@@ -27,6 +27,8 @@ env/
 data/processed/*
 !data/processed/.gitkeep
 data/raw/DF40/
+data/train_images/
+data/deepfake_test_suite_full_50k/
 
 # Experiments: run state + checkpoints/weights are not committed
 experiments/runs/*
