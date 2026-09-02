@@ -227,6 +227,57 @@ ConvNeXt** để học lại khả năng phân biệt real, cô lập biến so 
 
 ---
 
+### 7.1 Backbone **pretrained đông cứng** (linear probe) — feature đã "hiểu" deepfake chưa?
+
+Hai backbone đúng phiên bản *chưa finetune* (nguồn weight như lúc khởi tạo A0/A1 và
+ConvNeXt finetune), không có head → gán head bằng **linear probe**: đông cứng backbone,
+extract feature toàn bộ **train 123.582**, L2-normalize từng ảnh, fit
+`LogisticRegression(class_weight='balanced')`, eval đúng **cùng test cân bằng 21.446**.
+Tham số gần nhau (ViT-S/16+ 28,7M / ConvNeXt 27,8M) → so sánh công bằng:
+
+| Model | acc% | prec | rec | f1 | AUC | real_acc | FP | FN |
+|---|---|---|---|---|---|---|---|---|
+| **Pretr_Plus_v3** (ViT probe, đông cứng) | 89,47 | 88,86 | 90,25 | 89,55 | 0,9624 | 88,69 | 1213 | 1046 |
+| **Pretr_ConvNeXt_v3** (ConvNeXt probe, đông cứng) | 87,77 | 89,62 | 85,44 | 87,48 | 0,9553 | 90,11 | 1061 | 1561 |
+| ViT-Plus **A0** (sampler cũ) | 97,91 | 98,05 | 97,77 | 97,91 | 0,9979 | 0,9805 | 209 | 239 |
+| ViT-Plus **A1** (weak_family) | 98,47 | 97,94 | 99,02 | 98,48 | 0,9986 | 0,9792 | 223 | 105 |
+| ConvNeXt (tham chiếu) | 99,22 | 99,79 | 98,64 | 99,21 | 0,9998 | 0,9979 | 22 | 146 |
+
+![Tổng thể 5 model](figures/session2/fig09_models_overall.png)
+
+![Det-rate theo từng phương thức](figures/session2/fig10_pretr_permethod.png)
+
+![Theo 4 nhóm deepfake & nhóm yếu](figures/session2/fig11_pretr_family.png)
+
+![Real theo nguồn](figures/session2/fig12_pretr_realsource.png)
+
+**Đọc kết quả — vai trò của finetune:**
+
+- **Feature pretrained đã phân biệt được đáng kể** (AUC ≈ 0,96 cho cả hai) nhưng kém xa
+  finetune: gap acc khoảng **9–11 điểm** (89,5 → 98,5 với ViT; 87,8 → 99,2 với ConvNeXt).
+  Toàn bộ lợi ích của finetune nằm ở việc **tinh chỉnh feature riêng cho bài**, không phải
+  chỉ gắn head.
+- **Điểm yếu trùng đúng mục tiêu A1:** hai probe yếu nhất ở **Face Swap** (ConvNeXt probe
+  chỉ 74,0%; ViT probe 85,6%) và cụm **8 method yếu** (74,6% / 83,7%) — đúng nhóm mà
+  sampler A1 nhắm tới → dữ liệu thật cho thấy nhóm này khó với chính feature học sẵn.
+  Method tệ nhất từng probe: **heygen** (11 ảnh, n nhỏ) và **MidJourney** (ViT 45,5%),
+  **wav2lip / simswap / deepfacelab** (ConvNeXt ≈ 61–64%).
+- **Hướng thiên vị khác nhau:** ViT probe giữ fake tốt hơn (rec 90,3 vs 85,4) nhưng thả
+  real nhiều hơn (real_acc 88,7 vs 90,1); ConvNeXt probe ngược lại — giữ real tốt, sót fake
+  nhiều. Với ConvNeXt, probe train acc (0,8138) cao hơn ViT (0,8067) mà test lại thấp hơn
+  → feature ConvNeXt ít khái quát sang miền deepfake hơn khi chưa finetune.
+- **Face Synthesis gần như "free":** cả hai probe đã đạt ≈ 95% mà không cần finetune → các
+  method tổng hợp khuôn mặt (StyleGAN, diffusion...) lệch phân phối rõ so với ảnh thật.
+  Ngược lại **Face Editing chỉ 86–90%** khi probe nhưng lên ≈ 99% khi finetune → các biến
+  đổi nhẹ về style cần feature được tinh chỉnh mới bắt được.
+- **Real theo nguồn** (fig12): cả hai probe thả ~11–13% real **ff++_real** (frame-video
+  nén mạnh) nhiều hơn ffhq — đúng nguồn khó đã biết; finetune khép gap này gần như triệt để.
+
+**Kết luận mở rộng:** so sánh cùng phép đo (cùng test, cùng thủ tục) chứng minh phần tăng
+điểm của A0/A1/ConvNeXt-fin là từ **finetune feature**, không phải artifact của việc chọn
+test — và định vị đúng chỗ finetune còn thiếu (8 method yếu ở A1, real ở ViT) là mục tiêu
+chính đáng cho A2 (KD từ ConvNeXt).
+
 ## 8. Kết luận
 
 1. **Bộ dữ liệu mới khác hẳn DF40 session-1:** cân bằng hơn (train 1:3,2; test **1:1**),
