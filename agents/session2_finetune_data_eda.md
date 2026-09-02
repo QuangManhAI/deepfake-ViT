@@ -247,6 +247,11 @@ Tham số gần nhau (ViT-S/16+ 28,7M / ConvNeXt 27,8M) → so sánh công bằn
 
 ![Det-rate theo từng phương thức](figures/session2/fig10_pretr_permethod.png)
 
+**Xem từng model riêng + so sánh cả 4** (2 ô trên = pretrained probe · 2 ô dưới =
+finetune tốt nhất A1 & ConvNeXt · ô cuối = so sánh chung; `*` = 8 method yếu của A1):
+
+![Det-rate per-method từng model + so sánh cả 4](figures/session2/fig13_permodel_detrate.png)
+
 ![Theo 4 nhóm deepfake & nhóm yếu](figures/session2/fig11_pretr_family.png)
 
 ![Real theo nguồn](figures/session2/fig12_pretr_realsource.png)
