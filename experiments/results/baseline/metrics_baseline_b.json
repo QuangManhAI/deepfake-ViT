@@ -1,0 +1,67 @@
+{
+  "best_val_acc": 0.9515340151178302,
+  "test": {
+    "loss": 0.22289268306872628,
+    "accuracy": 0.9624360969104245,
+    "precision": 0.9933570581257414,
+    "recall": 0.9674214417744916,
+    "f1": 0.9802177221116704,
+    "roc_auc": 0.9783390623817708,
+    "confusion_matrix": [
+      [
+        143,
+        28
+      ],
+      [
+        141,
+        4187
+      ]
+    ]
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.32526398215885843,
+      "loss": 0.24643067004330826,
+      "accuracy": 0.9515340151178302,
+      "precision": 0.9923150816522575,
+      "recall": 0.9569245020842982,
+      "f1": 0.9742985145012969,
+      "roc_auc": 0.9703540733878854,
+      "confusion_matrix": [
+        [
+          148,
+          32
+        ],
+        [
+          186,
+          4132
+        ]
+      ]
+    }
+  ],
+  "args": {
+    "train_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/train.csv",
+    "val_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/val.csv",
+    "test_csv": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol/test.csv",
+    "model": "experiments/checkpoints/weights/model.safetensors",
+    "output_dir": "experiments/results/baseline",
+    "run_name": "baseline_b_weighted",
+    "report": "experiments/results/baseline/metrics_baseline_b.json",
+    "epochs": 1,
+    "batch_size": 32,
+    "lr_backbone": 1e-05,
+    "lr_head": 0.001,
+    "freeze_backbone": false,
+    "max_train": 0,
+    "class_weight": true,
+    "patience": 0,
+    "seed": 42,
+    "device": "auto",
+    "num_workers": 2,
+    "amp": false,
+    "resume": false,
+    "force_resume": false
+  },
+  "run_dir": "experiments/results/baseline/20260830_161435_baseline_b_weighted"
+}

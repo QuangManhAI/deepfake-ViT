@@ -73,3 +73,12 @@ scratch/*
 .vscode/
 .DS_Store
 
+
+# Local model checkpoints / large training weights
+experiments/results/baseline/*.pt
+experiments/results/baseline/*/checkpoints/*.pt
+experiments/results/checkpoints/**/*.pt
+experiments/results/checkpoints/**/*.safetensors
+
+# Local training checkpoint directories
+experiments/results/checkpoints/

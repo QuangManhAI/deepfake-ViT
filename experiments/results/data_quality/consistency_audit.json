@@ -1,0 +1,27 @@
+{
+  "manifest_rows": 30691,
+  "clean_split_total": 29988,
+  "removed_reassigned": 703,
+  "arithmetic_check": true,
+  "exact_leakage": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "identity_leakage": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "video_leakage": {
+    "train_val": 1509,
+    "train_test": 1542,
+    "val_test": 930
+  },
+  "near_duplicate_groups": 5340,
+  "cross_split_near_groups": 4215,
+  "max_js_divergence": 0.0584959948350836,
+  "distribution_shift_conclusion": "No substantial distribution shift was detected for the evaluated metrics.",
+  "sample_quality_rows": 29988,
+  "data_matches": true
+}
