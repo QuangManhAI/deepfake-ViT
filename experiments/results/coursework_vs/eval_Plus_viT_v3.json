@@ -1,0 +1,15 @@
+{
+  "ckpt": "/Users/quangmanh/Project/deepfake/outputs/finetune/plus_v3_best.pt",
+  "n_params_M": 28.7,
+  "accuracy": 0.9791103236034692,
+  "precision": 0.9804545029458525,
+  "recall": 0.9777114613447729,
+  "f1": 0.9790810608890549,
+  "roc_auc": 0.9979457871451285,
+  "TN": 10514,
+  "FP": 209,
+  "FN": 239,
+  "TP": 10484,
+  "real_acc": 0.9805091858621654,
+  "fake_recall": 0.9777114613447729
+}

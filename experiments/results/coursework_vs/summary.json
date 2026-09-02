@@ -1,0 +1,58 @@
+{
+  "test": "/Users/quangmanh/Project/deepfake/data/deepfake_test_suite_full_50k/splits/test_coursework_44methods_balanced_zero_leakage.csv",
+  "n": 21446,
+  "per_ckpt": {
+    "Plus_viT_v3": {
+      "ckpt": "/Users/quangmanh/Project/deepfake/outputs/finetune/plus_v3_best.pt",
+      "n_params_M": 28.7,
+      "accuracy": 0.9791103236034692,
+      "precision": 0.9804545029458525,
+      "recall": 0.9777114613447729,
+      "f1": 0.9790810608890549,
+      "roc_auc": 0.9979457871451285,
+      "TN": 10514,
+      "FP": 209,
+      "FN": 239,
+      "TP": 10484,
+      "real_acc": 0.9805091858621654,
+      "fake_recall": 0.9777114613447729
+    },
+    "plus_v3_s1": {
+      "ckpt": "/Users/quangmanh/Project/deepfake/outputs/finetune/plus_v3_s1_best.pt",
+      "n_params_M": 28.7,
+      "accuracy": 0.9847057726382542,
+      "precision": 0.9794299418872797,
+      "recall": 0.9902079641891262,
+      "f1": 0.9847894639213504,
+      "roc_auc": 0.998595632566696,
+      "TN": 10500,
+      "FP": 223,
+      "FN": 105,
+      "TP": 10618,
+      "real_acc": 0.9792035810873823,
+      "fake_recall": 0.9902079641891262
+    }
+  },
+  "weak_groups": {
+    "faceswap": {
+      "Plus_viT_v3": 0.9366666666666666,
+      "plus_v3_s1": 0.96
+    },
+    "sadtalker": {
+      "Plus_viT_v3": 0.9433333333333334,
+      "plus_v3_s1": 0.9833333333333333
+    },
+    "wav2lip": {
+      "Plus_viT_v3": 0.9133333333333333,
+      "plus_v3_s1": 0.9833333333333333
+    },
+    "deepfacelab": {
+      "Plus_viT_v3": 0.92,
+      "plus_v3_s1": 1.0
+    },
+    "fsgan": {
+      "Plus_viT_v3": 0.94,
+      "plus_v3_s1": 0.97
+    }
+  }
+}
