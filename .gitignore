@@ -37,8 +37,7 @@ experiments/checkpoints/weights/*
 !experiments/checkpoints/weights/.gitkeep
 experiments/results/features/
 
-*.png
-*.jpg 
+*.jpg
 # Model weights
 *.pt
 *.pth
