@@ -1,0 +1,43 @@
+{
+  "test": "/Users/quangmanh/Project/deepfake/data/deepfake_test_suite_full_50k/splits/test_coursework_44methods_balanced_zero_leakage.csv",
+  "n": null,
+  "per_ckpt": {
+    "Pretr_Plus_v3": {
+      "ckpt": "/Users/quangmanh/Project/deepfake/models/dinov3-vits16plus-pretrain-lvd1689m/model-3.safetensors",
+      "n_params_backbone_M": 28.7,
+      "probe": "LogisticReg balanced, feature L2-norm, train full 123,582",
+      "train_acc": 0.8067,
+      "accuracy": 0.8946656719201715,
+      "precision": 0.8886134067952249,
+      "recall": 0.9024526718269141,
+      "f1": 0.8954795724795263,
+      "roc_auc": 0.9624040493942355,
+      "TN": 9510,
+      "FP": 1213,
+      "FN": 1046,
+      "TP": 9677,
+      "real_acc": 0.8868786720134291,
+      "fake_recall": 0.9024526718269141,
+      "elapsed_min": 24.6
+    },
+    "Pretr_ConvNeXt_v3": {
+      "ckpt": "/Users/quangmanh/Project/deepfake/models/dinov3_next_cnn/model-2.safetensors",
+      "n_params_backbone_M": 27.8,
+      "probe": "LogisticReg balanced, feature L2-norm, train full 123,582",
+      "train_acc": 0.8138,
+      "accuracy": 0.8777394385899469,
+      "precision": 0.8962144184681601,
+      "recall": 0.8544250676116758,
+      "f1": 0.874820968203953,
+      "roc_auc": 0.9553204986115784,
+      "TN": 9662,
+      "FP": 1061,
+      "FN": 1561,
+      "TP": 9162,
+      "real_acc": 0.9010538095682179,
+      "fake_recall": 0.8544250676116758,
+      "elapsed_min": 21.2
+    }
+  },
+  "note": "linear probe frozen backbone; train=finetune_plus_train full; balanced test 21,446"
+}

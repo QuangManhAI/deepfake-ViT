@@ -1,0 +1,18 @@
+{
+  "ckpt": "/Users/quangmanh/Project/deepfake/models/dinov3-vits16plus-pretrain-lvd1689m/model-3.safetensors",
+  "n_params_backbone_M": 28.7,
+  "probe": "LogisticReg balanced, feature L2-norm, train full 123,582",
+  "train_acc": 0.8067,
+  "accuracy": 0.8946656719201715,
+  "precision": 0.8886134067952249,
+  "recall": 0.9024526718269141,
+  "f1": 0.8954795724795263,
+  "roc_auc": 0.9624040493942355,
+  "TN": 9510,
+  "FP": 1213,
+  "FN": 1046,
+  "TP": 9677,
+  "real_acc": 0.8868786720134291,
+  "fake_recall": 0.9024526718269141,
+  "elapsed_min": 24.6
+}
