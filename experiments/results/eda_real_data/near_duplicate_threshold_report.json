@@ -1,0 +1,32 @@
+{
+  "total_groups": 5340,
+  "total_images_in_groups": 260435,
+  "total_cross_split_groups": 4215,
+  "threshold_definitions": {
+    "strong": "max_hamming <= 5",
+    "moderate": "6 <= max_hamming <= 8",
+    "weak": "9 <= max_hamming <= 12",
+    "false_positive": "max_hamming > 12"
+  },
+  "strong": {
+    "groups": 254,
+    "images": 712,
+    "cross_split_groups": 63
+  },
+  "moderate": {
+    "groups": 1539,
+    "images": 6722,
+    "cross_split_groups": 888
+  },
+  "weak": {
+    "groups": 1284,
+    "images": 15084,
+    "cross_split_groups": 1097
+  },
+  "false_positive": {
+    "groups": 2263,
+    "images": 237917,
+    "cross_split_groups": 2167
+  },
+  "recommended_threshold": "5 for strong near-duplicate detection; 8 for broad recall; above 10 is likely false positive"
+}
