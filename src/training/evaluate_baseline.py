@@ -290,6 +290,18 @@ def evaluate(run_dir, output_dir, device="mps", batch_size=32, num_workers=0):
     df.loc[(df["label"] == 1) & (df["predicted_label"] == 0), "error_type"] = "FALSE_NEGATIVE"
     df.to_csv(output_dir / "test_predictions.csv", index=False)
 
+    # Keep one repository-level handoff for notebook consumers. The values are
+    # the same canonical test predictions; this does not create a new split.
+    handoff = df.copy()
+    handoff["true_label"] = handoff["label"]
+    handoff["pred"] = handoff["predicted_label"]
+    handoff["prob_fake"] = handoff["probability_fake"]
+    handoff["target_in_csv"] = handoff["true_label"]
+    handoff["is_error"] = (handoff["pred"] != handoff["true_label"])
+    handoff["true_error"] = handoff["is_error"]
+    handoff_path = PROJECT_ROOT / "experiments" / "results" / "test_balanced_predictions.csv"
+    handoff.to_csv(handoff_path, index=False)
+
     # Overall metrics
     y = df["label"].values
     pred = df["predicted_label"].values
@@ -386,6 +398,15 @@ def evaluate(run_dir, output_dir, device="mps", batch_size=32, num_workers=0):
     (output_dir / "README.md").write_text(readme)
     print(f"Saved baseline outputs to: {output_dir}")
     print(json.dumps(metrics, indent=2))
+    return {
+        "best_checkpoint": str(best_ckpt),
+        "test_predictions": str(output_dir / "test_predictions.csv"),
+        "handoff_predictions": str(handoff_path),
+        "y_true": y,
+        "y_pred": pred,
+        "y_prob": prob,
+        "metrics": metrics,
+    }
 
 
 def main():
