@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-30T16:46:37",
+  "timestamp": "2026-09-06T18:12:25",
   "protocols": {
     "identity_clean": {
       "name": "identity_clean",
@@ -216,7 +216,7 @@
     "video_constraint": "KNOWN LIMITATION: video overlap exists across splits",
     "duplicate_constraint": "exact duplicates removed; one canonical per MD5",
     "primary_protocol_directory": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/data/protocol",
-    "creation_timestamp": "2026-08-30T16:46:37"
+    "creation_timestamp": "2026-09-06T18:12:25"
   },
   "protocol_config": {
     "DATA_PROTOCOL": "identity_clean_v1",

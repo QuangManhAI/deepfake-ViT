@@ -1,14 +1,14 @@
 {
   "model": "dinov3-vits16plus-pretrain-lvd1689m + LoRA (r=16, alpha=32, q/v)",
-  "ckpt": "/workspace/quangmanh/deepfake/outputs/finetune/vit_lora_finetuned.pt",
-  "n_test": 2354,
-  "TN": 1125,
-  "FP": 52,
-  "FN": 75,
-  "TP": 1102,
-  "accuracy": 0.9460492778249787,
-  "precision": 0.9549393414211439,
-  "recall": 0.9362786745964317,
-  "f1": 0.9455169455169455,
-  "roc_auc": 0.985871226257445
+  "ckpt": "/Users/pickapu/Documents/PyCharmMiscProject/deepfake-ViT/outputs/finetune/vit_lora_finetuned.pt",
+  "n_test": 4499,
+  "TN": 158,
+  "FP": 13,
+  "FN": 30,
+  "TP": 4298,
+  "accuracy": 0.9904423205156702,
+  "precision": 0.996984458362329,
+  "recall": 0.9930683918669131,
+  "f1": 0.995022572056951,
+  "roc_auc": 0.9974975948806089
 }
