@@ -1,14 +1,6 @@
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-.ipynb_checkpoints/
-*.mp4
-*.json
-*.jpeg
-# Virtual environment
 .venv/
 venv/
+<<<<<<< HEAD
 env/
 *.mov
 *.avi
@@ -83,3 +75,11 @@ experiments/results/checkpoints/**/*.safetensors
 
 # Local training checkpoint directories
 experiments/results/checkpoints/
+=======
+test_data_v3/
+experiments/
+*.npz
+*.png
+*.jpg
+*.json
+>>>>>>> 3fa96638 (file 02_traindata set van chua chay duoc, can them 1 ngay)
