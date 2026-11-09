@@ -2,7 +2,7 @@
 
 > **Ngày thực hiện:** 24/08/2026
 > **Model gốc:** `dinov3_next_cnn` (DINOv3 ConvNeXt-Tiny, `/workspace/quangmanh/deepfake/models/dinov3_next_cnn`)
-> **Phương pháp:** replicate nguyên bản `doc/v5_weakfix` (hoangtuan) — cùng data, cùng kỹ thuật, cùng hyperparam
+> **Phương pháp:** replicate nguyên bản `docs/v5_weakfix` (hoangtuan) — cùng data, cùng kỹ thuật, cùng hyperparam
 > **Bản tốt nhất (final):** **v3** — Test acc **99.70%** (baseline 99.41%)
 > **So với v5:** v3 97.88% → **99.70%**; faceswap v5 v3 88.89% → **100%**
 
@@ -21,7 +21,7 @@
 1. **Model gốc** (`dinov3_next_cnn`) là DINOv3 **ConvNeXt-Tiny** (27.8M tham số, feature 768-d)
    phân loại deepfake nhị phân. Không có checkpoint classifier sẵn → phải train "baseline"
    trước (tương đương v5 của hoangtuan) rồi mới áp dụng quy trình vá method yếu.
-2. **Phương pháp = nguyên bản `doc/v5_weakfix`**: dùng đúng các CSV train v2/v3 do hoangtuan build
+2. **Phương pháp = nguyên bản `docs/v5_weakfix`**: dùng đúng các CSV train v2/v3 do hoangtuan build
    (`train_v5_weakfix.csv` 121,884 ảnh; `train_v5_weakfix_v3.csv` 129,884 ảnh, faceswap 12,600),
    test trên cùng benchmark zero-leakage 2,354 ảnh. Ràng buộc **identity-disjoint** được giữ
    (`identity_overlap_added = 0` đã verify từ bản build gốc).

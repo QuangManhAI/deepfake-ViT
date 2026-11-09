@@ -17,7 +17,7 @@ hf upload "$REPO" . . \
   --include "src/**" \
   --include "experiments/checkpoints/weights/**" \
   --include "requirements.txt" \
-  --include "RUNPOD.md" \
+  --include "docs/RUNPOD.md" \
   --include "README.md" \
   --exclude ".git/*" \
   --exclude ".venv/*"

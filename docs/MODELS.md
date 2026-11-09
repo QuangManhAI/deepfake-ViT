@@ -11,7 +11,7 @@
   §5 models; §6 test data; §7 test commands; §8 fine-tuned checkpoints.
 - **References**: `src/eval/*`, `src/experiments/*`, HF
   `ManhQuangAI/dinov3-deepfake-detection`, `ManhQuangAI/df40-test-data-v3`,
-  [README.md](README.md), [RUNPOD.md](RUNPOD.md).
+  [README.md](../README.md), [RUNPOD.md](RUNPOD.md).
 
 ---
 

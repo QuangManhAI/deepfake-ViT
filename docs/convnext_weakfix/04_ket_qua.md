@@ -18,7 +18,7 @@
 
 **Đọc nhanh:** baseline ConvNeXt đã rất mạnh (99.41% — cao hơn hẳn baseline v5 95.37%).
 v2 hạ FN 14→8, v3 hạ tiếp 8→6 trong khi chỉ đổi lấy 1 FP. Mọi chỉ số đều **cao hơn kết quả
-tương ứng của v5** trong `doc/v5_weakfix`:
+tương ứng của v5** trong `docs/v5_weakfix`:
 
 | Stage | v5 (ViT-S/16) | **ConvNeXt-Tiny** | Δ |
 |---|---|---|---|
@@ -51,7 +51,7 @@ tương ứng của v5** trong `doc/v5_weakfix`:
 
 ## 3. faceswap — chi tiết (10 case khó của v5 vs ConvNeXt)
 
-Bảng dưới là prob của **chính 10 ảnh mà v5 baseline miss** (theo `doc/v5_weakfix/04`) qua
+Bảng dưới là prob của **chính 10 ảnh mà v5 baseline miss** (theo `docs/v5_weakfix/04`) qua
 3 stage của ConvNeXt:
 
 | identity | nguồn | v5 v3 | ConvNeXt base | ConvNeXt v2 | **ConvNeXt v3** |

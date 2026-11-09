@@ -292,8 +292,8 @@ experiments/results/baseline/
     └── error_quality_distributions.png
 ```
 """
-    (PROJECT_ROOT / "BASELINE_REPORT.md").write_text(report)
-    print("Wrote BASELINE_REPORT.md")
+    (PROJECT_ROOT / "docs" / "reports" / "BASELINE_REPORT.md").write_text(report)
+    print("Wrote docs/reports/BASELINE_REPORT.md")
     print(comp.to_string(index=False))
 
 

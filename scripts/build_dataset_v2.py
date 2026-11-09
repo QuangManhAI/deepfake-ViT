@@ -4,7 +4,7 @@ SEED = 42
 random.seed(SEED)
 np.random.seed(SEED)
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 splits_dir = os.path.join(base_dir, "data", "splits")
 val_csv = os.path.join(splits_dir, "val_domain_balanced.csv")
 test_csv = os.path.join(splits_dir, "test_balanced.csv")

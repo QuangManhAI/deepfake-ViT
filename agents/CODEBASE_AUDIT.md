@@ -176,7 +176,7 @@ compliance gaps → [§10](#10-compliance-with-policies-and-procedures).
 ### SEC-3: No hardcoded secrets; safe subprocess — Info (positive)
 - **Severity:** Info
 - **Description:** No keys/tokens in code; `HF_TOKEN` appears only as
-  placeholder in [MODELS.md](../MODELS.md). `subprocess` calls use argument
+  placeholder in [MODELS.md](../docs/MODELS.md). `subprocess` calls use argument
   lists without `shell=True`. `.env` is gitignored.
 - **Remediation:** None — keep secrets via env vars.
 
