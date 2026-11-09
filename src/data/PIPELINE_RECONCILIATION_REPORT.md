@@ -61,7 +61,7 @@ The EDA must target exactly one of these. The current `split_info.json` belongs 
 **Evidence:**
 - `v5_weakfix_dataset_summary.json` `out_csv` is `/workspace/hoangtuan/deepfake-ViT/data/splits/train_v5_weakfix.csv`.
 - `finetune_convnext_weakfix.py` uses absolute `PROJECT_ROOT = Path("/workspace/quangmanh/deepfake")` and hardcoded CSVs.
-- `doc/v5_weakfix/` and `doc/convnext_weakfix/` describe the v2/v3 CSVs.
+- `docs/v5_weakfix/` and `docs/convnext_weakfix/` describe the v2/v3 CSVs.
 - Git commit `f2fb8fd` added `v5_weakfix_dataset_summary.json` and `finetune_convnext_weakfix.py` together.
 
 **Current state:**
@@ -190,7 +190,7 @@ src/data/prepare_df40_splits.py
 | Which commit? | `f2fb8fd` ("Add evaluation and finetuning scripts for ConvNeXt weakfix models") |
 | When? | 2026-08-24 04:23:52 UTC |
 | What dataset? | `train_v5_weakfix.csv` (121,884 samples) for v5_weakfix v2 |
-| What does v5 mean? | "v5" refers to the 5th version/experiment of a weak-method fix; documented in `doc/v5_weakfix/` |
+| What does v5 mean? | "v5" refers to the 5th version/experiment of a weak-method fix; documented in `docs/v5_weakfix/` |
 | Why 121,884? | `v5_weakfix_dataset_summary.json` confirms 121,884 rows → `train_v5_weakfix.csv` |
 | Which scripts consume it? | `scripts/finetune_convnext_weakfix.py` |
 | Is it related to DF40? | Yes, it uses DF40 training data, but it is a **separate experiment**, not the main pipeline |

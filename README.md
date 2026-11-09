@@ -5,14 +5,22 @@
 ## Cấu trúc thư mục
 
 ```
-deepfake/
-├── .venv/              # Môi trường ảo (Python ≥ 3.10, chuẩn 3.11)
-├── agents/             # Agent AI knowledge base (rules, phases, progress)
+deepfake-ViT/
+├── agents/             # Agent AI knowledge base (rules, phases, progress, figures)
 ├── configs/            # File cấu hình (YAML)
 ├── data/
 │   ├── raw/            # Data thô (ảnh deepfake / real)
 │   ├── processed/      # Data đã xử lý (crop, resize...)
+│   ├── protocol/       # CSV train/val/test theo protocol
+│   ├── splits/         # CSV split (theo method, domain...)
 │   └── external/       # Data ngoài
+├── docs/
+│   ├── MODELS.md       # Tải & test các model đã publish
+│   ├── RUNPOD.md       # Hướng dẫn chạy trên RunPod
+│   ├── reports/        # Báo cáo data/EDA/baseline (BASELINE_REPORT, DATASET_PROTOCOL...)
+│   ├── v5_weakfix/     # Ghi chép fine-tune vá method yếu (ViT v5)
+│   └── convnext_weakfix/  # Replicate weakfix cho ConvNeXt
+├── scripts/            # Script one-off: build data, finetune/eval thử nghiệm, viz, upload
 ├── src/                # Package chính (script entry points)
 │   ├── data/           # Dataset, transforms + build/split/download scripts
 │   ├── models/         # ViT (DINOv3), ConvNeXt, LoRA
@@ -22,12 +30,15 @@ deepfake/
 │   └── utils/          # Logger, helpers, shell utilities
 ├── experiments/
 │   ├── checkpoints/    # Checkpoint + pretrained weights
-│   ├── results/        # Kết quả đánh giá, report, research
+│   ├── results/        # Kết quả đánh giá, research; report LaTeX ở results/report/
 │   ├── plots/          # Figures
 │   └── runs/           # Run logs/history
 ├── notebooks/          # Notebook phân tích
+├── outputs/            # Output eval (JSON)
 └── tests/              # Kiểm thử
 ```
+
+Tải pretrained weights DINOv3: `python scripts/download_dinov3_weights.py`.
 
 ## Cài đặt môi trường
 

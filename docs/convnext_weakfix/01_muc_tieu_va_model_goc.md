@@ -2,7 +2,7 @@
 
 ## 1. Mục tiêu
 
-Replicate trọn vẹn quy trình **vá method yếu** của `doc/v5_weakfix` (đã làm cho model v5
+Replicate trọn vẹn quy trình **vá method yếu** của `docs/v5_weakfix` (đã làm cho model v5
 DINOv3 ViT-S/16 của hoangtuan, đạt 97.88%) lên model **`dinov3_next_cnn`** của repo này:
 
 1. Dùng **đúng data train và test** được nhắc tới trong v5_weakfix (các CSV đã build sẵn,

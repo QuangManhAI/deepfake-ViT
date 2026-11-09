@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Evaluate convnext baseline / v2 / v3 on the zero-leakage test benchmark.
 
-Replicates doc/v5_weakfix/04_ket_qua: per-ckpt metrics, per-method detection rate,
+Replicates docs/v5_weakfix/04_ket_qua: per-ckpt metrics, per-method detection rate,
 faceswap per-identity detail, before/after comparison. Writes:
   experiments/results/convnext_weakfix/eval_<tag>.json
   experiments/results/convnext_weakfix/per_method_<tag>.csv

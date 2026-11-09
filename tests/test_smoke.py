@@ -32,9 +32,12 @@ def test_experiments_layout_exists():
         assert (ROOT / "experiments" / sub).is_dir(), f"missing experiments/{sub}"
 
 
-def test_no_stale_scripts_dir():
-    """The legacy top-level scripts/ dir must be gone after the re-org."""
-    assert not (ROOT / "scripts").exists(), "top-level scripts/ should be removed"
+def test_root_is_clean():
+    """Scripts live in scripts/ or src/, docs/reports in docs/ -- not at the repo root."""
+    allowed_md = {"README.md"}
+    stray = [p.name for p in ROOT.iterdir() if p.is_file()
+             and (p.suffix == ".py" or (p.suffix == ".md" and p.name not in allowed_md))]
+    assert not stray, f"move these out of the repo root: {stray}"
 
 
 def test_model_builders_exist():

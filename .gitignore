@@ -1,6 +1,5 @@
 .venv/
 venv/
-<<<<<<< HEAD
 env/
 *.mov
 *.avi
@@ -75,12 +74,22 @@ experiments/results/checkpoints/**/*.safetensors
 
 # Local training checkpoint directories
 experiments/results/checkpoints/
-=======
+
+# Test data (built locally, not committed)
 test_data_v3/
-experiments/
-*.npz
-*.png
-*.jpg
-*.json
->>>>>>> 3fa96638 (file 02_traindata set van chua chay duoc, can them 1 ngay)
 test_data_v3.zip
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# LaTeX build artifacts
+*.aux
+*.out
+*.toc
+*.synctex.gz
+
+# AI agent / IDE local state
+.claude/
+.kilo/

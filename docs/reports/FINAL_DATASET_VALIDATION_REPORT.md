@@ -296,7 +296,7 @@ Weak data is now scored on:
 
 **Recommendation to enable:**
 
-1. Download the published backbones from `ManhQuangAI/dinov3-deepfake-detection` per `MODELS.md`:
+1. Download the published backbones from `ManhQuangAI/dinov3-deepfake-detection` per `docs/MODELS.md`:
 
 ```bash
 hf download ManhQuangAI/dinov3-deepfake-detection --local-dir .

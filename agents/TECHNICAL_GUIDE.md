@@ -50,7 +50,7 @@
   ConvNeXt-Tiny (`src/models/dinov3_convnext.py`), LoRA adapter
   (`src/models/lora.py`).
 - **Backbones**: gitignored `.safetensors` under
-  `experiments/checkpoints/weights/` (see [MODELS.md](../MODELS.md) §5 for
+  `experiments/checkpoints/weights/` (see [MODELS.md](../docs/MODELS.md) §5 for
   download).
 - **Data**: 4 unified sources — FF++ real (22.4k), Celeb-DF-v2 real (10.3k),
   DF40 train pool (692k fake), and `test_data_v3` (30,691 benchmark images).

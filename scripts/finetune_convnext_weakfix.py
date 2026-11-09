@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Finetune DINOv3 ConvNeXt-Tiny (dinov3_next_cnn) by replicating the v5_weakfix recipe.
 
-Applies the exact method / technique / hyperparameters documented in doc/v5_weakfix
+Applies the exact method / technique / hyperparameters documented in docs/v5_weakfix
 (hoangtuan's v5 DINOv3 ViT-S/16 weak-method repair) to this repo's ConvNeXt-Tiny
 backbone. Same data, same samplers, same loss/optimizer/EMA/augmentation.
 
-Stages (mirror doc/v5_weakfix):
+Stages (mirror docs/v5_weakfix):
   baseline : 3 epochs on train_v5_combined_universal_kaggle_boost.csv (54K balanced),
              plain shuffle -> the "v5-equivalent" for ConvNeXt-Tiny
   v2       : init from baseline, method-balanced sampler,
@@ -13,7 +13,7 @@ Stages (mirror doc/v5_weakfix):
   v3       : init from v2, faceswap-focused sampler,
              3 epochs on train_v5_weakfix_v3.csv (129,884, faceswap 12.6K) -> doc 97.88%
 
-Recipe (identical to doc/v5_weakfix/03_finetune):
+Recipe (identical to docs/v5_weakfix/03_finetune):
   LabelSmoothingCrossEntropy(0.05); AdamW {backbone base_lr, head head_lr, wd 0.05/0.005};
   EMA 0.999; CosineAnnealingLR(eta_min=1e-6); clip 1.0; bf16; batch 64; seed 42;
   transforms: BICUBIC 256, HFlip 0.5, ColorJitter(0.2,0.2,0.2,0.05)@0.5,
